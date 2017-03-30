@@ -51,9 +51,10 @@ const skin = {
         picker,
         footer: {
             ...footer,
+            textAlign: 'right',
             okBtn: {
                 ...footer.okBtn,
-                marginLeft: '85%',
+                marginRight: 10,
             }
         }
     }
