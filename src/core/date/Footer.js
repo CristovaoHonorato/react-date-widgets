@@ -5,7 +5,7 @@ import { omit } from '../common/utils'
 
 
 const Footer = ({
-    defaultValue, value = defaultValue, locale, style, onChange
+    defaultValue, value = defaultValue, translations, style, onChange
 }) => {
 
     const {
@@ -19,7 +19,7 @@ const Footer = ({
                 isDisabled: isToday(value),
                 style: nowBtn,
                 onClick: isToday(value) ? () => {} : () => { onChange(today(value)) },
-            }}>{locale.today}</Button>
+            }}>{translations.today}</Button>
         </div>
     )
 }
@@ -37,7 +37,7 @@ function isToday(value){
 Footer.propTypes = {
     value: PropTypes.object,
     defaultValue: PropTypes.object.isRequired,
-    locale: PropTypes.object.isRequired,
+    translations: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired
 }
 

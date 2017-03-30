@@ -59,7 +59,7 @@ class Header extends Component {
     renderPrevYearBtn() {
 
         const {
-            locale,
+            translations,
             style : {prevYearBtn},
             onShadowValueChange,
             shadowValue
@@ -70,7 +70,7 @@ class Header extends Component {
                 {...layoutStyle.headerBtn, left: 0}, prevYearBtn
             ),
             className: 'prev-year-btn',
-            title: locale.previousYear,
+            title: translations.previousYear,
             onClick: () => {
                 const nextValue = shadowValue.clone().add(-1, 'years')
                 onShadowValueChange(nextValue)
@@ -80,7 +80,7 @@ class Header extends Component {
 
     renderNextYearBtn() {
         const {
-            locale,
+            translations,
             style : {nextYearBtn},
             onShadowValueChange,
             shadowValue
@@ -91,7 +91,7 @@ class Header extends Component {
                 {...layoutStyle.headerBtn, right: 0}, nextYearBtn
             ),
             className: 'next-year-btn',
-            title: locale.nextYear,
+            title: translations.nextYear,
             onClick: () => {
                 const nextValue = shadowValue.clone().add(1, 'years')
                 onShadowValueChange(nextValue)
@@ -101,7 +101,7 @@ class Header extends Component {
 
     renderPrevMonthBtn() {
         const {
-            locale,
+            translations,
             style : { prevMonthBtn },
             onShadowValueChange,
             shadowValue
@@ -113,7 +113,7 @@ class Header extends Component {
                 prevMonthBtn
             ),
             className: 'prev-month-btn',
-            title: locale.previousMonth,
+            title: translations.previousMonth,
             onClick: () => {
                 const nextValue = shadowValue.clone().add(-1, 'months')
                 onShadowValueChange(nextValue)
@@ -123,7 +123,7 @@ class Header extends Component {
 
     renderNextMonthBtn() {
         const {
-            locale,
+            translations,
             style : { nextMonthBtn },
             onShadowValueChange,
             shadowValue
@@ -135,7 +135,7 @@ class Header extends Component {
                 nextMonthBtn
             ),
             className: 'next-month-btn',
-            title: locale.nextMonth,
+            title: translations.nextMonth,
             onClick: () => {
                 const nextValue = shadowValue.clone().add(1, 'months')
                 onShadowValueChange(nextValue)
@@ -144,24 +144,24 @@ class Header extends Component {
     }
 
     renderMonthYearElement() {
-        const { locale, shadowValue, style : {selectBtn} } = this.props
+        const { translations, shadowValue, style : {selectBtn} } = this.props
 
-        const monthBeforeYear = locale.monthBeforeYear
+        const monthBeforeYear = translations.monthBeforeYear
         const style = extendStyle(layoutStyle.selectBtn, selectBtn)
         const year = (
             <Button {...{
                 className: 'year-select',
                 style,
-                title: locale.yearSelect,
-            }}>{shadowValue.format(locale.yearFormat)}</Button>
+                title: translations.yearSelect,
+            }}>{shadowValue.format(translations.yearFormat)}</Button>
         )
 
         const month = (
             <Button {...{
                 className: 'month-select',
                 style,
-                title: locale.monthSelect,
-            }}>{shadowValue.format(locale.monthFormat)}</Button>
+                title: translations.monthSelect,
+            }}>{shadowValue.format(translations.monthFormat)}</Button>
         )
 
         return monthBeforeYear
@@ -181,7 +181,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-    locale: PropTypes.object.isRequired,
+    translations: PropTypes.object.isRequired,
     value: PropTypes.object,
     onShadowValueChange: PropTypes.func.isRequired,
 }

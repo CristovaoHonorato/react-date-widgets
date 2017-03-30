@@ -72,13 +72,13 @@ function createPicker(Header){
             const {
                 value,
                 style,
-                locale,
+                translations,
                 defaultValue,
             } = this.props
 
             const { header } = style
             return <Header {...{
-                locale,
+                translations,
                 value,
                 defaultValue,
                 style: header

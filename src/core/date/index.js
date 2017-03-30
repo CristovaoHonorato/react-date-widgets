@@ -3,7 +3,7 @@ import panel from '../_hoc/panel'
 import expandCollapse from '../_hoc/expandCollapse'
 
 import skin from './skin'
-import locale from './locale'
+import translations from './translations'
 import Input from '../common/Input'
 import Picker from './picker'
 import Footer from './Footer'
@@ -24,6 +24,6 @@ export default widget(
         style: skin,
         textFormat: 'YYYY/MM/DD',
         valueFormat: 'TYYYY:MM:DDZ',
-        locale
+        translations
     }
 )

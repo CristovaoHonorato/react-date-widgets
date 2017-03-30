@@ -19,7 +19,7 @@ const headerLayoutStyle = {
 }
 
 const Header = ({
-    locale,
+    translations,
     defaultValue,
     value = defaultValue,
     style : { headerBtn, ...styleRest }
@@ -28,18 +28,18 @@ const Header = ({
         <Button {...{
             className: 'day-select',
             style: extendStyle(headerBtnLayoutStyle, headerBtn),
-            title: locale.daySelect
-        }}>{(value || defaultValue).format(locale.dayFormat)}</Button>
+            title: translations.daySelect
+        }}>{(value || defaultValue).format(translations.dayFormat)}</Button>
         <Button {...{
             className: 'month-select',
             style: extendStyle(headerBtnLayoutStyle, headerBtn),
-            title: locale.monthSelect
-        }}>{(value || defaultValue).format(locale.monthFormat)}</Button>
+            title: translations.monthSelect
+        }}>{(value || defaultValue).format(translations.monthFormat)}</Button>
         <Button {...{
             className: 'year-select',
             style: extendStyle(headerBtnLayoutStyle, headerBtn),
-            title: locale.yearSelect,
-        }}>{(value || defaultValue).format(locale.yearFormat)}</Button>
+            title: translations.yearSelect,
+        }}>{(value || defaultValue).format(translations.yearFormat)}</Button>
     </div>
 )
 

@@ -6,7 +6,7 @@ const Footer = ({
     mode,
     value,
     defaultValue,
-    locale,
+    translations,
     style,
     onChange,
     onChangeMode,
@@ -25,17 +25,19 @@ const Footer = ({
         onClick: () => {
             onChange(now(value||defaultValue))
         },
-    }}>{locale.now}</Button>
+    }}>{translations.now}</Button>
 
-    const e2 = <Button {...{
+    const e2 = (<Button {...{
         style: selectTimeBtn,
         onClick: onChangeMode,
-    }}>{mode === 'time' ? locale.dateSelect : locale.timeSelect}</Button>
+    }}>
+        {mode === 'time' ? translations.dateSelect : translations.timeSelect}
+    </Button>)
 
     const e3 = <Button key="ok" {...{
         style: okButton,
         onClick: onCollapsePanel,
-    }}>{locale.ok}</Button>
+    }}>{translations.ok}</Button>
 
     return (
         <div className={'date-picker-footer'} style={restStyle}>
@@ -57,7 +59,7 @@ Footer.propTypes = {
     mode: PropTypes.oneOf(['time', 'date']).isRequired,
     value: PropTypes.object,
     defaultValue: PropTypes.object.isRequired,
-    locale: PropTypes.object.isRequired,
+    translations: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onChangeMode: PropTypes.func.isRequired,
     onCollapsePanel: PropTypes.func.isRequired
