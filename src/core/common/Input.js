@@ -30,7 +30,7 @@ class Input extends PureComponent {
     renderInput() {
         const {
             placeholder,
-            style,            
+            style,
             onBlur,
         } = this.props
         const { invalid, stringValue } = this.state

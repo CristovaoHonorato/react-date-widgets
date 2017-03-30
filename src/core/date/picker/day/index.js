@@ -15,7 +15,8 @@ const KeyCode = {
     PAGE_DOWN: 33,
     PAGE_UP: 34,
     RIGHT: 39,
-    UP: 38
+    UP: 38,
+    ESC: 27,
 }
 
 const layoutStyle = {
@@ -114,16 +115,11 @@ class Panel extends PureComponent {
     }
 
     handleKeyDown(event) {
-        /*
-        @Oleg do we need this bullshit? The input is outside, should never bubble here
-        if (event.target.nodeName.toLowerCase() === 'input') {
-            return undefined
-        }
-        */
 
         // mac
         const ctrlKey = event.ctrlKey || event.metaKey
         const { keyCode } = event
+        const { onCollapsePanel } = this.props
 
         switch (keyCode) {
 
@@ -179,8 +175,10 @@ class Panel extends PureComponent {
                 event.preventDefault()
                 this.handleChange(this.state.shadowValue)
                 return 1
-
-            //@OLEG missing the escape key here. onCollapsePanel
+            case KeyCode.ESC:
+                event.preventDefault()
+                onCollapsePanel()
+                return 1
             default:
                 //onKeyDown(event)
                 return 1
