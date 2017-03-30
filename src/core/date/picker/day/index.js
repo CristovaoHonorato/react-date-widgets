@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes, PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 
 import { omit, extendStyle } from '../../../common/utils'
@@ -28,7 +28,7 @@ const layoutStyle = {
     lineHeight: '1.5',
 }
 
-class Panel extends Component {
+class Panel extends PureComponent {
     constructor(props) {
         super(props)
         this.setShadowValue = this.setShadowValue.bind(this)
@@ -83,9 +83,19 @@ class Panel extends Component {
 
     handleChange(value) {
         if (value) {
-            this.setShadowValue(value)
+            this.updateStateWithNotNullValue(value)
+        } else {
+            this.setValue(value)
         }
-        this.setValue(value)
+    }
+
+    updateStateWithNotNullValue(value) {
+        if(!this.isAllowedDate(value)) return
+        const { onChange } = this.props
+        this.setState({
+            value,
+            shadowValue: value,
+        }, () => { onChange(value) })
     }
 
     setValue(value) {

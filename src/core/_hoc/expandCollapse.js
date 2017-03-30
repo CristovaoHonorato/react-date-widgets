@@ -79,7 +79,7 @@ export default function createExpandCollapse(
                     style: style.panel,
                     onChange: combine(
                         onChange,
-                        collapseOnChange ? (() => setTimeout(() => this.collapse(), 0)) : () => {},
+                        collapseOnChange ? this.collapse : () => {},
                     ),
                     onCollapsePanel: this.collapse
                 }}/>
