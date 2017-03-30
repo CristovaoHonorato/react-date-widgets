@@ -52,10 +52,10 @@ const innerCell = {
         borderTopRightRadius: '4px',
         borderBottomRightRadius: '4px',
     },
-    lastMonthCell: {
+    prevMonthCell: {
         color: '#bbb',
     },
-    nextMonthBtnDay: {
+    nextMonthCell: {
         color: '#bbb',
     }
 }

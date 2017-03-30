@@ -13,7 +13,7 @@ export default widget(
         style: skin,
         valueFormat: 'TYYYY-MM-DD HH:mm:ssZ',
         textFormat: 'YYYY-MM-DD HH:mm:ss',
-        pickerHeight: 200,
+        pickerHeight: 210,
         locale
     }
 )

@@ -6,53 +6,32 @@ import hover from '../../../_hoc/hover'
 const Cell = (props) => {
     const {
         contentRender,
-        value, shadowValue,
-        hoverValue,
+        shadowValue,
         onDayHover,
         onChange,
         isDisabled,
         format,
-        current,
+        cellValue,
         style,
     } = props
-    const isBeforeCurrentMonthYear = beforeCurrentMonthYear(current, shadowValue)
-    const isAfterCurrentMonthYear = afterCurrentMonthYear(current, shadowValue)
-    // TODO: refactoring through props, inRangeClass
-    // isRange ?
-    const rangeValue = hoverValue.length ? hoverValue : value
-    const [ startValue, endValue ] = Array.isArray(rangeValue) ? rangeValue  : []
-    // isInRange
-    // isStart or isEnd, TODO: refactor it!
-    const isSelected = (
-        // (Array.isArray(value) &&
-        (!isBeforeCurrentMonthYear &&
-        !isAfterCurrentMonthYear &&
-        (isSameDay(current, startValue) || isSameDay(current, endValue))) ||
-        isSameDay(current, shadowValue)
-    )
-
-    const onMouseEnter = isDisabled
-        ? null
-        : () => { onDayHover(current) }
-    // TODO: pass format from props
 
     const {inner, ...styleOutter} = style
     return (
-        <span
-            style={styleOutter}
-            onClick={isDisabled ? null : () => { onChange(current) }}
-            onMouseEnter={onMouseEnter}
-            title={shadowValue.format(format)} className={'date-cell'}
-        >
-            <div
-                style={getCellStyle({...props, style: inner}, isSelected)}
-                className={'date-cell-outer'}
-                aria-selected={isSelected}
-                aria-disabled={isDisabled}>
-                    {contentRender
-                        ? contentRender(current, shadowValue)
-                        : current.date()
-                    }
+        <span {...{
+            style: styleOutter,
+            onClick: isDisabled ? null : () => { onChange(cellValue) },
+            onMouseEnter: isDisabled ? null : () => { onDayHover(cellValue) },
+            title: cellValue.format(format),
+            className: 'date-cell',
+        }}>
+            <div {...{
+                style: getCellStyle({...props, style: inner}),
+                className: 'date-cell-outer',
+            }}>
+                {contentRender
+                    ? contentRender(cellValue, shadowValue)
+                    : cellValue.date()
+                }
             </div>
         </span>
     )
@@ -60,34 +39,34 @@ const Cell = (props) => {
 
 Cell.propTypes = {
     contentRender: PropTypes.func,
-    value: PropTypes.oneOfType(
-        [PropTypes.object, PropTypes.arrayOf(PropTypes.object)]
-    ),
-    hoverValue: PropTypes.any,
-    shadowValue: PropTypes.object,
+    widgetValue: PropTypes.instanceOf(moment),
+    shadowValue: PropTypes.instanceOf(moment),
+    cellValue: PropTypes.instanceOf(moment).isRequired,
+    onDayHover: PropTypes.func,
+    onChange: PropTypes.func,
+    format: PropTypes.string,
+    isDisabled: PropTypes.bool,
 }
 
 Cell.defaultProps = {
-    hoverValue: [],
     onDayHover: () => {},
     onChange: () => {},
 }
 
 export default hover(Cell)
 
-function getCellStyle(
-    {style, current, shadowValue, isHovered, isDisabled,
-    isFirstDisableDate, isLastDisableDate, value},
-    isSelected
-) {
+function getCellStyle({
+    style, cellValue, shadowValue, isHovered, isDisabled,
+    isFirstDisableDate, isLastDisableDate, widgetValue
+}) {
     const {
         shadowSelectedDay,
         selectedDay,
         today: todayStyle,
         disabledCellFirstOfRow,
         disabledCellLastOfRow,
-        lastMonthCell,
-        nextMonthBtnDay,
+        prevMonthCell,
+        nextMonthCell,
         disabled: disabledStyle,
         ':hover': {
             selectedDay: selectedDayHover,
@@ -96,52 +75,42 @@ function getCellStyle(
         },
         ...restStyle
     } = style
+
     const layoutStyle = {
         textAlign: 'center',
         boxSizing: 'border-box',
         display: 'block',
         padding: 0,
     }
+
+    const today = moment()
+        .locale(shadowValue.locale())
+        .utcOffset(shadowValue.utcOffset())
+
+    const isShadowValue = cellValue.isSame(shadowValue, 'day')
+    const isCellFromPrevMonth = cellValue.isBefore(shadowValue, 'month')
+    const isCellFromNextMonth = cellValue.isAfter(shadowValue, 'month')
+    const isToday = cellValue.isSame(today, 'day')
+    const isWidgetValue = cellValue.isSame(widgetValue, 'day')
+
     const hoverStyle = {
         ...restHoverStyle,
-        ...(isSelected ? selectedDayHover : {}),
+        ...(isWidgetValue ? selectedDayHover : {}),
         ...(isDisabled ? disabledHover : {}),
     }
-    const isBeforeCurrentMonthYear = beforeCurrentMonthYear(current, shadowValue)
-    const isAfterCurrentMonthYear = afterCurrentMonthYear(current, shadowValue)
-    const today = getTodayTime(shadowValue)
+
 
     return {
         ...layoutStyle,
         ...restStyle,
-        ...(isSameDay(current, today) ? todayStyle : {}),
+        ...(isToday ? todayStyle : {}),
         ...(isFirstDisableDate ? disabledCellFirstOfRow : {}),
         ...(isLastDisableDate ? disabledCellLastOfRow : {}),
-        ...(isBeforeCurrentMonthYear ? lastMonthCell : {}),
-        ...(isAfterCurrentMonthYear ? nextMonthBtnDay : {}),
+        ...(isCellFromPrevMonth ? prevMonthCell : {}),
+        ...(isCellFromNextMonth ? nextMonthCell : {}),
         ...(isHovered ? hoverStyle : {}),
         ...(isDisabled ? disabledStyle : {}),
-        ...(isSelected ? shadowSelectedDay : {}),
-        ...(isSameDay(current, value) ? selectedDay : {}),
+        ...(isShadowValue ? shadowSelectedDay : {}),
+        ...(isWidgetValue ? selectedDay : {}),
     }
-}
-
-function isSameDay(one, two) {
-    return one && two && one.isSame(two, 'day')
-}
-
-function beforeCurrentMonthYear(current, today) {
-    return current.year() < today.year()
-        ? true
-        : current.year() === today.year() && current.month() < today.month()
-}
-
-function afterCurrentMonthYear(current, today) {
-    return current.year() > today.year()
-        ? true
-        : current.year() === today.year() && current.month() > today.month()
-}
-
-function getTodayTime(value) {
-    return moment().locale(value.locale()).utcOffset(value.utcOffset())
 }

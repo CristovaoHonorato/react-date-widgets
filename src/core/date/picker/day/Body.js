@@ -43,24 +43,32 @@ const cellLayoutStyle = {
 }
 
 function renderCells(dateTable, rowNumber, props) {
-    const { shadowValue, minDate, maxDate, style, ...rest } = props
+    const {
+        shadowValue,
+        minDate,
+        maxDate,
+        style,
+        value,
+        ...rest
+    } = props
     const { cell: cellStyle } = style
 
     return range(DATE_COL_COUNT).map((colNumber) => {
         const currentCellNumber = rowNumber * DATE_COL_COUNT + colNumber
 
-        const current = dateTable[currentCellNumber]
-        const isFirstDisableDate = minDate && current.isSame(minDate)
-        const isLastDisableDate = maxDate && current.isSame(maxDate)
-        const isDisabled = !isAllowedDate(current, minDate, maxDate)
+        const cellValue = dateTable[currentCellNumber]
+        const isFirstDisableDate = minDate && cellValue.isSame(minDate)
+        const isLastDisableDate = maxDate && cellValue.isSame(maxDate)
+        const isDisabled = !isAllowedDate(cellValue, minDate, maxDate)
         return (
             <Cell {...{
                 ...rest,
+                widgetValue: value,
                 isFirstDisableDate,
                 isLastDisableDate,
-                current,
-                isDisabled,
+                cellValue,
                 shadowValue,
+                isDisabled,
                 style: extendStyle(cellLayoutStyle, cellStyle),
                 key: currentCellNumber
             }}/>
@@ -68,9 +76,9 @@ function renderCells(dateTable, rowNumber, props) {
     })
 }
 
-function isAllowedDate(current, minDate, maxDate) {
-    const isAfter = !minDate ? true : current.isAfter(minDate)
-    const isBefore = !maxDate ? true : current.isBefore(maxDate)
+function isAllowedDate(cellValue, minDate, maxDate) {
+    const isAfter = !minDate ? true : cellValue.isAfter(minDate)
+    const isBefore = !maxDate ? true : cellValue.isBefore(maxDate)
     return isBefore && isAfter
 }
 

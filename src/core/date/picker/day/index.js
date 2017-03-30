@@ -82,11 +82,7 @@ class Panel extends PureComponent {
     }
 
     handleChange(value) {
-        if (value) {
-            this.updateStateWithNotNullValue(value)
-        } else {
-            this.setValue(value)
-        }
+        value ? this.updateStateWithNotNullValue(value) : this.setValue(value)
     }
 
     updateStateWithNotNullValue(value) {
