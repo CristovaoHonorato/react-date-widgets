@@ -46,22 +46,19 @@ function createWeekDaysRenderer(veryShortWeekdays, style) {
 
 
 function genereateHeaderNames(shadowValue) {
-    //TODO move this to reduce functions
-    const veryShortWeekdays =[]
-    const weekdays =[]
     const localeData = shadowValue.localeData()
     const firstDayOfWeek = localeData.firstDayOfWeek()
     const now = moment()
-    range(DATE_COL_COUNT).forEach((dateColIndex) => {
+    return range(DATE_COL_COUNT).reduce( (acc, dateColIndex) => {
         const index = (firstDayOfWeek + dateColIndex) % DATE_COL_COUNT
         now.day(index)
-        veryShortWeekdays[dateColIndex] = localeData.weekdaysMin(now)
-        weekdays[dateColIndex] = localeData.weekdaysShort(now)
-    })
-    return {
-        veryShortWeekdays,
-        weekdays
-    }
+        return {
+            veryShortWeekdays: (
+                [...acc.veryShortWeekdays, localeData.weekdaysMin(now)]
+            ),
+            weekdays: [...acc.weekdays, localeData.weekdaysShort(now)]
+        }
+    }, { veryShortWeekdays: [], weekdays: [] })
 }
 
 export default BodyHeader
