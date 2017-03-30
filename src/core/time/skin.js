@@ -53,7 +53,7 @@ const skin = {
             ...footer,
             okBtn: {
                 ...footer.okBtn,
-                marginLeft: 12,
+                marginLeft: '85%',
             }
         }
     }
