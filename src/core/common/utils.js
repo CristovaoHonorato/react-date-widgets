@@ -19,18 +19,14 @@ export function range(length) {
 // Use this only for styles
 export function extendStyle(base = {}, extension = {}) {
     const keys = Object.keys(base)
-    return Object.keys(extension).reduce(
-        (result, property) => (
-            {
-                ...result,
-                ...({
-                    [property]: keys.includes(property) && isObject(base[property])
-                        ? extendStyle(base[property], extension[property])
-                        : extension[property]
-                })
-            }
-        ), base
-    )
+    return Object.keys(extension).reduce((result, property) => ({
+        ...result,
+        ...{
+            [property]: keys.includes(property) && isObject(base[property])
+                ? extendStyle(base[property], extension[property])
+                : extension[property]
+        }
+    }), base)
 }
 
 function isObject(obj) {

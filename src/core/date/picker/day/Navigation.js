@@ -29,7 +29,7 @@ const layoutStyle = {
     }
 }
 
-class Header extends Component {
+class Navigation extends Component {
 
     render() {
         const { style } = this.props
@@ -180,10 +180,10 @@ class Header extends Component {
     }
 }
 
-Header.propTypes = {
+Navigation.propTypes = {
     translations: PropTypes.object.isRequired,
     value: PropTypes.object,
     onShadowValueChange: PropTypes.func.isRequired,
 }
 
-export default Header
+export default Navigation

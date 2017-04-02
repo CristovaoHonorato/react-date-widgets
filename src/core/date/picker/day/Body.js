@@ -1,33 +1,33 @@
 import React, { PropTypes } from 'react'
+import moment from 'moment'
 import { range, extendStyle } from '../../../common/utils'
-import Cell from './Cell'
+import Cell, {HeaderCell} from './Cell'
 
 const DATE_ROW_COUNT = 6
 const DATE_COL_COUNT = 7
 
-const Body = (props) => {
-    const { shadowValue } = props
-    const firstDayOfMonth = shadowValue.clone().date(1)
-    const firstDayOfMonthWeekday = firstDayOfMonth.day()
-    const lastMonthDiffDay = (
-        (firstDayOfMonthWeekday + 7 - shadowValue.localeData().firstDayOfWeek()) % 7)
-    // calculate last month
-    const restDaysOfLastMonth = firstDayOfMonth
-        .clone().add(0 - lastMonthDiffDay, 'days')
+const Body = props => {
+    const { shadowValue, style, pickerHeight } = props
 
-    const dateTable = genereateDateTable(restDaysOfLastMonth)
-
-    const tableHtml = range(DATE_ROW_COUNT).map((rowNumber) => {
-        return (
-            <div key={rowNumber} className='picker-row' style={{fontSize: 0}}>
-                {renderCells(dateTable, rowNumber, props)}
-            </div>
-        )
-    })
+    const dateTable = dayValues(shadowValue)
 
     return (
-        <div className='picker-body'>
-            {tableHtml}
+        <div className='picker-body' style={{height: pickerHeight}}>
+            <div className='picker-header' style={{fontSize:0, position: 'relative'}}>
+                {dayNames(shadowValue).map(({name, title}, index) =>
+                    <HeaderCell {...{
+                        key: index,
+                        name,
+                        title,
+                        style: style.bodyHeader.columnHeader
+                    }}/>
+                )}
+            </div>
+            {range(DATE_ROW_COUNT).map(indexWeek => (
+                <div key={indexWeek} className='picker-row' style={{fontSize: 0}}>
+                    {renderValues(dateTable, indexWeek, {...props, style: style.body})}
+                </div>
+            ))}
         </div>
     )
 }
@@ -42,7 +42,7 @@ const cellLayoutStyle = {
     textAlign: 'center',
 }
 
-function renderCells(dateTable, rowNumber, props) {
+function renderValues(dateTable, rowNumber, props) {
     const {
         shadowValue,
         minDate,
@@ -76,21 +76,52 @@ function renderCells(dateTable, rowNumber, props) {
     })
 }
 
+function dayNames(shadowValue){
+    const locale = shadowValue.localeData()
+
+    return range(DATE_COL_COUNT).reduce((result, nextDay) => {
+        const now = moment().day(
+            (locale.firstDayOfWeek() + nextDay) % DATE_COL_COUNT
+        )
+
+        return [
+            ...result,
+            {
+                name: locale.weekdaysMin(now),
+                title: locale.weekdays(now)
+            }
+        ]
+    }, [])
+}
+
+function dayValues(shadowValue) {
+
+    const firstDay = shadowValue.clone().date(1)
+    const firstWeekday = firstDay.day()
+    const carryoverDay = (
+        (firstWeekday + 7 - shadowValue.localeData().firstDayOfWeek()) %
+        7
+    )
+    // calculate last month
+    const startDate = firstDay
+        .clone()
+        .add(0 - carryoverDay, 'days')
+
+    const howMuch = DATE_ROW_COUNT * DATE_COL_COUNT
+    return range(howMuch).map(delta =>
+        startDate.clone().add(delta, 'days')
+    )
+}
+
 function isAllowedDate(cellValue, minDate, maxDate) {
     const isAfter = !minDate ? true : cellValue.isAfter(minDate)
     const isBefore = !maxDate ? true : cellValue.isBefore(maxDate)
     return isBefore && isAfter
 }
 
-function genereateDateTable(startDate) {
-    const howMuch = DATE_ROW_COUNT * DATE_COL_COUNT
-    return range(howMuch).map(
-        (dayCounter) => startDate.clone().add(dayCounter, 'days')
-    )
-}
 
 Body.propTypes = {
-    shadowValue: PropTypes.object,
+    shadowValue: PropTypes.instanceOf(moment).isRequired
 }
 
 export default Body

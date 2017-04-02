@@ -2,8 +2,7 @@ import React, { PropTypes, PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 
 import { omit, extendStyle } from '../../../common/utils'
-import BodyHeader from './BodyHeader'
-import Header from './Header'
+import Navigation from './Navigation'
 import Body from './Body'
 
 const KeyCode = {
@@ -44,13 +43,13 @@ class Panel extends PureComponent {
 
     render() {
 
-        const { style, pickerHeight } = this.props
+        const { style } = this.props
         const { shadowValue, value } = this.state
 
         const props = {
             autoFocus: true,
             tabIndex: "0",
-            className: 'panel-day',
+            className: 'picker-day',
             style: extendStyle(layoutStyle, omit(style, 'day', 'month', 'year')),
             onKeyDown: this.handleKeyDown
         }
@@ -63,21 +62,15 @@ class Panel extends PureComponent {
             onChange: this.handleChange,
         }
         return (
-            <div className='panel-day' {...props}>
-                <Header {...{
+            <div {...props}>
+                <Navigation {...{
                     ...childProps,
                     style: style.day.header
                 }}/>
-                <div className='picker' style={{height: pickerHeight}}>
-                    <BodyHeader {...{
-                        ...childProps,
-                        style: style.day.bodyHeader
-                    }}/>
-                    <Body {...{
-                        ...childProps,
-                        style: style.day.body
-                    }}/>
-                </div>
+                <Body {...{
+                    ...childProps,
+                    style: style.day
+                }}/>
             </div>
         )
     }

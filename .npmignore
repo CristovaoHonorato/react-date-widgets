@@ -2,3 +2,5 @@
 /public/
 /src/
 yarn.lock
+*.log
+*.md

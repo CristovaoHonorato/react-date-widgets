@@ -1,12 +1,10 @@
 import React, {  PropTypes } from 'react'
 import moment from 'moment'
 import hover from '../../../_hoc/hover'
+import { extendStyle } from '../../../common/utils'
 
-
-const Cell = (props) => {
+const Cell = props => {
     const {
-        contentRender,
-        shadowValue,
         onDayHover,
         onChange,
         isDisabled,
@@ -27,18 +25,12 @@ const Cell = (props) => {
             <div {...{
                 style: getCellStyle({...props, style: inner}),
                 className: 'date-cell-outer',
-            }}>
-                {contentRender
-                    ? contentRender(cellValue, shadowValue)
-                    : cellValue.date()
-                }
-            </div>
+            }}>{ cellValue.date() } </div>
         </span>
     )
 }
 
 Cell.propTypes = {
-    contentRender: PropTypes.func,
     widgetValue: PropTypes.instanceOf(moment),
     shadowValue: PropTypes.instanceOf(moment),
     cellValue: PropTypes.instanceOf(moment).isRequired,
@@ -99,7 +91,6 @@ function getCellStyle({
         ...(isDisabled ? disabledHover : {}),
     }
 
-
     return {
         ...layoutStyle,
         ...restStyle,
@@ -113,4 +104,28 @@ function getCellStyle({
         ...(isShadowValue ? shadowSelectedDay : {}),
         ...(isWidgetValue ? selectedDay : {}),
     }
+}
+
+export const HeaderCell = ({name, title, style}) => {
+    const styleLayout = {
+        boxSizing: 'boder-box',
+        display: 'inline-block',
+        textAlign: 'center',
+        verticalAlign: 'top',
+        width: `${100/7}%`,
+        fontSize: 12,
+        lineHeight: '18px',
+        padding: '6px 0',
+    }
+
+    return <span {...{
+        className: 'weekday',
+        style: extendStyle(styleLayout, style),
+        title
+    }}>
+        <span {...{
+            className: 'weekday-inner',
+            style: { display: 'block' }
+        }}>{name}</span>
+    </span>
 }
