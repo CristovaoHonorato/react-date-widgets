@@ -7,7 +7,7 @@ import { omit } from '../common/utils'
 const Footer = ({
     defaultValue, value = defaultValue, translations, style, onChange
 }) => {
-
+    console.log(defaultValue);
     const {
         nowBtn,
         ...restStyle
@@ -18,7 +18,9 @@ const Footer = ({
             <Button {...{
                 isDisabled: isToday(value),
                 style: nowBtn,
-                onClick: isToday(value) ? () => {} : () => { onChange(today(value)) },
+                onClick: isToday(value)
+                    ? () => {}
+                    : () => { onChange(today(value || defaultValue)) },
             }}>{translations.today}</Button>
         </div>
     )
