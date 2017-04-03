@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import moment from 'moment'
-import { range, extendStyle } from '../../../common/utils'
+import { range, extendStyle, omit } from '../../../common/utils'
 import Cell, {HeaderCell} from './Cell'
 
 const DATE_ROW_COUNT = 6
@@ -19,13 +19,17 @@ const Body = props => {
                         key: index,
                         name,
                         title,
-                        style: style.bodyHeader.columnHeader
+                        style: style.bodyHeader
                     }}/>
                 )}
             </div>
             {range(DATE_ROW_COUNT).map(indexWeek => (
                 <div key={indexWeek} className='picker-row' style={{fontSize: 0}}>
-                    {renderValues(dateTable, indexWeek, {...props, style: style.body})}
+                    {renderValues(
+                        dateTable,
+                        indexWeek,
+                        {...props, style: omit(style, 'bodyHeader')}
+                    )}
                 </div>
             ))}
         </div>

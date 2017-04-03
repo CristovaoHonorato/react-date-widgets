@@ -50,7 +50,7 @@ class Panel extends PureComponent {
             autoFocus: true,
             tabIndex: "0",
             className: 'picker-day',
-            style: extendStyle(layoutStyle, omit(style, 'day', 'month', 'year')),
+            style: extendStyle(layoutStyle, omit(style, 'body', 'header')),
             onKeyDown: this.handleKeyDown
         }
 
@@ -65,11 +65,11 @@ class Panel extends PureComponent {
             <div {...props}>
                 <Header {...{
                     ...childProps,
-                    style: style.day.header
+                    style: style.header
                 }}/>
                 <Body {...{
                     ...childProps,
-                    style: style.day
+                    style: style.body
                 }}/>
             </div>
         )

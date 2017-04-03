@@ -10,11 +10,12 @@ export default class DatePicker extends Component {
     }
 
     render() {
+        const { style: { day }, ...rest } = this.props
         switch(this.state.mode) {
             case 'day':
-                return <DayPicker {...this.props}/>
+                return <DayPicker {...{...rest, style: day}} />
             default:
-                return <DayPicker {...this.props} />
+                return <DayPicker {...{...rest, style: day}} />
         }
     }
 

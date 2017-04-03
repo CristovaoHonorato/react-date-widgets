@@ -60,20 +60,20 @@ const innerCell = {
     }
 }
 
-const body = {
-    cell: {
-        inner: innerCell
-    }
+const bodyHeader = {
+    fontSize: 12,
+    lineHeight: '18px',
+    fontFamily,
+    WebkitFontSmoothing: 'antialiased',
+    fontWeight: 400,
+    padding: '6px 0',
 }
 
-const bodyHeader = {
-    columnHeader: {
-        fontSize: 12,
-        lineHeight: '18px',
-        fontFamily,
-        WebkitFontSmoothing: 'antialiased',
-        fontWeight: 400,
-        padding: '6px 0',
+
+const body = {
+    bodyHeader,
+    cell: {
+        inner: innerCell
     }
 }
 
@@ -111,16 +111,11 @@ const header = {
 }
 
 const picker = {
-    fontFamily: 'Arial, "Hiragino Sans GB", "Microsoft Yahei", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans-serif',
-    fontSize: '12px',
     day: {
+        fontFamily: 'Arial, "Hiragino Sans GB", "Microsoft Yahei", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans-serif',
+        fontSize: '12px',
         body,
-        bodyHeader,
         header,
-        outer: {
-            padding: '9px 10px 10px',
-            height: '217px',
-        }
     },
     month: {},
     year: {},
