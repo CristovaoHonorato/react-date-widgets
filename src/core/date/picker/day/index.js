@@ -88,20 +88,6 @@ class Panel extends PureComponent {
             nextState,
             () => onChange(value)
         )
-
-        /*
-        *
-        * @Oleg I was a little big confused because if we did this:
-
-        this.setState(
-            { value },
-            () => onChange(value)
-        )
-
-        * everything seems to work the same. ehhh?
-        */
-
-
     }
 
 

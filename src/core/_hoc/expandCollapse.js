@@ -113,7 +113,12 @@ export default function createExpandCollapse(
             const noFocus = (
                 activeElement.tagName === 'INPUT' &&
                 activeElement !== this.input
-            )
+            ) || (
+                 this.panel &&
+                 activeElement.tagName === 'DIV' &&
+                 activeElement !== this.panel &&
+                 !this.panel.contains(activeElement)
+              )
 
             if(noFocus) {
                 this.collapse()
