@@ -76,25 +76,34 @@ class Panel extends PureComponent {
     }
 
     handleChange(value) {
-        value ? this.updateStateWithNotNullValue(value) : this.setValue(value)
+        if(!this.isAllowedDate(value))return
+
+        const {onChange} = this.props
+
+        const nextState = value !== null
+            ? { value, shadowValue: value }
+            : { value }
+
+        this.setState(
+            nextState,
+            () => onChange(value)
+        )
+
+        /*
+        *
+        * @Oleg I was a little big confused because if we did this:
+
+        this.setState(
+            { value },
+            () => onChange(value)
+        )
+
+        * everything seems to work the same. ehhh?
+        */
+
+
     }
 
-    updateStateWithNotNullValue(value) {
-        if(!this.isAllowedDate(value)) return
-        const { onChange } = this.props
-        this.setState({
-            value,
-            shadowValue: value,
-        }, () => { onChange(value) })
-    }
-
-    setValue(value) {
-        const { onChange } = this.props
-        if (this.isAllowedDate(value)) {
-            this.setState({ value })
-            onChange(value)
-        }
-    }
 
     setShadowValue(newValue) {
         this.setState({ shadowValue: newValue })
