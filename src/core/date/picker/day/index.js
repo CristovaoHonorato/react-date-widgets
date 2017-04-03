@@ -2,7 +2,7 @@ import React, { PropTypes, PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 
 import { omit, extendStyle } from '../../../common/utils'
-import Navigation from './Navigation'
+import Header from './Header'
 import Body from './Body'
 
 const KeyCode = {
@@ -63,7 +63,7 @@ class Panel extends PureComponent {
         }
         return (
             <div {...props}>
-                <Navigation {...{
+                <Header {...{
                     ...childProps,
                     style: style.day.header
                 }}/>
