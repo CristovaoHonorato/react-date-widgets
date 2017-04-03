@@ -4,6 +4,7 @@
   "main": "lib/index.js",
   "repository": "git@github.com:CristovaoHonorato/react-date-widgets.git",
   "author": "Cristóvão Honorato, Oleg Yarin",
+  "homepage": "https://cristovaohonorato.github.io/react-date-widgets/",
   "license": "MIT",
   "dependencies": {
     "moment": "^2.18.1",
