@@ -38,11 +38,11 @@ $ yarn add react-date-widgets
 </div>
 </div>
 
-and you should be ready to go.
+and you are ready to go.
 
 ### Usage
 
-The good news are that you don't need anything more to configure. You can just require widgets from your project:
+The good news are that you don't need anything more to configure, even styles. You can just require widgets from your project:
 
 ```js
 import { render } from 'react-dom';
@@ -53,4 +53,8 @@ render(<DateWidget/>, document.getElementById('main'))
 
 ### I18n and Localization
 
-We provide basic english translations for the widgets. If you need to customize it, please check out the [Translations page]({{ site.baseurl }}) for how to it.
+We provide basic english translations for the widgets. If you need to customize it, please check out the [Translations page]({{ site.baseurl }}/translations) for more information.
+
+### Customization
+
+From our own experience we are certainly aware of how important it can be to have ability to customize components. To find more information about it, please follow our [Style section]({{ site.baseurl }}/style)

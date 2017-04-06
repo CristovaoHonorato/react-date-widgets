@@ -51,6 +51,10 @@
 						{% assign translations = site.html_pages | where: 'url', '/translations/' | first %}
 						<a href="{{ site.baseurl }}/translations/">{{ translations.title }}</a>
 					</li>
+					<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
+						{% assign style = site.html_pages | where: 'url', '/style/' | first %}
+						<a href="{{ site.baseurl }}/style/">{{ style.title }}</a>
+					</li>
 				</ul>
 
 				<ul>
