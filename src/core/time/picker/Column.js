@@ -89,7 +89,6 @@ export default class Column extends Component {
 Column.propTypes = {
     options: PropTypes.array,
     selectedIndex: PropTypes.number,
-    type: PropTypes.string,
     onChange: PropTypes.func,
     onMouseEnter: PropTypes.func
 }

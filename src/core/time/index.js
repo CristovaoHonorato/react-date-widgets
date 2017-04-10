@@ -28,6 +28,7 @@ export default widget(
     {
         clearText: 'clear',
         style: extendStyle(layoutStyle, skin),
+        placeholder: 'please choose a time'
         textFormat: 'HH:mm:ss',
         valueFormat: 'THH:mm:ssZ',
     }

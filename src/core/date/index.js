@@ -24,6 +24,7 @@ export default widget(
         style: skin,
         textFormat: 'YYYY/MM/DD',
         valueFormat: 'TYYYY:MM:DDZ',
+        placeholder: 'please choose a date',
         translations
     }
 )
