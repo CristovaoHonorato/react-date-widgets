@@ -1,27 +1,16 @@
 ---
 title: Getting Started
 ---
+### Widgets
 
-React Date Widgets is a set of ready to use date components built with React. This set was inspired by [Ant Design specification](https://ant.design/docs/react/introduce) but was completely rebuilt by following best code practices.
 
-Current version of React Date Widgets provides three high-quality React UI widgets:
-- Date Widget
-- Time Widget
-- Date Time Widget
+<div id="show_cases" style="color: red;">three widgets should be present here and links to api </div>
 
-- - -
-##### Features:
-
-- It's very easy to build upon the existing components
-- Code is very well organized
-- built with Inline styles
-- loose coupling
-- only two dependencies: moment, React.
 
 
 ### Installation
 
-Date Widgets are available as the `react-date-widgets` package on [npm](https://www.npmjs.com/). The installation is easy as :
+Date widgets are available as the `react-date-widgets` package on [npm](https://www.npmjs.com/). The installation is easy as :
 
 <div className='row'>
 <div className='col-sm-6'>
@@ -38,11 +27,10 @@ $ yarn add react-date-widgets
 </div>
 </div>
 
-and you are ready to go.
 
 ### Usage
 
-The good news are that you don't need anything more to configure, even styles. You can just require widgets from your project:
+The good news are that you don't need anything more to configure. You can just require widgets from your project:
 
 ```js
 import { render } from 'react-dom';
@@ -53,8 +41,14 @@ render(<DateWidget/>, document.getElementById('main'))
 
 ### I18n and Localization
 
-We provide basic english translations for the widgets. If you need to customize it, please check out the [Translations page]({{ site.baseurl }}/translations) for more information.
+As default we provide english translations for the widgets. If you need to customize it or translate it in different language, please check out the [Translations page]({{ site.baseurl }}/translations) for more information.
 
-### Customization
+### Style
 
-From our own experience we are certainly aware of how important it can be to have ability to customize components. To find more information about it, please follow our [Style section]({{ site.baseurl }}/style)
+<!-- From our own experience we are certainly aware of how important it can be to have ability to customize components. -->
+To find more information about how to style React Date Widgets, please follow our [Style section]({{ site.baseurl }}/style).
+
+
+### About
+
+Please check out our [About page]({{ site.baseurl }}/about) where you can read about reasons behind creating React Date Widgets.

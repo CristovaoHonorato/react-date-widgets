@@ -26,6 +26,8 @@
 				ga("send", "pageview");
 			</script>
 		{% endif %}
+		<!-- <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+		<script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script> -->
 	</head>
 
 	<body>
@@ -36,10 +38,10 @@
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 
-			<form action="{{ site.baseurl }}/search/" method="get">
+			<!-- <form action="{{ site.baseurl }}/search/" method="get">
 				<input type="text" name="q" id="search-input" placeholder="Search" autofocus>
 				<input type="submit" value="Search" style="display: none;">
-			</form>
+			</form> -->
 
 			<nav {% if site.show_full_navigation %}class="full-navigation"{% endif %}>
 				<ul>
@@ -60,6 +62,7 @@
 				<ul>
 					{% assign grouped = site.docs | group_by: 'category' %}
 					{% for group in grouped %}
+						{% if group.name != 'main' %}
 						<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 							{% assign items = group.items | sort: 'order' %}
 							<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>
@@ -69,14 +72,19 @@
 								{% endfor %}
 							</ul>
 						</li>
+						{% endif %}
 					{% endfor %}
 				</ul>
 
 				<ul>
-					<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
+					<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
+						{% assign style = site.html_pages | where: 'title', 'About' | first %}
+						<a href="{{ site.baseurl }}/about/">{{ style.title }}</a>
+					</li>
+					<!-- <li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
 						{% assign changelog = site.html_pages | where: 'url', '/changelog/' | first %}
 						<a href="{{ site.baseurl }}/changelog/">{{ changelog.title }}</a>
-					</li>
+					</li> -->
 				</ul>
 			</nav>
 		</header>
@@ -96,5 +104,10 @@
 				document.body.classList.toggle("nav-open");
 			});
 		</script>
+		<!-- {% for js in page.jsarr %}
+		     <script type="text/javascript">
+		     {% include {{ js }} %}
+		     </script>
+		 {% endfor %} -->
 	</body>
 </html>
