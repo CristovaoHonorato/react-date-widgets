@@ -70,7 +70,11 @@ Event handler when the value of the component is changed. The format of the valu
 
 ## Example:
 
-<div id="show_cases" style="color: red;">time-widget should be present here and input with props</div>
+<div id="time-widget-api" style="color: red; width: 300px;">date-widget should be present here and input with props</div>
+<script>
+  window.renderTime('time-widget-api')
+</script>
+
 
 ```js
 import TimeWidget from 'react-date-widgets/lib/time'

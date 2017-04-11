@@ -89,7 +89,13 @@ Event handler when hovering over the cell. Cell here is the `div` around day num
 
 ## Example:
 
-<div id="show_cases" style="color: red;">date-time widget should be present here and input with props</div>
+<div id="date-time-widget-api" style="color: red; width: 300px;">date-widget should be present here and input with props</div>
+<script>
+  window.renderDateTime('date-time-widget-api')
+</script>
+
+---
+
 
 ```js
 import DateTimeWidget from 'react-date-widgets/lib/date-time'
