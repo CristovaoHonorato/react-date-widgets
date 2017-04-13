@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Timepicker from './core/time'
-import DatePicker from './core/date'
-import DateTimePicker from './core/date-time'
 import App from './App';
 import './index.css';
 
-var baseUrl = window.location.href
+import {
+    DateTimePickerPlayground,
+    DatePickerPlayground,
+    TimePickerPlayground
+} from './documentation'
 
 if(process.env.NODE_ENV === "development") {
     ReactDOM.render(
@@ -15,7 +16,7 @@ if(process.env.NODE_ENV === "development") {
     );
 }
 
-if(process.env.IS_DOCUMENTATION) {
+if(process.env.NODE_ENV !== "development") {
 
     window.renderGettingStartedComponents = (id, props) => {
         ReactDOM.render(
@@ -26,21 +27,21 @@ if(process.env.IS_DOCUMENTATION) {
 
     window.renderDate = (id, props) => {
         ReactDOM.render(
-            <DatePicker {...{props}} />,
+            <DatePickerPlayground {...{props}} />,
             document.getElementById(id)
         );
     }
 
     window.renderTime = (id, props) => {
         ReactDOM.render(
-            <Timepicker {...{props}} />,
+            <TimePickerPlayground {...{props}} />,
             document.getElementById(id)
         );
     }
 
     window.renderDateTime = (id, props) => {
         ReactDOM.render(
-            <DateTimePicker {...{props}} />,
+            <DateTimePickerPlayground {...{props}} />,
             document.getElementById(id)
         );
     }

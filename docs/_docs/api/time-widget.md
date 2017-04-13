@@ -4,6 +4,12 @@ category: API
 order: 2
 ---
 
+<div id="time-widget-api"></div>
+<script>
+  window.renderTime('time-widget-api')
+</script>
+
+---
 
 ## Component props
 
@@ -67,15 +73,7 @@ Type: `(value: string) => void` | default: None
 Event handler when the value of the component is changed. The format of the value string is the same as [valueFormat]({{ site.baseurl }}/api/date-widget#valueFormat).
 
 
-
-## Example:
-
-<div id="time-widget-api" style="color: red; width: 300px;">date-widget should be present here and input with props</div>
-<script>
-  window.renderTime('time-widget-api')
-</script>
-
-
+---
 ```js
 import TimeWidget from 'react-date-widgets/lib/time'
 

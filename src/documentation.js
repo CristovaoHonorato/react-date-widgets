@@ -3,6 +3,12 @@ import Timepicker from './core/time'
 import DatePicker from './core/date'
 import DateTimePicker from './core/date-time'
 
+import Playground from 'component-playground'
+
+import dateExample from  "./examples/date"
+import dateTimeExample from  "./examples/dateTime"
+import timeExample from  "./examples/time"
+
 export class DatepickerStateful extends Component {
     constructor(...args) {
         super(...args)
@@ -15,17 +21,21 @@ export class DatepickerStateful extends Component {
         const { valueDate } = this.state
         const props = {
             withClear: true,
-            onChange: this.handleChangeDate,
             value: valueDate,
             placeholder: 'please choose date',
             valueFormat: 'TYYYY:MM:DDZ',
             textFormat: 'YYYY/MM/DD',
+            ...this.props,
+            onChange: this.handleChangeDate,
         }
         return block(<DatePicker {...props} />, "DatePicker")
     }
 
     handleChangeDate(val) {
-        this.setState({valueDate:val})
+        const {onChange} = this.props
+        this.setState({valueDate:val}, () => {
+            onChange && onChange(val)
+        })
         console.log(`VALUE Date: ${val}`)
     }
 }
@@ -40,18 +50,22 @@ export class DateTimepickerStateful extends Component {
     render() {
         const { valueDateTime } = this.state
         const props = {
-            onChange: this.handleChangeDateTime,
             placeholder: 'please choose date and time',
             withClear: true,
             value: valueDateTime,
             valueFormat: 'TYYYY-MM-DD HH:mm:ssZ',
             textFormat: 'YYYY-MM-DD HH:mm:ss',
+            ...this.props,
+            onChange: this.handleChangeDateTime,
         }
         return block(<DateTimePicker {...props} />, "DateTimePicker")
     }
 
     handleChangeDateTime(val) {
-        this.setState({valueDateTime:val})
+        const {onChange} = this.props
+        this.setState({valueDateTime:val}, () => {
+            onChange && onChange(val)
+        })
         console.log(`VALUE DateTime: ${val}`)
     }
 }
@@ -68,11 +82,12 @@ export class TimepickerStateful extends Component {
     render() {
         const props = {
             withClear: true,
-            onChange: this.handleChangeTime,
             value: this.state.valueTime,
             placeholder: 'please choose time',
-            valueFormat,
-            textFormat,
+            valueFormat: 'THH:mm:ssZ',
+            textFormat: 'HH:mm:ss',
+            ...this.props,
+            onChange: this.handleChangeTime,
         }
 
         return block(<Timepicker {...props} />, 'TimePicker')
@@ -80,7 +95,10 @@ export class TimepickerStateful extends Component {
 
 
     handleChangeTime(val) {
-        this.setState({valueTime:val})
+        const {onChange} = this.props
+        this.setState({valueTime:val}, () => {
+            onChange && onChange(val)
+        })
         console.log(`VALUE Time: ${val}`)
     }
 }
@@ -115,5 +133,39 @@ function block(inner, text){
                 {text}
             </div>
         </div>
+    )
+}
+
+
+export const DateTimePickerPlayground = (props) => {
+    return (
+      <div className="component-documentation">
+        <h2>Date Time widget</h2>
+        <Playground
+          codeText={dateTimeExample}
+          scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>
+      </div>
+    )
+}
+
+export const DatePickerPlayground = (props) => {
+    return (
+      <div className="component-documentation">
+        <h2>Date widget</h2>
+        <Playground
+          codeText={dateExample}
+          scope={{React: React, DatePicker: DatepickerStateful}}/>
+      </div>
+    )
+}
+
+export const TimePickerPlayground = (props) => {
+    return (
+      <div className="component-documentation">
+        <h2>Time widget</h2>
+        <Playground
+          codeText={timeExample}
+          scope={{React: React, TimePicker: TimepickerStateful}}/>
+      </div>
     )
 }

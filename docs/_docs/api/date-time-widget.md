@@ -4,6 +4,13 @@ category: API
 order: 3
 ---
 
+<div id="date-time-widget-api"></div>
+<script>
+  window.renderDateTime('date-time-widget-api')
+</script>
+
+---
+
 ## Component props
 
 ### withClear
@@ -84,15 +91,6 @@ Event handler when the cross button next to the input is clicked.
 Type: `(cellValue: moment) => void` | default: None
 
 Event handler when hovering over the cell. Cell here is the `div` around day number in the widget.
-
-
-
-## Example:
-
-<div id="date-time-widget-api" style="color: red; width: 300px;">date-widget should be present here and input with props</div>
-<script>
-  window.renderDateTime('date-time-widget-api')
-</script>
 
 ---
 

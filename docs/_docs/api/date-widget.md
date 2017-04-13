@@ -4,6 +4,12 @@ category: API
 order: 1
 ---
 
+<div id="date-widget-api"></div>
+<script>
+  window.renderDate('date-widget-api')
+</script>
+
+---
 
 ## Component props
 
@@ -87,14 +93,6 @@ Type: `(cellValue: moment) => void` | default: None
 Event handler when hovering over the cell. Cell here is the `div` around day number in the widget.
 
 
-
-## Example:
-
-<div id="date-widget-api" style="color: red; width: 300px;">date-widget should be present here and input with props</div>
-<script>
-  window.renderDate('date-widget-api')
-</script>
-
 ---
 
 ```js
@@ -111,26 +109,3 @@ const Widget = ({value, ...rest}) => (
 	}}/>
 )
 ```
-
-
-<!-- onChange: PropTypes.func,
-onClear(evt)
-onDayHover(cellValue) -->
-
-<!-- ## style
-clearText: 'clear',
-style: skin,
-textFormat: 'YYYY/MM/DD',
-valueFormat: 'TYYYY:MM:DDZ',
-
-clearText: PropTypes.string,
-value: PropTypes.string,
-withClear: PropTypes.bool,
-placeholder: PropTypes.string,
-textFormat: PropTypes.string.isRequired,
-valueFormat: PropTypes.string.isRequired,
-style: PropTypes.object,
-className: PropTypes.string,
-onChange: PropTypes.func,
-onClear(evt)
-onDayHover(cellValue) -->
