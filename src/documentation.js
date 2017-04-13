@@ -3,22 +3,66 @@ import Timepicker from './core/time'
 import DatePicker from './core/date'
 import DateTimePicker from './core/date-time'
 
-const valueFormat = 'THH:mm:ssZ'
-const textFormat = 'HH:mm:ss'
+export class DatepickerStateful extends Component {
+    constructor(...args) {
+        super(...args)
+        this.state = {
+            valueDate: '',
+        }
+        this.handleChangeDate = this.handleChangeDate.bind(this)
+    }
+    render() {
+        const { valueDate } = this.state
+        const props = {
+            withClear: true,
+            onChange: this.handleChangeDate,
+            value: valueDate,
+            placeholder: 'please choose date',
+            valueFormat: 'TYYYY:MM:DDZ',
+            textFormat: 'YYYY/MM/DD',
+        }
+        return block(<DatePicker {...props} />, "DatePicker")
+    }
 
-// const dateFormat = 'YYYY-MM-DD HH:mm:ss'
+    handleChangeDate(val) {
+        this.setState({valueDate:val})
+        console.log(`VALUE Date: ${val}`)
+    }
+}
 
-class App extends Component {
+export class DateTimepickerStateful extends Component {
+    constructor(...args) {
+        super(...args)
+        this.state = { valueDateTime: '' }
+        this.handleChangeDateTime = this.handleChangeDateTime.bind(this)
+    }
+
+    render() {
+        const { valueDateTime } = this.state
+        const props = {
+            onChange: this.handleChangeDateTime,
+            placeholder: 'please choose date and time',
+            withClear: true,
+            value: valueDateTime,
+            valueFormat: 'TYYYY-MM-DD HH:mm:ssZ',
+            textFormat: 'YYYY-MM-DD HH:mm:ss',
+        }
+        return block(<DateTimePicker {...props} />, "DateTimePicker")
+    }
+
+    handleChangeDateTime(val) {
+        this.setState({valueDateTime:val})
+        console.log(`VALUE DateTime: ${val}`)
+    }
+}
+
+export class TimepickerStateful extends Component {
     constructor(...args) {
         super(...args)
         this.state = {
             valueTime: '',
-            valueDate: '',
-            valueDateTime: '',
         }
         this.handleChangeTime = this.handleChangeTime.bind(this)
-        this.handleChangeDate = this.handleChangeDate.bind(this)
-        this.handleChangeDateTime = this.handleChangeDateTime.bind(this)
     }
 
     render() {
@@ -31,62 +75,14 @@ class App extends Component {
             textFormat,
         }
 
-        return (
-            <div>
-                {this.renderDatePicker()}
-                {block(<Timepicker {...props} />, this.props.timepickerText)}
-                {this.renderDateTimePicker()}
-            </div>
-        )
+        return block(<Timepicker {...props} />, 'TimePicker')
     }
 
-
-    renderDatePicker() {
-        const { valueDate } = this.state
-        const props = {
-            withClear: true,
-            onChange: this.handleChangeDate,
-            value: valueDate,
-            placeholder: 'please choose date',
-            valueFormat: 'TYYYY:MM:DDZ',
-            textFormat: 'YYYY/MM/DD',
-        }
-        return block(<DatePicker {...props} />, this.props.datepickerText)
-    }
-
-    renderDateTimePicker() {
-        const { valueDateTime } = this.state
-        const props = {
-            onChange: this.handleChangeDateTime,
-            placeholder: 'please choose date and time',
-            withClear: true,
-            value: valueDateTime,
-            valueFormat: 'TYYYY-MM-DD HH:mm:ssZ',
-            textFormat: 'YYYY-MM-DD HH:mm:ss',
-        }
-        return block(<DateTimePicker {...props} />, this.props.dateTimePickerText)
-    }
 
     handleChangeTime(val) {
         this.setState({valueTime:val})
         console.log(`VALUE Time: ${val}`)
     }
-
-    handleChangeDate(val) {
-        this.setState({valueDate:val})
-        console.log(`VALUE Date: ${val}`)
-    }
-
-    handleChangeDateTime(val) {
-        this.setState({valueDateTime:val})
-        console.log(`VALUE DateTime: ${val}`)
-    }
-}
-
-App.defaultProps = {
-    datepickerText: 'DatePicker',
-    timepickerText: 'TimePicker',
-    dateTimePickerText: 'DateTimePicker',
 }
 
 function block(inner, text){
@@ -103,7 +99,7 @@ function block(inner, text){
     }
 
     const styleBody = {
-        // borderBottom: "1px solid #e9e9e9",
+        borderBottom: "1px solid #e9e9e9",
         padding: "17px 16px 15px 20px"
     }
 
@@ -116,10 +112,8 @@ function block(inner, text){
                 </div>
             </div>
             <div style={styleBody}>
-                <a dangerouslySetInnerHTML={{__html: text}} />
+                {text}
             </div>
         </div>
     )
 }
-
-export default App

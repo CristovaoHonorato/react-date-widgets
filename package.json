@@ -22,6 +22,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "prepublish": "rimraf lib && babel src/core -d lib --source-maps --presets es2015,stage-0,react"
+    "prepublish": "rimraf lib && babel src/core -d lib --source-maps --presets es2015,stage-0,react",
+    "predocumentation": "IS_DOCUMENTATION=true react-scripts build",
+    "documentation": "cp build/static/js/*.js docs/scripts/bundle.js"
   }
 }

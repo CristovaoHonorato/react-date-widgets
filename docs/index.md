@@ -3,10 +3,19 @@ title: Getting Started
 ---
 ### Widgets
 
-
-<div id="show_cases" style="color: red;">three widgets should be present here and links to api </div>
-
-
+<div id="getting-started"></div>
+<script type="text/javascript">
+  function getLink(href, text) {
+      return "<a href='" +href + "'>" + text + "</a>"
+  }
+  var baseUrl = window.location.href
+  var apiLinks = {
+      datepickerText: getLink(baseUrl + "api/date-widget", "Date Widget API"),
+      timepickerText: getLink (baseUrl + "api/time-widget", "Time Widget API"),
+      dateTimePickerText: getLink(baseUrl + "api/date-time-widget", "Date Time Widget API"),
+  }
+  window.renderGettingStartedComponents('getting-started', apiLinks)
+</script>
 
 ### Installation
 

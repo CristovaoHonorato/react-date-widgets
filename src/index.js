@@ -3,33 +3,46 @@ import ReactDOM from 'react-dom';
 import Timepicker from './core/time'
 import DatePicker from './core/date'
 import DateTimePicker from './core/date-time'
-// import App from './App';
+import App from './App';
 import './index.css';
 
-// ReactDOM.render(
-//     <App />,
-//     document.getElementById('root')
-// );
+var baseUrl = window.location.href
 
-// what!? no! nooo
-window.renderDate = (id, props) => {
+if(process.env.NODE_ENV === "development") {
     ReactDOM.render(
-        <DatePicker {...{props}} />,
-        document.getElementById(id)
+        <App />,
+        document.getElementById('root')
     );
 }
 
-// aghhh
-window.renderTime = (id, props) => {
-    ReactDOM.render(
-        <Timepicker {...{props}} />,
-        document.getElementById(id)
-    );
-}
+if(process.env.IS_DOCUMENTATION) {
 
-window.renderDateTime = (id, props) => {
-    ReactDOM.render(
-        <DateTimePicker {...{props}} />,
-        document.getElementById(id)
-    );
+    window.renderGettingStartedComponents = (id, props) => {
+        ReactDOM.render(
+            <App {...props}/>,
+            document.getElementById(id)
+        );
+    }
+
+    window.renderDate = (id, props) => {
+        ReactDOM.render(
+            <DatePicker {...{props}} />,
+            document.getElementById(id)
+        );
+    }
+
+    window.renderTime = (id, props) => {
+        ReactDOM.render(
+            <Timepicker {...{props}} />,
+            document.getElementById(id)
+        );
+    }
+
+    window.renderDateTime = (id, props) => {
+        ReactDOM.render(
+            <DateTimePicker {...{props}} />,
+            document.getElementById(id)
+        );
+    }
+
 }
