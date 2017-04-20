@@ -47,13 +47,11 @@ class Header extends Component {
                 style={extendObject(layoutStyle.header, restStyle)}>
                 <div style={{ position: 'relative' }}>
                     {this.renderPrevYearBtn()}
-                    {this.renderMonthYearElement()}
+                    {this.renderYearElement()}
                     {this.renderNextYearBtn()}
                 </div>
             </div>
         )
-    // {this.renderPrevMonthBtn()}
-    // {this.renderNextMonthBtn()}
     }
 
     renderPrevYearBtn() {
@@ -99,8 +97,13 @@ class Header extends Component {
         }}>»</Button>
     }
 
-    renderMonthYearElement() {
-        const { translations, shadowValue, style : {selectBtn} } = this.props
+    renderYearElement() {
+        const {
+            translations,
+            shadowValue,
+            style : {selectBtn},
+            onChangeMode
+        } = this.props
 
         const style = extendObject(layoutStyle.selectBtn, selectBtn)
         const year = (
@@ -108,6 +111,7 @@ class Header extends Component {
                 className: 'year-select',
                 style,
                 title: translations.yearSelect,
+                onClick: () => {onChangeMode('year')}
             }}>{shadowValue.format(translations.yearFormat)}</Button>
         )
         return (<span> {year} </span>)
