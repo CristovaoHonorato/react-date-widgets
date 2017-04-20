@@ -1,7 +1,6 @@
 export default {
   today: 'Today',
   now: 'Now',
-  backToToday: 'Back to today',
   ok: 'Ok',
   clear: 'Clear',
   month: 'Month',
@@ -12,9 +11,7 @@ export default {
   yearSelect: 'Choose a year',
   decadeSelect: 'Choose a decade',
   yearFormat: 'YYYY',
-  dateFormat: 'M/D/YYYY',
   dayFormat: 'D',
-  dateTimeFormat: 'M/D/YYYY HH:mm:ss',
   monthFormat: 'MMMM',
   monthBeforeYear: true,
   previousMonth: 'Previous month (PageUp)',
