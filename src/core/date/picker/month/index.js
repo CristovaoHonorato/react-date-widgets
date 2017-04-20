@@ -21,19 +21,10 @@ class Panel extends Component {
         super(props)
         this.setShadowValue = this.setShadowValue.bind(this)
         // this.handleKeyDown = this.handleKeyDown.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-
-        this.state = {
-            // shadowValue: props.value || props.defaultValue,
-            value: props.value,
-        }
     }
 
     render() {
-
         const { style, shadowValue } = this.props
-        const { value } = this.state
-        console.log(shadowValue);
 
         const props = {
             autoFocus: true,
@@ -46,9 +37,7 @@ class Panel extends Component {
         const childProps = {
             ...this.props,
             shadowValue,
-            value,
             onShadowValueChange: this.setShadowValue,
-            onChange: this.handleChange,
         }
         return (
             <div {...props}>
@@ -63,38 +52,9 @@ class Panel extends Component {
             </div>
         )
     }
-    //
-    // handleChange(value) {
-    //     if(!this.isAllowedDate(value))return
-    //
-    //     const {onChange} = this.props
-    //
-    //     const nextState = value !== null
-    //         ? { value, shadowValue: value }
-    //         : { value }
-    //
-    //     this.setState(
-    //         nextState,
-    //         () => onChange(value)
-    //     )
-    // }
-    handleChange(value) {
-        if(!this.isAllowedDate(value)) return
-
-        const {onChange, onShadowValueChange} = this.props
-
-        this.setState(
-            {value},
-            () => {
-                onChange(value)
-                value && onShadowValueChange(value)
-            }
-        )
-    }
 
     setShadowValue(newValue) {
         this.props.onShadowValueChange(newValue)
-        // this.setState({ shadowValue: newValue })
     }
 
     isAllowedDate(value) {
