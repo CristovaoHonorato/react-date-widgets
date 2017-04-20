@@ -153,6 +153,7 @@ class Header extends Component {
                 className: 'year-select',
                 style,
                 title: translations.yearSelect,
+                onClick: () => {onChangeMode('year')}
             }}>{shadowValue.format(translations.yearFormat)}</Button>
         )
 
@@ -161,7 +162,7 @@ class Header extends Component {
                 className: 'month-select',
                 style,
                 title: translations.monthSelect,
-                onClick: () => {onChangeMode("month")}
+                onClick: () => {onChangeMode('month')}
             }}>{shadowValue.format(translations.monthFormat)}</Button>
         )
 

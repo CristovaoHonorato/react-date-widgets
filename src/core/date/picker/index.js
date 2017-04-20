@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import DayPicker from './day'
 import MonthPicker from './month'
+import YearPicker from './year'
+
 export default class DatePicker extends Component {
     constructor(props) {
         super(props)
@@ -26,6 +28,8 @@ export default class DatePicker extends Component {
                 return <DayPicker {...{...commonProps, style: day}} />
             case 'month':
                 return <MonthPicker {...{...commonProps, style: day}} />
+            case 'year':
+                return <YearPicker {...{...commonProps, style: day}} />
             default:
                 return <DayPicker {...{onChangeMode: this.handleChangeMode, ...rest, style: day}} />
         }
