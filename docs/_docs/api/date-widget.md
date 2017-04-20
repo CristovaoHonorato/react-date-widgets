@@ -46,7 +46,7 @@ The value format to display in the input.
 ### valueFormat
 Type: `string` | default: `'TYYYY:MM:DDZ'`
 
-The format of the value you passed into the component. For example, for the default format `'TYYYY:MM:DDZ'`the valid value would be: "2017:04:10". As we use [moment](https://momentjs.com/docs/) for date handling, we support any format supported by moment. This format is also used in [onChange](#onChange) event.
+The format of the value you passed into the component. For example, for the default format `'TYYYY:MM:DDZ'`the valid value would be: "2017:04:10". As we use [moment](https://momentjs.com/docs/) for date handling, we support any format supported by moment. This format is also used in [onChange](#onchange) event.
 
 ### className
 Type: `string` | default: None
@@ -54,14 +54,14 @@ Type: `string` | default: None
 Class name for a container of the component.
 
 ### minDate
-Type: `string` | default: `clear`
+Type: `string` | default: None
 
-Lower boundary for the date value. Date after `maxDate` will be disabled.
+Lower boundary for the date value. Date after `maxDate` will be disabled. This string should be formatted with respect to [valueFormat](#valueformat).
 
 ### maxDate
-Type: `moment` | default: None
+Type: `string` | default: None
 
-Upper bound for the date value. Date after `maxDate` will be disabled.
+Upper bound for the date value. Date after `maxDate` will be disabled. This string should be formatted with respect to [valueFormat](#valueformat).
 
 ### pickerHeight
 Type: `number` | default: `210`
@@ -80,7 +80,7 @@ Style object for the component. For further details please take a look at our [S
 ### onChange
 Type: `(value: string) => void` | default: None
 
-Event handler when the value of the component is changed. The format of the value string is the same as [valueFormat]({{ site.baseurl }}/api/date-widget#valueFormat).
+Event handler when the value of the component is changed. The format of the value string is the same as [valueFormat](#valueformat).
 
 ### onClear
 Type: `(e: SyntethicEvent) => void` | default: None

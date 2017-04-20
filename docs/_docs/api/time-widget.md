@@ -46,7 +46,7 @@ Dependent on the format, different number of columns is rendered. For example, i
 ### valueFormat
 Type: `string` | default: `'THH:mm:ssZ'`
 
-The format of the value you passed into the component. For example, if the value is "2017:04:10" then format can be `"THH:mm:ssZ"`. As we use [moment](https://momentjs.com/docs/) for date handling, we support any format supported by moment. This format is also used in [onChange](#onChange) event.
+The format of the value you passed into the component. For example, if the value is "2017:04:10" then format can be `"THH:mm:ssZ"`. As we use [moment](https://momentjs.com/docs/) for date handling, we support any format supported by moment. This format is also used in [onChange](#onchange) event.
 
 ### className
 Type: `string` | default: None
@@ -70,7 +70,7 @@ Style object for the component. For further details please take a look at our [S
 ### onChange
 Type: `(value: string) => void` | default: None
 
-Event handler when the value of the component is changed. The format of the value string is the same as [valueFormat]({{ site.baseurl }}/api/date-widget#valueFormat).
+Event handler when the value of the component is changed. The format of the value string is the same as [valueFormat](#valueformat).
 
 
 ---
