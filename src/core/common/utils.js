@@ -16,14 +16,13 @@ export function range(length) {
     return Array.from({length: length}, (v,i) => i)
 }
 
-// Use this only for styles
-export function extendStyle(base = {}, extension = {}) {
+export function extendObject(base = {}, extension = {}) {
     const keys = Object.keys(base)
     return Object.keys(extension).reduce((result, property) => ({
         ...result,
         ...{
             [property]: keys.includes(property) && isObject(base[property])
-                ? extendStyle(base[property], extension[property])
+                ? extendObject(base[property], extension[property])
                 : extension[property]
         }
     }), base)

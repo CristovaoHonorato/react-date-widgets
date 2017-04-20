@@ -1,7 +1,7 @@
 import React, { PropTypes, PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 
-import { omit, extendStyle } from '../../../common/utils'
+import { omit, extendObject } from '../../../common/utils'
 import Header from './Header'
 import Body from './Body'
 
@@ -50,7 +50,7 @@ class Panel extends PureComponent {
             autoFocus: true,
             tabIndex: "0",
             className: 'picker-day',
-            style: extendStyle(layoutStyle, omit(style, 'body', 'header')),
+            style: extendObject(layoutStyle, omit(style, 'body', 'header')),
             onKeyDown: this.handleKeyDown
         }
 

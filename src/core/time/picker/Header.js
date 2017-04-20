@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../../common/Button'
-import { extendStyle } from '../../common/utils'
+import { extendObject } from '../../common/utils'
 
 const headerBtnLayoutStyle = {
     display: 'inline-block',
@@ -24,20 +24,20 @@ const Header = ({
     value = defaultValue,
     style : { headerBtn, ...styleRest }
 }) => (
-    <div style={extendStyle(headerLayoutStyle, styleRest)}>
+    <div style={extendObject(headerLayoutStyle, styleRest)}>
         <Button {...{
             className: 'day-select',
-            style: extendStyle(headerBtnLayoutStyle, headerBtn),
+            style: extendObject(headerBtnLayoutStyle, headerBtn),
             title: translations.daySelect
         }}>{(value || defaultValue).format(translations.dayFormat)}</Button>
         <Button {...{
             className: 'month-select',
-            style: extendStyle(headerBtnLayoutStyle, headerBtn),
+            style: extendObject(headerBtnLayoutStyle, headerBtn),
             title: translations.monthSelect
         }}>{(value || defaultValue).format(translations.monthFormat)}</Button>
         <Button {...{
             className: 'year-select',
-            style: extendStyle(headerBtnLayoutStyle, headerBtn),
+            style: extendObject(headerBtnLayoutStyle, headerBtn),
             title: translations.yearSelect,
         }}>{(value || defaultValue).format(translations.yearFormat)}</Button>
     </div>

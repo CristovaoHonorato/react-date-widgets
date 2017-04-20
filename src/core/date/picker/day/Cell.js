@@ -1,7 +1,7 @@
 import React, {  PropTypes } from 'react'
 import moment from 'moment'
 import hover from '../../../_hoc/hover'
-import { extendStyle } from '../../../common/utils'
+import { extendObject } from '../../../common/utils'
 
 const Cell = props => {
     const {
@@ -120,7 +120,7 @@ export const HeaderCell = ({name, title, style}) => {
 
     return <span {...{
         className: 'weekday',
-        style: extendStyle(styleLayout, style),
+        style: extendObject(styleLayout, style),
         title
     }}>
         <span {...{

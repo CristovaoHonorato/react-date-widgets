@@ -1,6 +1,6 @@
 import React from 'react'
 import hover from '../../_hoc/hover'
-import { extendStyle } from '../../common/utils'
+import { extendObject } from '../../common/utils'
 
 const layoutStyle = {
     listStyle: 'none',
@@ -21,7 +21,7 @@ const style = ({
         ':selected' : selectedStyle,
         ':disabled' : disabledStyle,
         ...restStyle
-    } = extendStyle(layoutStyle, style)
+    } = extendObject(layoutStyle, style)
 
     const { ':hover': hoveredStyle } = (disabled ? disabledStyle : style)
 

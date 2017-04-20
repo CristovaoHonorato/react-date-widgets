@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import moment from 'moment'
-import { range, extendStyle, omit } from '../../../common/utils'
+import { range, extendObject, omit } from '../../../common/utils'
 import Cell, {HeaderCell} from './Cell'
 
 const DATE_ROW_COUNT = 6
@@ -73,7 +73,7 @@ function renderValues(dateTable, rowNumber, props) {
                 cellValue,
                 shadowValue,
                 isDisabled,
-                style: extendStyle(cellLayoutStyle, cellStyle),
+                style: extendObject(cellLayoutStyle, cellStyle),
                 key: currentCellNumber
             }}/>
         )

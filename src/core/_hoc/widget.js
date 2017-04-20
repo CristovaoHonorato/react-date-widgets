@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
 
+import { extendObject } from '../common/utils'
+
 export default function(Picker, defaultProps = {}){
 
     return class Widget extends Component {
@@ -15,6 +17,7 @@ export default function(Picker, defaultProps = {}){
             style: PropTypes.object,
             className: PropTypes.string,
             onChange: PropTypes.func,
+            translations: PropTypes.object,
         }
 
         static defaultProps = {
@@ -31,14 +34,22 @@ export default function(Picker, defaultProps = {}){
 
         render(){
 
-            const { value, valueFormat, textFormat, ...rest } = this.props
+            const {
+                value,
+                valueFormat,
+                textFormat,
+                defaultTranslations,
+                translations,
+                ...rest
+            } = this.props
 
             return (
                 <Picker {...{
                     ...rest,
                     value: value ? moment(value, valueFormat) :  null,
                     format: textFormat,
-                    onChange: this.handleChange
+                    onChange: this.handleChange,
+                    translations: extendObject(defaultTranslations, translations)
                 }}/>
             )
 

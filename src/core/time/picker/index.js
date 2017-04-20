@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { range, omit, extendStyle } from '../../common/utils'
+import { range, omit, extendObject } from '../../common/utils'
 import Column from './Column'
 import _Header from './Header'
 
@@ -46,7 +46,7 @@ function createPicker(Header){
             return (
                 <div {...{
                     className: 'panel',
-                    style: extendStyle(layoutStyle, restStyle),
+                    style: extendObject(layoutStyle, restStyle),
                     tabIndex: '1',
                     onKeyDown: evt => {
                         const { onKeyDown, onCollapsePanel } = this.props

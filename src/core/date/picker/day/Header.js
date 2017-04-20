@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import Button from '../../../common/Button'
-import { omit, extendStyle } from '../../../common/utils'
+import { omit, extendObject } from '../../../common/utils'
 
 
 const layoutStyle = {
@@ -44,7 +44,7 @@ class Header extends Component {
         )
         return (
             <div className={'date-picker-header'}
-                style={extendStyle(layoutStyle.header, restStyle)}>
+                style={extendObject(layoutStyle.header, restStyle)}>
                 <div style={{ position: 'relative' }}>
                     {this.renderPrevYearBtn()}
                     {this.renderPrevMonthBtn()}
@@ -66,7 +66,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendStyle(
+            style: extendObject(
                 {...layoutStyle.headerBtn, left: 0}, prevYearBtn
             ),
             className: 'prev-year-btn',
@@ -87,7 +87,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendStyle(
+            style: extendObject(
                 {...layoutStyle.headerBtn, right: 0}, nextYearBtn
             ),
             className: 'next-year-btn',
@@ -108,7 +108,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendStyle(
+            style: extendObject(
                 {...layoutStyle.headerBtn, position: 'absolute', left: 25},
                 prevMonthBtn
             ),
@@ -130,7 +130,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendStyle(
+            style: extendObject(
                 {...layoutStyle.headerBtn, position: 'absolute', right: 25},
                 nextMonthBtn
             ),
@@ -147,7 +147,7 @@ class Header extends Component {
         const { translations, shadowValue, style : {selectBtn} } = this.props
 
         const monthBeforeYear = translations.monthBeforeYear
-        const style = extendStyle(layoutStyle.selectBtn, selectBtn)
+        const style = extendObject(layoutStyle.selectBtn, selectBtn)
         const year = (
             <Button {...{
                 className: 'year-select',

@@ -14,6 +14,6 @@ export default widget(
         valueFormat: 'TYYYY-MM-DD HH:mm:ssZ',
         textFormat: 'YYYY-MM-DD HH:mm:ss',
         pickerHeight: 210,
-        translations
+        defaultTranslations: translations,
     }
 )
