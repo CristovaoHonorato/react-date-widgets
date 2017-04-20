@@ -36,15 +36,15 @@ class Panel extends PureComponent {
         this.handleChange = this.handleChange.bind(this)
 
         this.state = {
-            shadowValue: props.value || props.defaultValue,
+            // shadowValue: props.value || props.defaultValue,
             value: props.value,
         }
     }
 
     render() {
 
-        const { style } = this.props
-        const { shadowValue, value } = this.state
+        const { style, shadowValue } = this.props
+        const { value } = this.state
 
         const props = {
             autoFocus: true,
@@ -78,21 +78,25 @@ class Panel extends PureComponent {
     handleChange(value) {
         if(!this.isAllowedDate(value))return
 
-        const {onChange} = this.props
+        const {onChange, onShadowValueChange} = this.props
 
-        const nextState = value !== null
-            ? { value, shadowValue: value }
-            : { value }
+        // const nextState = value !== null
+        //     ? { value, shadowValue: value }
+        //     : { value }
 
         this.setState(
-            nextState,
-            () => onChange(value)
+            {value},
+            () => {
+                onChange(value)
+                value && onShadowValueChange(value)
+            }
         )
     }
 
 
     setShadowValue(newValue) {
-        this.setState({ shadowValue: newValue })
+        this.props.onShadowValueChange(newValue)
+        // this.setState({ shadowValue: newValue })
     }
 
     isAllowedDate(value) {
@@ -161,7 +165,7 @@ class Panel extends PureComponent {
 
             case KeyCode.ENTER:
                 event.preventDefault()
-                this.handleChange(this.state.shadowValue)
+                this.handleChange(this.props.shadowValue)
                 return 1
             case KeyCode.ESC:
                 event.preventDefault()
@@ -197,19 +201,19 @@ Panel.propTypes = {
 }
 
 function goStartMonth() {
-    const next = this.state.shadowValue.clone()
+    const next = this.props.shadowValue.clone()
     next.startOf('month')
     this.setShadowValue(next)
 }
 
 function goEndMonth() {
-    const next = this.state.shadowValue.clone()
+    const next = this.props.shadowValue.clone()
     next.endOf('month')
     this.setShadowValue(next)
 }
 
 function goTime(direction, unit) {
-    const next = this.state.shadowValue.clone()
+    const next = this.props.shadowValue.clone()
     next.add(direction, unit)
     this.setShadowValue(next)
 }

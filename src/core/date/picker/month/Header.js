@@ -47,13 +47,13 @@ class Header extends Component {
                 style={extendObject(layoutStyle.header, restStyle)}>
                 <div style={{ position: 'relative' }}>
                     {this.renderPrevYearBtn()}
-                    {this.renderPrevMonthBtn()}
                     {this.renderMonthYearElement()}
-                    {this.renderNextMonthBtn()}
                     {this.renderNextYearBtn()}
                 </div>
             </div>
         )
+    // {this.renderPrevMonthBtn()}
+    // {this.renderNextMonthBtn()}
     }
 
     renderPrevYearBtn() {
@@ -99,54 +99,9 @@ class Header extends Component {
         }}>»</Button>
     }
 
-    renderPrevMonthBtn() {
-        const {
-            translations,
-            style : { prevMonthBtn },
-            onShadowValueChange,
-            shadowValue
-        } = this.props
-
-        return <Button {...{
-            style: extendObject(
-                {...layoutStyle.headerBtn, position: 'absolute', left: 25},
-                prevMonthBtn
-            ),
-            className: 'prev-month-btn',
-            title: translations.previousMonth,
-            onClick: () => {
-                const nextValue = shadowValue.clone().add(-1, 'months')
-                onShadowValueChange(nextValue)
-            }
-        }}>‹</Button>
-    }
-
-    renderNextMonthBtn() {
-        const {
-            translations,
-            style : { nextMonthBtn },
-            onShadowValueChange,
-            shadowValue
-        } = this.props
-
-        return <Button {...{
-            style: extendObject(
-                {...layoutStyle.headerBtn, position: 'absolute', right: 25},
-                nextMonthBtn
-            ),
-            className: 'next-month-btn',
-            title: translations.nextMonth,
-            onClick: () => {
-                const nextValue = shadowValue.clone().add(1, 'months')
-                onShadowValueChange(nextValue)
-            }
-        }}>›</Button>
-    }
-
     renderMonthYearElement() {
-        const { translations, shadowValue, style : {selectBtn}, onChangeMode } = this.props
+        const { translations, shadowValue, style : {selectBtn} } = this.props
 
-        const monthBeforeYear = translations.monthBeforeYear
         const style = extendObject(layoutStyle.selectBtn, selectBtn)
         const year = (
             <Button {...{
@@ -155,29 +110,7 @@ class Header extends Component {
                 title: translations.yearSelect,
             }}>{shadowValue.format(translations.yearFormat)}</Button>
         )
-
-        const month = (
-            <Button {...{
-                className: 'month-select',
-                style,
-                title: translations.monthSelect,
-                onClick: () => {onChangeMode("month")}
-            }}>{shadowValue.format(translations.monthFormat)}</Button>
-        )
-
-        return monthBeforeYear
-            ? (
-                <span>
-                    {month}
-                    {year}
-                </span>
-            )
-            : (
-                <span>
-                    {year}
-                    {month}
-                </span>
-            )
+        return (<span> {year} </span>)
     }
 }
 
