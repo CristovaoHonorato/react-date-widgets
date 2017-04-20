@@ -18,6 +18,8 @@ export default function(Picker, defaultProps = {}){
             className: PropTypes.string,
             onChange: PropTypes.func,
             translations: PropTypes.object,
+            maxDate: PropTypes.string,
+            minDate: PropTypes.string,
         }
 
         static defaultProps = {
@@ -40,6 +42,8 @@ export default function(Picker, defaultProps = {}){
                 textFormat,
                 defaultTranslations,
                 translations,
+                minDate,
+                maxDate,
                 ...rest
             } = this.props
 
@@ -47,6 +51,8 @@ export default function(Picker, defaultProps = {}){
                 <Picker {...{
                     ...rest,
                     value: value ? moment(value, valueFormat) :  null,
+                    minDate: minDate ? moment(minDate, valueFormat) : null,
+                    maxDate: maxDate ? moment(maxDate, valueFormat) : null,
                     format: textFormat,
                     onChange: this.handleChange,
                     translations: extendObject(defaultTranslations, translations)
