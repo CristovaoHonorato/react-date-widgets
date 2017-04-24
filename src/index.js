@@ -6,7 +6,8 @@ import './index.css';
 import {
     DateTimePickerPlayground,
     DatePickerPlayground,
-    TimePickerPlayground
+    TimePickerPlayground,
+    DateTimePickerWithTranslations
 } from './documentation'
 
 if(process.env.NODE_ENV === "development") {
@@ -42,6 +43,13 @@ if(process.env.NODE_ENV !== "development") {
     window.renderDateTime = (id, props) => {
         ReactDOM.render(
             <DateTimePickerPlayground {...{props}} />,
+            document.getElementById(id)
+        );
+    }
+
+    window.renderDateTimeWithTranslations = (id, props) => {
+        ReactDOM.render(
+            <DateTimePickerWithTranslations {...{props}} />,
             document.getElementById(id)
         );
     }

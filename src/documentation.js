@@ -8,6 +8,7 @@ import Playground from 'component-playground'
 import dateExample from  "./examples/date"
 import dateTimeExample from  "./examples/dateTime"
 import timeExample from  "./examples/time"
+import dateTimeWithTranslations from  "./examples/dateTimeWithTranslations"
 
 export class DatepickerStateful extends Component {
     constructor(...args) {
@@ -108,7 +109,7 @@ function block(inner, text){
         border: '1px solid #e9e9e9',
         borderRadius: '4px',
         position: 'relative',
-        margin: '20px',
+        marginLeft: '20px',
     }
 
     const styleHeader = {
@@ -166,6 +167,16 @@ export const TimePickerPlayground = (props) => {
         <Playground
           codeText={timeExample}
           scope={{React: React, TimePicker: TimepickerStateful}}/>
+      </div>
+    )
+}
+
+export const DateTimePickerWithTranslations = (props) => {
+    return (
+      <div className="component-documentation">
+        <Playground
+          codeText={dateTimeWithTranslations}
+          scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>
       </div>
     )
 }

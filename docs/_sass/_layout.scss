@@ -88,6 +88,11 @@ header {
 	z-index: 1;
 	background-color: $nav-background-color;
 
+	.title {
+		text-decoration: none;
+		color: white;
+	}
+
 	ul {
 		padding: 0;
 		margin: 0;
@@ -260,10 +265,6 @@ nav > ul {
 		font-weight: 600;
 		padding-left: $space;
 	}
-	.title {
-		text-decoration: none;
-		color: white;
-	}
 }
 
 .settings-panel-example {
@@ -327,21 +328,31 @@ nav > ul {
 .playground {
 	display: inline-block;
 	width: 100%;
-	div {
+	& > div {
 		box-sizing: border-box;
 		float: left;
 		display: inline-block;
-		font-size: 16px;
+		font-size: 13px;
 		width: 50%;
 	}
+	.CodeMirror {
+		height: 190px;
+		border-radius: 4px;
+	}
 	.playgroundCode {
-
+		font-family: monospace;
+		line-height: normal;
+		white-space: pre-wrap;
 	}
 	.playgroundPreview {
 
 	}
 }
-
+#translations-api{
+	.CodeMirror {
+		height: 450px;
+	}
+}
 
 h3 + .warning {
 	margin-top: 1.75em;

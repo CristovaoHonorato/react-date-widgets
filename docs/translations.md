@@ -2,7 +2,7 @@
 title: Translations
 ---
 
-We provide a set of basic translation for the date widgets.
+We provide a set of basic translation for the date widgets:
 
 ```js
 // Default translation strings for the widgets
@@ -56,5 +56,9 @@ We will extend the default object with object passed from outside so you don't n
 This approach will give you full control over translations used in the widgets. That means, to have i18n support you will need to handle i18n strings outside of React Date Widgets and then pass an translation object contained strings into a widget.
 
 ### Demo
+Below you can play around with the translation object.
 
-<div style="color: red">we can also render a playground here</div>
+<div id="translations-api"></div>
+<script>
+  window.renderDateTimeWithTranslations('translations-api')
+</script>
