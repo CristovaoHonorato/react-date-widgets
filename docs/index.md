@@ -1,10 +1,10 @@
 ---
 title: Getting Started
 ---
-### Widgets
+<!-- ### Widgets -->
 
 <div id="getting-started"></div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   function getLink(href, text) {
       return "<a href='" +href + "'>" + text + "</a>"
   }
@@ -15,20 +15,18 @@ title: Getting Started
       dateTimePickerText: getLink(baseUrl + "api/date-time-widget", "Date Time Widget API"),
   }
   window.renderGettingStartedComponents('getting-started', apiLinks)
-</script>
+</script> -->
 
 ### Installation
 
-Date widgets are available as the `react-date-widgets` package on [npm](https://www.npmjs.com/). The installation is easy as :
-
-<div className='row'>
-<div className='col-sm-6'>
+<div class='row'>
+<div class='col-sm-1'>
 <h4>npm</h4>
 <pre><code>
 $ npm install react-date-widgets --save
 </code></pre>
 </div>
-<div className='col-sm-6'>
+<div class='col-sm-2'>
 <h4>yarn</h4>
 <pre><code>
 $ yarn add react-date-widgets
@@ -48,16 +46,16 @@ import DateWidget from 'react-date-widgets/lib/date'
 render(<DateWidget/>, document.getElementById('main'))
 ```
 
-### I18n and Localization
+<!-- ### I18n and Localization
 
-As default we provide english translations for the widgets. If you need to customize it or translate it in different language, please check out the [Translations page]({{ site.baseurl }}/translations) for more information.
+As default we provide english translations for the widgets. If you need to customize it or translate it in different language, please check out the [Translations page]({{ site.baseurl }}/translations) for more information. -->
 
-### Style
+### Styling
 
 <!-- From our own experience we are certainly aware of how important it can be to have ability to customize components. -->
 To find more information about how to style React Date Widgets, please follow our [Style section]({{ site.baseurl }}/style).
 
 
-### About
+<!-- ### About
 
-Please check out our [About page]({{ site.baseurl }}/about) where you can read about reasons behind creating React Date Widgets.
+Please check out our [About page]({{ site.baseurl }}/about) where you can read about reasons behind creating React Date Widgets. -->

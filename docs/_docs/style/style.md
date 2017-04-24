@@ -1,6 +1,7 @@
 ---
 title: Style the components
-url: 'something'
+category: Style
+order: 1
 ---
 
 In React Date Widgets we follow following approach to style our components:

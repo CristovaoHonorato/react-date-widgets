@@ -27,15 +27,12 @@
 				ga("send", "pageview");
 			</script>
 		{% endif %}
-		<!-- <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
-		<script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script> -->
 	</head>
 
 	<body>
 		<header>
 			<h1>
-				<a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/emblem.svg" width="40" height="40" alt="{{ site.title }} logo"></a>
-				{{ site.title }}
+				<a class="title" href="{{ site.baseurl }}/"> {{ site.title }} </a>
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 
@@ -49,14 +46,6 @@
 					<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
 						{% assign home = site.html_pages | where: 'url', '/' | first %}
 						<a href="{{ site.baseurl }}/">{{ home.title }}</a>
-					</li>
-					<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
-						{% assign translations = site.html_pages | where: 'url', '/translations/' | first %}
-						<a href="{{ site.baseurl }}/translations/">{{ translations.title }}</a>
-					</li>
-					<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
-						{% assign style = site.html_pages | where: 'url', '/style/' | first %}
-						<a href="{{ site.baseurl }}/style/">{{ style.title }}</a>
 					</li>
 				</ul>
 
@@ -78,6 +67,14 @@
 				</ul>
 
 				<ul>
+					<!-- <li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
+						{% assign style = site.html_pages | where: 'url', '/style/' | first %}
+						<a href="{{ site.baseurl }}/style/">{{ style.title }}</a>
+					</li> -->
+					<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
+						{% assign translations = site.html_pages | where: 'url', '/translations/' | first %}
+						<a href="{{ site.baseurl }}/translations/">{{ translations.title }}</a>
+					</li>
 					<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
 						{% assign style = site.html_pages | where: 'title', 'About' | first %}
 						<a href="{{ site.baseurl }}/about/">{{ style.title }}</a>

@@ -1,5 +1,5 @@
 ---
-title: Translations and I18n
+title: Translations
 ---
 
 We provide a set of basic translation for the date widgets.
@@ -52,7 +52,8 @@ render(<DateWidget {...{
 
 We will extend the default object with object passed from outside so you don't need to pass an object with all keys if there is no need for that.
 
-This approach will give you full control over translations used in the widgets. That means, to have i18n support within React Date Widgets you will need to pass an translation object contained strings in different language.
+### i18n
+This approach will give you full control over translations used in the widgets. That means, to have i18n support you will need to handle i18n strings outside of React Date Widgets and then pass an translation object contained strings into a widget.
 
 ### Demo
 
