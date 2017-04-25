@@ -58,6 +58,7 @@ export default function createExpandCollapse(
 
                         },
                         ...rest,
+                        isExpanded: this.state.isExpanded,
                         style: style.input,
                         onFocus: combine(
                             this.expand,

@@ -13,6 +13,7 @@ class Input extends PureComponent {
             invalid: false,
         }
         this.handleKeyDown = this.handleKeyDown.bind(this)
+        this.handleFocus = this.handleFocus.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -20,7 +21,7 @@ class Input extends PureComponent {
         const { withClear } = this.props
         const withClearButton = withClear && Boolean(this.props.value)
         return (
-            <div className={'date-picker-input-wrap'} style={{position:'relative'}}>
+            <div className='field' style={{position:'relative'}}>
                 {this.renderInput()}
                 {withClearButton ? this.renderClearButton() : null}
             </div>
@@ -50,12 +51,32 @@ class Input extends PureComponent {
                 onKeyDown: this.handleKeyDown,
                 onChange: this.handleChange,
                 onBlur,
-                onFocus: this.handleFocus.bind(this),
+                onFocus: this.handleFocus,
             }}/>
         )
     }
 
     handleChange({target}) {
+
+        const { format, value, onChange } = this.props
+
+        const parsed = (
+            target.value &&
+            moment(target.value, format, true)
+        )
+
+        this.setState({
+            stringValue: target.value,
+            invalid: Boolean(parsed && !parsed.isValid())
+        }, () => {
+            if(!parsed && value){
+                onChange(null)
+            }
+            if(parsed && parsed.isValid() && (!value || !parsed.isSame(value))){
+                onChange(parsed)
+            }
+        })
+        /*
         const {value: stringValue} = target
         this.setState({stringValue})
 
@@ -76,6 +97,7 @@ class Input extends PureComponent {
             onChange(parsed)
         }
         this.setState({invalid: false})
+        */
     }
 
     handleFocus(e) {
@@ -146,9 +168,11 @@ Input.propTypes = {
     placeholder: PropTypes.string,
     clearText: PropTypes.string,
     value: PropTypes.object,
+    withClear: PropTypes.bool,
+    isExpanded: PropTypes.bool.isRequired,
+    isHovered: PropTypes.bool.isRequired,
     onChange: PropTypes.func,
     onClear: PropTypes.func,
-    withClear: PropTypes.bool,
     onCollapsePanel: PropTypes.func,
 }
 
