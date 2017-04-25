@@ -25,6 +25,6 @@ export default widget(
         textFormat: 'YYYY/MM/DD',
         valueFormat: 'TYYYY:MM:DDZ',
         placeholder: 'please choose a date',
-        defaultTranslations: translations
+        translations,
     }
 )

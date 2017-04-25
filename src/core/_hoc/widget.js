@@ -3,7 +3,11 @@ import moment from 'moment'
 
 import { extendObject } from '../common/utils'
 
-export default function(Picker, defaultProps = {}){
+export default function(
+    Picker, {
+        style: defaultStyle, translations: defaultTranslations, ...defaultProps
+    } = {}
+){
 
     return class Widget extends Component {
 
@@ -40,10 +44,10 @@ export default function(Picker, defaultProps = {}){
                 value,
                 valueFormat,
                 textFormat,
-                defaultTranslations,
                 translations,
                 minDate,
                 maxDate,
+                style,
                 ...rest
             } = this.props
 
@@ -55,6 +59,7 @@ export default function(Picker, defaultProps = {}){
                     maxDate: maxDate ? moment(maxDate, valueFormat) : null,
                     format: textFormat,
                     onChange: this.handleChange,
+                    style: extendObject(defaultStyle, style),
                     translations: extendObject(defaultTranslations, translations)
                 }}/>
             )
