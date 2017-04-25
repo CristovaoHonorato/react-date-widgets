@@ -149,3 +149,16 @@ const date = {
     }
 }
 ```
+
+Please don't be scared of the size of the object. Every widget consist of two parts: Input and Panel, therefore you need to specify these properties in your style object.
+Below you can do it by yourself.
+
+### Do it yourself
+
+Below you can play around with style object. This example shows how you can style input in the widgets. React Date Widgets built with Input component that shared between three widgets. Hence structure of a style object for the input will be same for all widgets.
+
+<div id="input-style-api"></div>
+<script>
+  window.renderInputStyleExample('input-style-api')
+  window.scrollTo(0, 0)
+</script>

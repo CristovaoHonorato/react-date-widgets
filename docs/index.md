@@ -53,7 +53,7 @@ As default we provide english translations for the widgets. If you need to custo
 ### Styling
 
 <!-- From our own experience we are certainly aware of how important it can be to have ability to customize components. -->
-To find more information about how to style React Date Widgets, please follow our [Style section]({{ site.baseurl }}/style).
+To find more information about how to style React Date Widgets, please follow our [Style section]({{ site.baseurl }}/style/intro).
 
 
 <!-- ### About

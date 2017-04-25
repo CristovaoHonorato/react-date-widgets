@@ -60,5 +60,6 @@ Below you can play around with the translation object.
 
 <div id="translations-api"></div>
 <script>
-  window.renderDateTimeWithTranslations('translations-api')
+  window.renderDateTimeWithTranslations('translations-api');
+  window.scrollTo(0, 0);
 </script>

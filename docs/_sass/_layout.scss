@@ -344,11 +344,26 @@ nav > ul {
 		line-height: normal;
 		white-space: pre-wrap;
 	}
+	.playgroundError {
+		background-color: #272822;
+		color: white;
+		margin-left: 10px;
+		margin-bottom: 10px;
+		padding: 5px;
+		border-radius: 4px;
+	}
 	.playgroundPreview {
 
 	}
 }
+
 #translations-api{
+	.CodeMirror {
+		height: 450px;
+	}
+}
+
+#input-style-api {
 	.CodeMirror {
 		height: 450px;
 	}

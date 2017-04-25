@@ -9,6 +9,8 @@ import dateExample from  "./examples/date"
 import dateTimeExample from  "./examples/dateTime"
 import timeExample from  "./examples/time"
 import dateTimeWithTranslations from  "./examples/dateTimeWithTranslations"
+import { dateTimeInputStyleExample, timePanelStyleExample } from "./examples/style"
+
 
 export class DatepickerStateful extends Component {
     constructor(...args) {
@@ -179,4 +181,16 @@ export const DateTimePickerWithTranslations = (props) => {
           scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>
       </div>
     )
+}
+
+export const InputStyleExample = (props) => {
+    return (<Playground
+      codeText={dateTimeInputStyleExample}
+      scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>)
+}
+
+export const TimePanelStyleExample = (props) => {
+    return (<Playground
+      codeText={timePanelStyleExample}
+      scope={{React: React, DateTimePicker: TimepickerStateful}}/>)
 }
