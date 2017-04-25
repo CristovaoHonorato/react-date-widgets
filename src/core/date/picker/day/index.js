@@ -31,20 +31,12 @@ const layoutStyle = {
 class Panel extends PureComponent {
     constructor(props) {
         super(props)
-        this.setShadowValue = this.setShadowValue.bind(this)
         this.handleKeyDown = this.handleKeyDown.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-
-        this.state = {
-            // shadowValue: props.value || props.defaultValue,
-            value: props.value,
-        }
     }
 
     render() {
 
-        const { style, shadowValue } = this.props
-        const { value } = this.state
+        const { style } = this.props
 
         const props = {
             autoFocus: true,
@@ -54,56 +46,18 @@ class Panel extends PureComponent {
             onKeyDown: this.handleKeyDown
         }
 
-        const childProps = {
-            ...this.props,
-            shadowValue,
-            value,
-            onShadowValueChange: this.setShadowValue,
-            onChange: this.handleChange,
-        }
         return (
             <div {...props}>
                 <Header {...{
-                    ...childProps,
+                    ...this.props,
                     style: style.header
                 }}/>
                 <Body {...{
-                    ...childProps,
+                    ...this.props,
                     style: style.body
                 }}/>
             </div>
         )
-    }
-
-    handleChange(value) {
-        if(!this.isAllowedDate(value))return
-
-        const {onChange, onShadowValueChange} = this.props
-
-        // const nextState = value !== null
-        //     ? { value, shadowValue: value }
-        //     : { value }
-
-        this.setState(
-            {value},
-            () => {
-                onChange(value)
-                value && onShadowValueChange(value)
-            }
-        )
-    }
-
-
-    setShadowValue(newValue) {
-        this.props.onShadowValueChange(newValue)
-        // this.setState({ shadowValue: newValue })
-    }
-
-    isAllowedDate(value) {
-        const { minDate, maxDate } = this.props
-        const isAfter = !value || !minDate ? true : value.isAfter(minDate)
-        const isBefore = !value || !maxDate ? true : value.isBefore(maxDate)
-        return isBefore && isAfter
     }
 
     handleKeyDown(event) {
@@ -111,66 +65,86 @@ class Panel extends PureComponent {
         // mac
         const ctrlKey = event.ctrlKey || event.metaKey
         const { keyCode } = event
-        const { onCollapsePanel } = this.props
+        const { shadowValue, onCollapsePanel } = this.props
+
+        const SC = v => this.props.onShadowChange(v)
 
         switch (keyCode) {
 
             case KeyCode.DOWN:
                 event.preventDefault()
-                goWeek.call(this, 1)
+                SC(shadowValue
+                    .clone()
+                    .add(1, 'weeks')
+                )
                 return 1
 
             case KeyCode.UP:
                 event.preventDefault()
-                goWeek.call(this, -1)
+                SC(shadowValue
+                    .clone()
+                    .add(-1, 'weeks')
+                )
                 return 1
 
             case KeyCode.LEFT:
                 event.preventDefault()
-                if (ctrlKey) {
-                    goYear.call(this, -1)
-                } else {
-                    goDay.call(this, -1)
-                }
+                SC(shadowValue
+                    .clone()
+                    .add(-1, ctrlKey ? 'years' : 'days')
+                )
                 return 1
 
             case KeyCode.RIGHT:
                 event.preventDefault()
-                if (ctrlKey) {
-                    goYear.call(this, 1)
-                } else {
-                    goDay.call(this, 1)
-                }
+                SC(shadowValue
+                    .clone()
+                    .add(1, ctrlKey ? 'years' : 'days')
+                )
                 return 1
 
             case KeyCode.HOME:
                 event.preventDefault()
-                goStartMonth.call(this)
+                SC(shadowValue
+                    .clone()
+                    .startOf('month')
+                )
                 return 1
 
             case KeyCode.END:
                 event.preventDefault()
-                goEndMonth.call(this)
+                SC(shadowValue
+                    .clone()
+                    .endOf('month')
+                )
                 return 1
 
             case KeyCode.PAGE_DOWN:
                 event.preventDefault()
-                goMonth.call(this, 1)
+                SC(shadowValue
+                    .clone()
+                    .add(1, 'months')
+                )
                 return 1
 
             case KeyCode.PAGE_UP:
                 event.preventDefault()
-                goMonth.call(this, -1)
+                SC(shadowValue
+                    .clone()
+                    .add(-1, 'months')
+                )
                 return 1
 
             case KeyCode.ENTER:
                 event.preventDefault()
-                this.handleChange(this.props.shadowValue)
+                this.props.onChange(this.props.shadowValue)
                 return 1
+
             case KeyCode.ESC:
                 event.preventDefault()
                 onCollapsePanel()
                 return 1
+
             default:
                 //onKeyDown(event)
                 return 1
@@ -180,14 +154,6 @@ class Panel extends PureComponent {
     componentDidMount(){
         ReactDOM.findDOMNode(this).focus()
     }
-
-    componentWillReceiveProps(nextProps) {
-        const { value } = nextProps
-
-        if (value && !value.isSame(this.state.value)) {
-            this.setState({ value, shadowValue: value })
-        }
-    }
 }
 
 Panel.propTypes = {
@@ -195,43 +161,10 @@ Panel.propTypes = {
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     value: PropTypes.object,
-    defaultValue: PropTypes.object,
     style: PropTypes.object,
     onChange: PropTypes.func.isRequired,
+    onShadowChange: PropTypes.func.isRequired
 }
 
-function goStartMonth() {
-    const next = this.props.shadowValue.clone()
-    next.startOf('month')
-    this.setShadowValue(next)
-}
-
-function goEndMonth() {
-    const next = this.props.shadowValue.clone()
-    next.endOf('month')
-    this.setShadowValue(next)
-}
-
-function goTime(direction, unit) {
-    const next = this.props.shadowValue.clone()
-    next.add(direction, unit)
-    this.setShadowValue(next)
-}
-
-function goMonth(direction) {
-    return goTime.call(this, direction, 'months')
-}
-
-function goYear(direction) {
-    return goTime.call(this, direction, 'years')
-}
-
-function goWeek(direction) {
-    return goTime.call(this, direction, 'weeks')
-}
-
-function goDay(direction) {
-    return goTime.call(this, direction, 'days')
-}
 
 export default Panel

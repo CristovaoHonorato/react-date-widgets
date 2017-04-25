@@ -1,52 +1,77 @@
 import React, { Component } from 'react'
 import DayPicker from './day'
-import MonthPicker from './month'
-import YearPicker from './year'
+//import MonthPicker from './month'
+//import YearPicker from './year'
 
 export default class DatePicker extends Component {
     constructor(props) {
         super(props)
-        this.handleChangeMode = this.handleChangeMode.bind(this)
-        this.handleShadowValueChange = this.handleShadowValueChange.bind(this)
         this.state = {
             mode: 'day',
             shadowValue: props.value || props.defaultValue,
         }
+        this.handleChangeMode = this.handleChangeMode.bind(this)
+        this.handleShadowChange = this.handleShadowChange.bind(this)
     }
 
     render() {
-        const { style: { day }, ...rest } = this.props
-        const { shadowValue } = this.state
-        const commonProps = {
+        const {
+            value,
+            defaultValue,
+            style: { day },
+            ...rest
+        } = this.props
+
+        const props = {
             ...rest,
+            value: value || defaultValue,
+            shadowValue: this.state.shadowValue,
             onChangeMode: this.handleChangeMode,
-            onShadowValueChange: this.handleShadowValueChange,
-            shadowValue,
+            onShadowChange: this.handleShadowChange,
         }
+
         switch(this.state.mode) {
+
             case 'day':
-                return <DayPicker {...{...commonProps, style: day}} />
-            case 'month':
-                return <MonthPicker {...{...commonProps, style: day}} />
-            case 'year':
-                return <YearPicker {...{...commonProps, style: day}} />
+                return <DayPicker {...{...props, style: day}} />
+
+            //case 'month':
+            //    return <MonthPicker {...{...props, style: day}} />
+
+            //case 'year':
+            //    return <YearPicker {...{...props, style: day}} />
+
             default:
-                return <DayPicker {...{onChangeMode: this.handleChangeMode, ...rest, style: day}} />
+                return <DayPicker {...{...props, style: day}} />
+        }
+    }
+
+    handleChange(value) {
+        if(this.isAllowedDate(value)){
+            this.props.onChange(value)
         }
     }
 
     handleChangeMode(mode) {
         this.setState({mode})
     }
-    handleShadowValueChange(newValue) {
-        this.setState({shadowValue: newValue})
+
+    handleShadowChange(nextValue) {
+        this.setState({shadowValue: nextValue})
     }
 
-    /*
-    componentWillReceiveProps(nextProps) {
-        const { mode } = nextProps
-        if(mode && mode !== this.state.mode)
-            this.setState({mode})
+    componentWillReceiveProps(nextProps){
+        if(nextProps.value && !nextProps.value.isSame(this.props.value)){
+            this.setState({
+                shadowValue: nextProps.value
+            })
+        }
     }
-    */
+
+    isAllowedDate(value) {
+        const { minDate, maxDate } = this.props
+        const isAfter = !value || !minDate ? true : value.isAfter(minDate)
+        const isBefore = !value || !maxDate ? true : value.isBefore(maxDate)
+        return isBefore && isAfter
+    }
 }

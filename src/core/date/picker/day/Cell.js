@@ -24,7 +24,7 @@ const Cell = props => {
         }}>
             <div {...{
                 style: getCellStyle({...props, style: inner}),
-                className: 'date-cell-outer',
+                className: 'date-cell-inner',
             }}>{ cellValue.date() } </div>
         </span>
     )
@@ -34,15 +34,10 @@ Cell.propTypes = {
     widgetValue: PropTypes.instanceOf(moment),
     shadowValue: PropTypes.instanceOf(moment),
     cellValue: PropTypes.instanceOf(moment).isRequired,
-    onDayHover: PropTypes.func,
-    onChange: PropTypes.func,
+    onDayHover: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     format: PropTypes.string,
     isDisabled: PropTypes.bool,
-}
-
-Cell.defaultProps = {
-    onDayHover: () => {},
-    onChange: () => {},
 }
 
 export default hover(Cell)

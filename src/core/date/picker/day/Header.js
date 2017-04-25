@@ -61,7 +61,7 @@ class Header extends Component {
         const {
             translations,
             style : {prevYearBtn},
-            onShadowValueChange,
+            onShadowChange,
             shadowValue
         } = this.props
 
@@ -73,7 +73,7 @@ class Header extends Component {
             title: translations.previousYear,
             onClick: () => {
                 const nextValue = shadowValue.clone().add(-1, 'years')
-                onShadowValueChange(nextValue)
+                onShadowChange(nextValue)
             }
         }}>«</Button>
     }
@@ -82,7 +82,7 @@ class Header extends Component {
         const {
             translations,
             style : {nextYearBtn},
-            onShadowValueChange,
+            onShadowChange,
             shadowValue
         } = this.props
 
@@ -94,7 +94,7 @@ class Header extends Component {
             title: translations.nextYear,
             onClick: () => {
                 const nextValue = shadowValue.clone().add(1, 'years')
-                onShadowValueChange(nextValue)
+                onShadowChange(nextValue)
             }
         }}>»</Button>
     }
@@ -103,7 +103,7 @@ class Header extends Component {
         const {
             translations,
             style : { prevMonthBtn },
-            onShadowValueChange,
+            onShadowChange,
             shadowValue
         } = this.props
 
@@ -116,7 +116,7 @@ class Header extends Component {
             title: translations.previousMonth,
             onClick: () => {
                 const nextValue = shadowValue.clone().add(-1, 'months')
-                onShadowValueChange(nextValue)
+                onShadowChange(nextValue)
             }
         }}>‹</Button>
     }
@@ -125,7 +125,7 @@ class Header extends Component {
         const {
             translations,
             style : { nextMonthBtn },
-            onShadowValueChange,
+            onShadowChange,
             shadowValue
         } = this.props
 
@@ -138,7 +138,7 @@ class Header extends Component {
             title: translations.nextMonth,
             onClick: () => {
                 const nextValue = shadowValue.clone().add(1, 'months')
-                onShadowValueChange(nextValue)
+                onShadowChange(nextValue)
             }
         }}>›</Button>
     }
@@ -185,7 +185,7 @@ class Header extends Component {
 Header.propTypes = {
     translations: PropTypes.object.isRequired,
     value: PropTypes.object,
-    onShadowValueChange: PropTypes.func.isRequired,
+    onShadowChange: PropTypes.func.isRequired,
 }
 
 export default Header

@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react'
-// import moment from 'moment'
 
 import Header from './Header'
 import Body from './Body'
@@ -17,51 +16,27 @@ const layoutStyle = {
 }
 
 class Panel extends Component {
-    constructor(props) {
-        super(props)
-        this.setShadowValue = this.setShadowValue.bind(this)
-        // this.handleKeyDown = this.handleKeyDown.bind(this)
-    }
-
     render() {
-        const { style, shadowValue } = this.props
 
         const props = {
             autoFocus: true,
-            tabIndex: "0",
-            className: 'picker-day',
+            tabIndex: '0',
+            className: 'picker-month',
             style: extendObject(layoutStyle, omit(style, 'body', 'header')),
-            onKeyDown: this.handleKeyDown
-        }
+        }        
 
-        const childProps = {
-            ...this.props,
-            shadowValue,
-            onShadowValueChange: this.setShadowValue,
-        }
         return (
             <div {...props}>
                 <Header {...{
-                    ...childProps,
+                    ...this.props,
                     style: style.header
                 }}/>
                 <Body {...{
-                    ...childProps,
+                    ...this.props,
                     style: style.body
                 }}/>
             </div>
         )
-    }
-
-    setShadowValue(newValue) {
-        this.props.onShadowValueChange(newValue)
-    }
-
-    isAllowedDate(value) {
-        const { minDate, maxDate } = this.props
-        const isAfter = !value || !minDate ? true : value.isAfter(minDate)
-        const isBefore = !value || !maxDate ? true : value.isBefore(maxDate)
-        return isBefore && isAfter
     }
 }
 
