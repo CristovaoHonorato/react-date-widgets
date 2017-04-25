@@ -5,26 +5,32 @@ import { extendObject } from '../../../common/utils'
 
 const Cell = props => {
     const {
-        onDayHover,
-        onChange,
         isDisabled,
         format,
         cellValue,
-        style,
+        onChange
     } = props
 
-    const {inner, ...styleOutter} = style
+    const layoutStyle = {
+        display: 'inline-block',
+        boxSizing: 'border-box',
+        verticalAlign: 'top',
+        width: `${100/7}%`,
+        padding: '4px 0',
+        background: 'transparent',
+        textAlign: 'center',
+    }
+
     return (
         <span {...{
-            style: styleOutter,
-            onClick: isDisabled ? null : () => { onChange(cellValue) },
-            onMouseEnter: isDisabled ? null : () => { onDayHover(cellValue) },
+            className: 'day-cell-outter',
             title: cellValue.format(format),
-            className: 'date-cell',
+            style: layoutStyle,
+            onClick: isDisabled ? null : () => { onChange(cellValue) },
         }}>
             <div {...{
-                style: getCellStyle({...props, style: inner}),
-                className: 'date-cell-inner',
+                style: applyStyle(props),
+                className: 'day-cell',
             }}>{ cellValue.date() } </div>
         </span>
     )
@@ -34,7 +40,6 @@ Cell.propTypes = {
     widgetValue: PropTypes.instanceOf(moment),
     shadowValue: PropTypes.instanceOf(moment),
     cellValue: PropTypes.instanceOf(moment).isRequired,
-    onDayHover: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     format: PropTypes.string,
     isDisabled: PropTypes.bool,
@@ -42,16 +47,13 @@ Cell.propTypes = {
 
 export default hover(Cell)
 
-function getCellStyle({
-    style, cellValue, shadowValue, isHovered, isDisabled,
-    isFirstDisableDate, isLastDisableDate, widgetValue
+function applyStyle({
+    style, cellValue, shadowValue, isHovered, isDisabled, widgetValue
 }) {
     const {
         shadowSelectedDay,
         selectedDay,
         today: todayStyle,
-        disabledCellFirstOfRow,
-        disabledCellLastOfRow,
         prevMonthCell,
         nextMonthCell,
         disabled: disabledStyle,
@@ -62,13 +64,6 @@ function getCellStyle({
         },
         ...restStyle
     } = style
-
-    const layoutStyle = {
-        textAlign: 'center',
-        boxSizing: 'border-box',
-        display: 'block',
-        padding: 0,
-    }
 
     const today = moment()
         .locale(shadowValue.locale())
@@ -87,11 +82,12 @@ function getCellStyle({
     }
 
     return {
-        ...layoutStyle,
+        textAlign: 'center',
+        boxSizing: 'border-box',
+        display: 'block',
+        padding: 0,
         ...restStyle,
         ...(isToday ? todayStyle : {}),
-        ...(isFirstDisableDate ? disabledCellFirstOfRow : {}),
-        ...(isLastDisableDate ? disabledCellLastOfRow : {}),
         ...(isCellFromPrevMonth ? prevMonthCell : {}),
         ...(isCellFromNextMonth ? nextMonthCell : {}),
         ...(isHovered ? hoverStyle : {}),

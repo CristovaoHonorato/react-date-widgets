@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import moment from 'moment'
-import { range, extendObject, omit } from '../../../common/utils'
+import { range, omit } from '../../../common/utils'
 import Cell, {HeaderCell} from './Cell'
 
 const DATE_ROW_COUNT = 6
@@ -36,15 +36,7 @@ const Body = props => {
     )
 }
 
-const cellLayoutStyle = {
-    display: 'inline-block',
-    boxSizing: 'border-box',
-    verticalAlign: 'top',
-    width: `${100/7}%`,
-    padding: '4px 0',
-    background: 'transparent',
-    textAlign: 'center',
-}
+
 
 function renderValues(dateTable, rowNumber, props) {
     const {
@@ -54,26 +46,21 @@ function renderValues(dateTable, rowNumber, props) {
         style,
         value,
         ...rest
-    } = props
-    const { cell: cellStyle } = style
+    } = props    
 
     return range(DATE_COL_COUNT).map((colNumber) => {
         const currentCellNumber = rowNumber * DATE_COL_COUNT + colNumber
 
         const cellValue = dateTable[currentCellNumber]
-        const isFirstDisableDate = minDate && cellValue.isSame(minDate)
-        const isLastDisableDate = maxDate && cellValue.isSame(maxDate)
         const isDisabled = !isAllowedDate(cellValue, minDate, maxDate)
         return (
             <Cell {...{
                 ...rest,
                 widgetValue: value,
-                isFirstDisableDate,
-                isLastDisableDate,
                 cellValue,
                 shadowValue,
                 isDisabled,
-                style: extendObject(cellLayoutStyle, cellStyle),
+                style: style.cell,
                 key: currentCellNumber
             }}/>
         )

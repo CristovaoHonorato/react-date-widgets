@@ -3,17 +3,17 @@ import {
 } from '../common/skin'
 
 // body for dayPanel
-const innerCell = {
+const cell = {
     background: 'transparent',
     borderRadius: '2px',
     color: '#666',
+    fontFamily,
     fontSize: 13,
     height: 22,
-    width: 20,
     lineHeight: '20px',
     margin: '0 auto',
     transition: backgroundTransition,
-    fontFamily,
+    width: 20,
     WebkitFontSmoothing: 'antialiased',
     ':hover': {
         background: '#ebfaff',
@@ -44,14 +44,6 @@ const innerCell = {
         color: '#108ee9',
         fontWeight: 'bold',
     },
-    disabledCellFirstOfRow: {
-        borderTopLeftRadius: '4px',
-        borderBottomLeftRadius: '4px',
-    },
-    disabledCellLastOfRow: {
-        borderTopRightRadius: '4px',
-        borderBottomRightRadius: '4px',
-    },
     prevMonthCell: {
         color: '#bbb',
     },
@@ -69,12 +61,9 @@ const bodyHeader = {
     padding: '6px 0',
 }
 
-
 const body = {
     bodyHeader,
-    cell: {
-        inner: innerCell
-    }
+    cell
 }
 
 const commonHeaderBtn = {
