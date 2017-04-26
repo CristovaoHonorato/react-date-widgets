@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import Button from '../../../common/Button'
-import { omit, extendObject } from '../../../common/utils'
+import { omit, deepAssign } from '../../../common/utils'
 
 
 const layoutStyle = {
@@ -43,8 +43,8 @@ class Header extends Component {
             'prevYearBtn',
         )
         return (
-            <div className={'date-picker-header'}
-                style={extendObject(layoutStyle.header, restStyle)}>
+            <div className={'day-picker-header'}
+                style={deepAssign(layoutStyle.header, restStyle)}>
                 <div style={{ position: 'relative' }}>
                     {this.renderPrevYearBtn()}
                     {this.renderPrevMonthBtn()}
@@ -66,7 +66,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendObject(
+            style: deepAssign(
                 {...layoutStyle.headerBtn, left: 0}, prevYearBtn
             ),
             className: 'prev-year-btn',
@@ -87,7 +87,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendObject(
+            style: deepAssign(
                 {...layoutStyle.headerBtn, right: 0}, nextYearBtn
             ),
             className: 'next-year-btn',
@@ -108,7 +108,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendObject(
+            style: deepAssign(
                 {...layoutStyle.headerBtn, position: 'absolute', left: 25},
                 prevMonthBtn
             ),
@@ -130,7 +130,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendObject(
+            style: deepAssign(
                 {...layoutStyle.headerBtn, position: 'absolute', right: 25},
                 nextMonthBtn
             ),
@@ -147,7 +147,7 @@ class Header extends Component {
         const { translations, shadowValue, style : {selectBtn}, onChangeMode } = this.props
 
         const monthBeforeYear = translations.monthBeforeYear
-        const style = extendObject(layoutStyle.selectBtn, selectBtn)
+        const style = deepAssign(layoutStyle.selectBtn, selectBtn)
         const year = (
             <Button {...{
                 className: 'year-select',

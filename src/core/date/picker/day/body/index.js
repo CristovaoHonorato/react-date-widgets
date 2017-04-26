@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import moment from 'moment'
-import { range } from '../../../../common/utils'
+import { range, omit } from '../../../../common/utils'
 import DayCell from './DayCell'
 import WeekdayCell from './WeekdayCell'
 
@@ -8,13 +8,19 @@ const DATE_ROW_COUNT = 6
 const DATE_COL_COUNT = 7
 
 const Body = props => {
-    const { shadowValue, style, pickerHeight } = props
+    const { shadowValue, style } = props
 
     const dateTable = dayValues(shadowValue)
 
+    const bodyStyle = omit(style, 'weekdayCell', 'dayCell')
+    const layoutStyle = {
+        fontSize: 0,
+        position: 'relative'
+    }
+
     return (
-        <div className='picker-body' style={{height: pickerHeight}}>
-            <div className='picker-header' style={{fontSize:0, position: 'relative'}}>
+        <div className='day-picker-body' style={bodyStyle}>
+            <div className='header' style={layoutStyle}>
                 {dayNames(shadowValue).map(({name, title}, index) =>
                     <WeekdayCell {...{
                         key: index,
@@ -25,7 +31,7 @@ const Body = props => {
                 )}
             </div>
             {range(DATE_ROW_COUNT).map(indexWeek => (
-                <div key={indexWeek} className='picker-row' style={{fontSize: 0}}>
+                <div key={indexWeek} className='row' style={layoutStyle}>
                     {renderValues(dateTable, indexWeek, props)}
                 </div>
             ))}

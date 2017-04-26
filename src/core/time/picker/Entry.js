@@ -1,6 +1,6 @@
 import React from 'react'
 import hover from '../../_hoc/hover'
-import { extendObject } from '../../common/utils'
+import { deepAssign } from '../../common/utils'
 
 const layoutStyle = {
     listStyle: 'none',
@@ -21,7 +21,7 @@ const style = ({
         ':selected' : selectedStyle,
         ':disabled' : disabledStyle,
         ...restStyle
-    } = extendObject(layoutStyle, style)
+    } = deepAssign(layoutStyle, style)
 
     const { ':hover': hoveredStyle } = (disabled ? disabledStyle : style)
 

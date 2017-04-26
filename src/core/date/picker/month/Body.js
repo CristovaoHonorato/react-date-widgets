@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import moment from 'moment'
 
-import { range, extendObject, omit } from '../../../common/utils'
+import { range, deepAssign, omit } from '../../../common/utils'
 
 const ROW = 4
 const COL = 3

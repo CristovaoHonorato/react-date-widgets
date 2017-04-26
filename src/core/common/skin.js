@@ -17,9 +17,6 @@ const commonFooterBtn = {
     },
     disabled: {
         color: '#bbb',
-        ':hover': {
-            color: '#bbb',
-        },
     },
 }
 

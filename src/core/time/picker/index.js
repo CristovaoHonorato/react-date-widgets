@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { range, omit, extendObject } from '../../common/utils'
+import { range, omit, deepAssign } from '../../common/utils'
 import Column from './Column'
 import _Header from './Header'
 
@@ -40,13 +40,13 @@ function createPicker(Header){
     class Picker extends Component {
 
         render() {
-            const { style, format, pickerHeight } = this.props
+            const { style, format } = this.props
             const { ...restStyle } = omit(style, 'header', 'column')
 
             return (
                 <div {...{
                     className: 'panel',
-                    style: extendObject(layoutStyle, restStyle),
+                    style: deepAssign(layoutStyle, restStyle),
                     tabIndex: '1',
                     onKeyDown: evt => {
                         const { onKeyDown, onCollapsePanel } = this.props
@@ -59,7 +59,7 @@ function createPicker(Header){
                     }
                 }}>
                     {this.renderHeader()}
-                    <div className='column-container' style={{height: pickerHeight}}>
+                    <div className='column-container'>
                         {showHour(format) ? this.renderHour() : null}
                         {showMinute(format) ? this.renderMinute() : null}
                         {showSecond(format) ? this.renderSecond() : null}

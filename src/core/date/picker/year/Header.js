@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import Button from '../../../common/Button'
-import { omit, extendObject } from '../../../common/utils'
+import { omit, deepAssign } from '../../../common/utils'
 
 
 const layoutStyle = {
@@ -44,7 +44,7 @@ class Header extends Component {
         )
         return (
             <div className={'date-picker-header'}
-                style={extendObject(layoutStyle.header, restStyle)}>
+                style={deepAssign(layoutStyle.header, restStyle)}>
                 <div style={{ position: 'relative' }}>
                     {this.renderPrevDecadeBtn()}
                     {this.renderYearElement()}
@@ -65,7 +65,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendObject(
+            style: deepAssign(
                 {...layoutStyle.headerBtn, left: 0}, prevYearBtn
             ),
             className: 'prev-decade-btn',
@@ -88,7 +88,7 @@ class Header extends Component {
         } = this.props
 
         return <Button {...{
-            style: extendObject(
+            style: deepAssign(
                 {...layoutStyle.headerBtn, right: 0}, nextYearBtn
             ),
             className: 'next-decade-btn',
@@ -110,7 +110,7 @@ class Header extends Component {
             endYear
         } = this.props
 
-        const style = extendObject(layoutStyle.selectBtn, selectBtn)
+        const style = deepAssign(layoutStyle.selectBtn, selectBtn)
         const decade = (
             <Button {...{
                 className: 'decade-select',

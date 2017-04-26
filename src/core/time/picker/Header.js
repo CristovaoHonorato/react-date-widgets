@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../../common/Button'
-import { extendObject } from '../../common/utils'
+import { deepAssign } from '../../common/utils'
 
 const headerBtnLayoutStyle = {
     display: 'inline-block',
@@ -24,20 +24,20 @@ const Header = ({
     value = defaultValue,
     style : { headerBtn, ...styleRest }
 }) => (
-    <div style={extendObject(headerLayoutStyle, styleRest)}>
+    <div style={deepAssign(headerLayoutStyle, styleRest)}>
         <Button {...{
             className: 'day-select',
-            style: extendObject(headerBtnLayoutStyle, headerBtn),
+            style: deepAssign(headerBtnLayoutStyle, headerBtn),
             title: translations.daySelect
         }}>{(value || defaultValue).format(translations.dayFormat)}</Button>
         <Button {...{
             className: 'month-select',
-            style: extendObject(headerBtnLayoutStyle, headerBtn),
+            style: deepAssign(headerBtnLayoutStyle, headerBtn),
             title: translations.monthSelect
         }}>{(value || defaultValue).format(translations.monthFormat)}</Button>
         <Button {...{
             className: 'year-select',
-            style: extendObject(headerBtnLayoutStyle, headerBtn),
+            style: deepAssign(headerBtnLayoutStyle, headerBtn),
             title: translations.yearSelect,
         }}>{(value || defaultValue).format(translations.yearFormat)}</Button>
     </div>

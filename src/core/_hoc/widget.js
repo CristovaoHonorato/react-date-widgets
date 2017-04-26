@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
 
-import { extendObject } from '../common/utils'
+import { deepAssign } from '../common/utils'
 
 export default function(
     Picker, {
@@ -59,8 +59,8 @@ export default function(
                     maxDate: maxDate ? moment(maxDate, valueFormat) : null,
                     format: textFormat,
                     onChange: this.handleChange,
-                    style: extendObject(defaultStyle, style),
-                    translations: extendObject(defaultTranslations, translations)
+                    style: deepAssign(defaultStyle, style),
+                    translations: deepAssign(defaultTranslations, translations)
                 }}/>
             )
 

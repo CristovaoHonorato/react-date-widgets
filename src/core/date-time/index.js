@@ -12,8 +12,7 @@ export default widget(
         clearText: 'clear',
         style: skin,
         valueFormat: 'TYYYY-MM-DD HH:mm:ssZ',
-        textFormat: 'YYYY-MM-DD HH:mm:ss',
-        //pickerHeight: 210,
+        textFormat: 'YYYY-MM-DD HH:mm:ss',        
         translations,
     }
 )

@@ -16,16 +16,20 @@ export function range(length) {
     return Array.from({length: length}, (v,i) => i)
 }
 
-export function extendObject(base = {}, extension = {}) {
-    const keys = Object.keys(base)
-    return Object.keys(extension).reduce((result, property) => ({
+export function deepAssign(target = {}, source = {}) {
+    const keys = Object.keys(target)
+    return Object.keys(source).reduce((result, property) => ({
         ...result,
         ...{
-            [property]: keys.includes(property) && isObject(base[property])
-                ? extendObject(base[property], extension[property])
-                : extension[property]
+            [property]: (
+                isObject(source[property]) &&
+                keys.includes(property) &&
+                isObject(target[property])
+            )
+                ? deepAssign(target[property], source[property])
+                : source[property]
         }
-    }), base)
+    }), target)
 }
 
 function isObject(obj) {

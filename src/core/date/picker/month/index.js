@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react'
 import Header from './Header'
 import Body from './Body'
 
-import { omit, extendObject } from '../../../common/utils'
+import { omit, deepAssign } from '../../../common/utils'
 
 const layoutStyle = {
     position: 'relative',
@@ -22,7 +22,7 @@ class Panel extends Component {
             autoFocus: true,
             tabIndex: '0',
             className: 'picker-month',
-            style: extendObject(layoutStyle, omit(style, 'body', 'header')),
+            style: deepAssign(layoutStyle, omit(style, 'body', 'header')),
         }        
 
         return (

@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import ReactDom from 'react-dom'
-import { extendObject } from '../../common/utils'
+import { deepAssign } from '../../common/utils'
 import Entry from './Entry'
 
 const containerLayoutStyle = {
@@ -35,11 +35,11 @@ export default class Column extends Component {
         return (
             <div {...{
                 className: 'panel-column',
-                style: extendObject(containerLayoutStyle, restStyle)
+                style: deepAssign(containerLayoutStyle, restStyle)
             }}>
                 <ul {...{
                     ref: (ref) => {this.list = ref},
-                    style: extendObject(ulLayoutStyle, ulStyle),
+                    style: deepAssign(ulLayoutStyle, ulStyle),
                 }}>
                     {options.map(({disabled, value}, index) => (
                         <Entry {...{

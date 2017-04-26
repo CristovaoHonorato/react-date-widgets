@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { range, extendObject, omit } from '../../../common/utils'
+import { range, deepAssign, omit } from '../../../common/utils'
 
 const ROW = 4;
 const COL = 3;

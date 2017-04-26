@@ -1,7 +1,7 @@
 import widget from '../_hoc/widget'
 import panel from '../_hoc/panel'
 import expandCollapse from '../_hoc/expandCollapse'
-import { extendObject } from '../common/utils'
+import { deepAssign } from '../common/utils'
 
 
 import skin from './skin'
@@ -27,7 +27,7 @@ export default widget(
     TimeWidget,
     {
         clearText: 'clear',
-        style: extendObject(layoutStyle, skin),
+        style: deepAssign(layoutStyle, skin),
         placeholder: 'please choose a time',
         textFormat: 'HH:mm:ss',
         valueFormat: 'THH:mm:ssZ',

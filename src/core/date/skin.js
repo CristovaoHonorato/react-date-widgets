@@ -69,12 +69,13 @@ function header(){
 
 function body() {
     return {
+        padding: '4px 8px',
         weekdayCell: {
-            lineHeight: '18px',
             fontFamily,
-            WebkitFontSmoothing: 'antialiased',
             fontWeight: 400,
+            lineHeight: '18px',
             padding: '6px 0',
+            WebkitFontSmoothing: 'antialiased',
         },
         dayCell: dayCell()
     }

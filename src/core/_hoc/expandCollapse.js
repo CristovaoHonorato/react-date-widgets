@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom'
 import enhanceWithClickOutside from 'react-click-outside'
 
 import Stick from '../common/Stick'
-import { extendObject } from '../common/utils'
+import { deepAssign } from '../common/utils'
 
 const combine = (...handlers) => (...args) => {
     handlers.forEach(
@@ -47,7 +47,7 @@ export default function createExpandCollapse(
 
             const stickProps = {
                 className,
-                styleNode: extendObject(style.stickNodeStyle, layoutStyle.stickNodeStyle),
+                styleNode: deepAssign(style.stickNodeStyle, layoutStyle.stickNodeStyle),
                 node : this.state.isExpanded ? this.renderPanel() : null,
             }
 
