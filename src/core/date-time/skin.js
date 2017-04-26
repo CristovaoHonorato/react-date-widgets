@@ -2,13 +2,16 @@ import datePicker from '../date/skin'
 import timePicker from '../time/skin'
 import { footer } from '../common/skin'
 
-const result = {
+export default {
     ...datePicker,
     panel: {
         ...datePicker.panel,
         picker: {
             date: datePicker.panel.picker,
-            time: timePicker.panel.picker
+            time: {
+                ...timePicker.panel.picker,
+                height: 206
+            }
         },
         footer: {
             ...footer,
@@ -27,5 +30,3 @@ const result = {
         }
     }
 }
-
-export default result

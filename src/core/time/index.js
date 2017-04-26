@@ -3,7 +3,6 @@ import panel from '../_hoc/panel'
 import expandCollapse from '../_hoc/expandCollapse'
 import { deepAssign } from '../common/utils'
 
-
 import skin from './skin'
 import Picker from './picker'
 import Input from '../common/Input'

@@ -6,13 +6,8 @@ import Entry from './Entry'
 const containerLayoutStyle = {
     display: 'inline-block',
     verticalAlign:'top',
-    borderWidth: '0 1px',
-    borderStyle: 'solid',
-    marginLeft: 0,
     boxSizing: 'border-box',
-    borderRight: 'none',
-    overflowX: 'hidden',
-    overflowY: 'scroll',
+    overflow: 'scroll',
     position: 'relative',
 }
 
@@ -22,7 +17,6 @@ const ulLayoutStyle = {
     margin: 0,
     padding: 0,
     width: '100%',
-    maxHeight: '144px',
 }
 
 export default class Column extends Component {
@@ -34,7 +28,7 @@ export default class Column extends Component {
 
         return (
             <div {...{
-                className: 'panel-column',
+                className: 'column',
                 style: deepAssign(containerLayoutStyle, restStyle)
             }}>
                 <ul {...{

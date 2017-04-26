@@ -16,7 +16,7 @@ const style = ({
     isHovered,
     selected,
     style,
-}) => {
+}) => {    
     const {
         ':selected' : selectedStyle,
         ':disabled' : disabledStyle,
