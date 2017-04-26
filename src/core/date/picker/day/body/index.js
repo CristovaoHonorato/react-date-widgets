@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
 import moment from 'moment'
-import { range, omit } from '../../../common/utils'
-import Cell, {HeaderCell} from './Cell'
+import { range } from '../../../../common/utils'
+import DayCell from './DayCell'
+import WeekdayCell from './WeekdayCell'
 
 const DATE_ROW_COUNT = 6
 const DATE_COL_COUNT = 7
@@ -15,21 +16,17 @@ const Body = props => {
         <div className='picker-body' style={{height: pickerHeight}}>
             <div className='picker-header' style={{fontSize:0, position: 'relative'}}>
                 {dayNames(shadowValue).map(({name, title}, index) =>
-                    <HeaderCell {...{
+                    <WeekdayCell {...{
                         key: index,
                         name,
                         title,
-                        style: style.bodyHeader
+                        style: style.weekdayCell
                     }}/>
                 )}
             </div>
             {range(DATE_ROW_COUNT).map(indexWeek => (
                 <div key={indexWeek} className='picker-row' style={{fontSize: 0}}>
-                    {renderValues(
-                        dateTable,
-                        indexWeek,
-                        {...props, style: omit(style, 'bodyHeader')}
-                    )}
+                    {renderValues(dateTable, indexWeek, props)}
                 </div>
             ))}
         </div>
@@ -46,7 +43,7 @@ function renderValues(dateTable, rowNumber, props) {
         style,
         value,
         ...rest
-    } = props    
+    } = props
 
     return range(DATE_COL_COUNT).map((colNumber) => {
         const currentCellNumber = rowNumber * DATE_COL_COUNT + colNumber
@@ -54,13 +51,13 @@ function renderValues(dateTable, rowNumber, props) {
         const cellValue = dateTable[currentCellNumber]
         const isDisabled = !isAllowedDate(cellValue, minDate, maxDate)
         return (
-            <Cell {...{
+            <DayCell {...{
                 ...rest,
                 widgetValue: value,
                 cellValue,
                 shadowValue,
                 isDisabled,
-                style: style.cell,
+                style: style.dayCell,
                 key: currentCellNumber
             }}/>
         )

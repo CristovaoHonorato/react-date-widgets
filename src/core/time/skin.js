@@ -1,4 +1,4 @@
-import { footer, input, backgroundTransition } from '../common/skin'
+import { footer, field, backgroundTransition } from '../common/skin'
 
 const headerBtn = {
     fontSize: '12px',
@@ -37,14 +37,14 @@ const picker = {
 }
 
 const skin = {
-    input,
+    field,
     panel: {
-        backgroundClip: 'padding-box',
         backgroundColor: '#fff',
-        borderWidth: 1,
-        borderStyle: 'solid',
         borderColor: '#ccc',
         borderRadius: 3,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        boxSizing: 'border-box',
         boxShadow: '0 1px 5px #ccc',
         outline: 'none',
         width: '100%',

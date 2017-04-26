@@ -22,26 +22,16 @@ class App extends Component {
     }
 
     render() {
-        const props = {
-            withClear: true,
-            onChange: this.handleChangeTime,
-            value: this.state.valueTime,
-            placeholder: 'please choose time',
-            valueFormat,
-            textFormat,
-        }
-
         return (
             <div>
-                {this.renderDatePicker()}
-                {block(<Timepicker {...props} />, this.props.timepickerText)}
-                {this.renderDateTimePicker()}
+                {this.renderDate()}
+                {this.renderDateTime()}
+                {this.renderTime()}
             </div>
         )
     }
 
-
-    renderDatePicker() {
+    renderDate() {
         const { valueDate } = this.state
         const props = {
             withClear: true,
@@ -49,12 +39,12 @@ class App extends Component {
             value: valueDate,
             placeholder: 'please choose date',
             valueFormat: 'TYYYY:MM:DDZ',
-            textFormat: 'YYYY/MM/DD',
+            textFormat: 'YYYY/MM/DD'
         }
         return block(<DatePicker {...props} />, this.props.datepickerText)
     }
 
-    renderDateTimePicker() {
+    renderDateTime() {
         const { valueDateTime } = this.state
         const props = {
             onChange: this.handleChangeDateTime,
@@ -67,19 +57,32 @@ class App extends Component {
         return block(<DateTimePicker {...props} />, this.props.dateTimePickerText)
     }
 
+    renderTime(){
+        const { valueTime } = this.state
+        const props = {
+            withClear: true,
+            onChange: this.handleChangeTime,
+            value: valueTime,
+            placeholder: 'please choose time',
+            valueFormat,
+            textFormat,
+        }
+        return block(<Timepicker {...props} />, this.props.timepickerText)
+    }
+
     handleChangeTime(val) {
         this.setState({valueTime:val})
-        console.log(`VALUE Time: ${val}`)
+        console.log(`Time: ${val}`)
     }
 
     handleChangeDate(val) {
         this.setState({valueDate:val})
-        console.log(`VALUE Date: ${val}`)
+        console.log(`Date: ${val}`)
     }
 
     handleChangeDateTime(val) {
         this.setState({valueDateTime:val})
-        console.log(`VALUE DateTime: ${val}`)
+        console.log(`DateTime: ${val}`)
     }
 }
 

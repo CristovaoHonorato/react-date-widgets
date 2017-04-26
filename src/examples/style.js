@@ -111,6 +111,7 @@ const picker = {
 	header
 }
 
+// eslint-disable-next-line no-unused-vars
 const skin = {
 	input,
 	panel: {
@@ -134,6 +135,7 @@ const skin = {
 		}
 	}
 }
+
 
 
 export const dateTimeInputStyleExample = `<DateTimePicker {...{
@@ -166,6 +168,7 @@ export const dateTimeInputStyleExample = `<DateTimePicker {...{
 }} />`
 
 
+/*
 const timePanelStyleExample = `<TimePicker {...{
 	style: {
 		panel: {
@@ -214,3 +217,4 @@ const timePanelStyleExample = `<TimePicker {...{
 		}
 	}
 }} />`
+*/

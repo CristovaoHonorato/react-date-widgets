@@ -16,7 +16,7 @@ In React Date Widgets we follow following approach to style our components:
 
 Here is an example of how you can style the `date-widget`:
 ```js
-const innerCell = {
+const cell = {
     background: 'transparent',
     borderRadius: '2px',
     color: '#666',
@@ -85,9 +85,7 @@ const bodyHeader = {
 
 const body = {
     bodyHeader,
-    cell: {
-        inner: innerCell
-    }
+    cell
 }
 
 const commonHeaderBtn = {

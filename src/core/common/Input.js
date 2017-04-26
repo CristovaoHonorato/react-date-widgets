@@ -1,7 +1,6 @@
 import React, { PropTypes, PureComponent } from 'react'
 import moment from 'moment'
 import hover from '../_hoc/hover'
-import { omit } from './utils'
 
 class Input extends PureComponent {
 
@@ -13,15 +12,25 @@ class Input extends PureComponent {
             invalid: false,
         }
         this.handleKeyDown = this.handleKeyDown.bind(this)
-        this.handleFocus = this.handleFocus.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
 
     render() {
-        const { withClear } = this.props
+        const {
+            withClear,
+            isExpanded,
+            // eslint-disable-next-line no-unused-vars
+            style: { ':expanded': expanded, input, clear, ...rest}
+        } = this.props
+
         const withClearButton = withClear && Boolean(this.props.value)
+
         return (
-            <div className='field' style={{position:'relative'}}>
+            <div className='field' style={{
+                position:'relative',
+                ...rest,
+                ...(isExpanded ? expanded : {})
+            }}>
                 {this.renderInput()}
                 {withClearButton ? this.renderClearButton() : null}
             </div>
@@ -32,11 +41,12 @@ class Input extends PureComponent {
         const {
             placeholder,
             style,
+            onFocus,
             onBlur,
         } = this.props
         const { invalid, stringValue } = this.state
 
-        const { invalid: invalidStyle, ...rest } = omit(style, 'clearBtn')
+        const { ':invalid': invalidStyle = {}, ...rest } = style.input
 
         return (
             <input {...{
@@ -51,7 +61,7 @@ class Input extends PureComponent {
                 onKeyDown: this.handleKeyDown,
                 onChange: this.handleChange,
                 onBlur,
-                onFocus: this.handleFocus,
+                onFocus
             }}/>
         )
     }
@@ -100,15 +110,10 @@ class Input extends PureComponent {
         */
     }
 
-    handleFocus(e) {
-        const { onFocus } = this.props
-        onFocus(e)
-    }
-
     renderClearButton() {
         const { style, isHovered, clearText, onChange } = this.props
-        const { clearBtn: clearBtnStyle={} } = style
-        const { ':hover': hoveredStyle } = clearBtnStyle
+        const { clear: clearStyle={} } = style
+        const { ':hover': hoveredStyle } = clearStyle
 
         const styleIcon = {
             fontFamily: 'SignavioFont',
@@ -124,7 +129,7 @@ class Input extends PureComponent {
         const props = {
             className: 'date-picker-input-clear-btn',
             style: {
-                ...clearBtnStyle,
+                ...clearStyle,
                 ...(isHovered ? hoveredStyle : {})
             },
             title: clearText,
@@ -177,11 +182,6 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
-    style: {
-        invalid: {
-            color: 'tomato'
-        }
-    },
     withClear: false,
     format: 'YYYY/MM/DD'
 }

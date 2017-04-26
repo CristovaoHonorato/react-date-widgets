@@ -5,7 +5,7 @@ export default function(Picker, Footer) {
         render() {
             const {picker, footer, ...rest} = this.props.style
             return (
-                <div className="widget-panel" style={rest}>
+                <div className='panel' style={rest}>
                     <Picker {...this.props} style={picker} />
                     <Footer {...this.props} style={footer} />
                 </div>

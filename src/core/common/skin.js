@@ -1,4 +1,4 @@
-export const fontFamily = '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif'
+export const fontFamily = '"Helvetica Neue For Number", BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif"'
 export const backgroundTransition = 'background .3s ease'
 export const colorTransition = 'color .3s ease'
 
@@ -49,27 +49,42 @@ export const footer = {
     }
 }
 
-export const input = {
+export const field = {
     border: '1px solid #eee',
+    borderWidth: '1px',
+    borderRadius: '4px',
+    fonSize: 12,
     boxSizing: 'border-box',
-    width: '100%',
     cursor: 'auto',
-    lineHeight: '1.5',
     margin: 0,
-    outline: 0,
     padding: 5,
-    clearBtn: {
+    ':expanded' : {
+        borderWidth: '1px 1px 0 1px',
+        borderRadius: '4px 4px 0 0'
+    },
+    input: {
+        border: 'none',
+        display: 'block',
+        height: '20px',
+        lineHeight: '20px',
+        margin: 0,
+        outline: 'none',
+        padding: 0,
+        width: '100%'
+    },
+    clear: {
         cursor: 'pointer',
         fontSize: 12,
-        lineHeight: '200%',
+        lineHeight: '20px',
+        height: '20px',
         opacity: '0.5',
         position: 'absolute',
         textAlign: 'center',
-        top: 0,
-        right: 0,
-        width: '10%',
+        top: 5,
+        right: 5,
         ':hover': {
-            color: '#666',
+            opacity: 1,
+            color: '#666'
         }
     }
 }

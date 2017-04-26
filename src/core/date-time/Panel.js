@@ -17,7 +17,7 @@ export default class DateTimePicker extends Component {
     render(){
         const style = omit(this.props.style, 'picker', 'footer')
         return (
-            <div className="widget-panel" style={style}>
+            <div className="panel" style={style}>
                 {this.renderPicker()}
                 {this.renderFooter()}
             </div>

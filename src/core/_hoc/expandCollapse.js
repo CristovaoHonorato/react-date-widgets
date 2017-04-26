@@ -20,15 +20,15 @@ const layoutStyle = {
 }
 
 export default function createExpandCollapse(
-    Input,
+    Field,
     Panel,
     collapseOnChange = false
 ) {
 
     class ExpandCollapse extends Component {
 
-        constructor() {
-            super(...arguments)
+        constructor(...args) {
+            super(...args)
             this.state = {
                 isExpanded: false
             }
@@ -38,7 +38,12 @@ export default function createExpandCollapse(
         }
 
         render() {
-            const {className, style, onFocus, ...rest} = this.props
+            const {
+                className,
+                style,
+                onFocus,
+                ...rest
+            } = this.props
 
             const stickProps = {
                 className,
@@ -48,10 +53,10 @@ export default function createExpandCollapse(
 
             return (
                 <Stick {...stickProps}>
-                    <Input {...{
+                    <Field {...{
                         ref: ref => {
                             const element = findDOMNode(ref)
-                            if(element === null) return
+                            if(!element) return
                             this.input = element.tagName === 'INPUT'
                                 ? element
                                 : element.getElementsByTagName('input')[0]
@@ -59,7 +64,10 @@ export default function createExpandCollapse(
                         },
                         ...rest,
                         isExpanded: this.state.isExpanded,
-                        style: style.input,
+                        style: {
+                            ...style.field,
+                            //...omit(style, 'stickNodeStyle', 'panel', 'field')
+                        },
                         onFocus: combine(
                             this.expand,
                             onFocus

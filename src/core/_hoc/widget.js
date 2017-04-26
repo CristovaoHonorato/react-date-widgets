@@ -49,7 +49,7 @@ export default function(
                 maxDate,
                 style,
                 ...rest
-            } = this.props
+            } = this.props            
 
             return (
                 <Picker {...{

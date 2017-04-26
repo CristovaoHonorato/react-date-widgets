@@ -1,7 +1,6 @@
 import React, {  PropTypes } from 'react'
 import moment from 'moment'
-import hover from '../../../_hoc/hover'
-import { extendObject } from '../../../common/utils'
+import hover from '../../../../_hoc/hover'
 
 const Cell = props => {
     const {
@@ -95,28 +94,4 @@ function applyStyle({
         ...(isShadowValue ? shadowSelectedDay : {}),
         ...(isWidgetValue ? selectedDay : {}),
     }
-}
-
-export const HeaderCell = ({name, title, style}) => {
-    const styleLayout = {
-        boxSizing: 'boder-box',
-        display: 'inline-block',
-        textAlign: 'center',
-        verticalAlign: 'top',
-        width: `${100/7}%`,
-        fontSize: 12,
-        lineHeight: '18px',
-        padding: '6px 0',
-    }
-
-    return <span {...{
-        className: 'weekday',
-        style: extendObject(styleLayout, style),
-        title
-    }}>
-        <span {...{
-            className: 'weekday-inner',
-            style: { display: 'block' }
-        }}>{name}</span>
-    </span>
 }

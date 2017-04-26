@@ -7,7 +7,6 @@ import { omit } from '../common/utils'
 const Footer = ({
     defaultValue, value = defaultValue, translations, style, onChange
 }) => {
-    console.log(defaultValue);
     const {
         nowBtn,
         ...restStyle

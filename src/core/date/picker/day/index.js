@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { omit, extendObject } from '../../../common/utils'
 import Header from './Header'
-import Body from './Body'
+import Body from './body'
 
 const KeyCode = {
     DOWN: 40,
