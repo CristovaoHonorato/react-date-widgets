@@ -13,20 +13,6 @@ export default {
                 height: 206
             }
         },
-        footer: {
-            ...footer,
-            okButton: {
-                ...footer.okBtn,
-                position: 'absolute',
-                bottom: '16%',
-                right: '5%',
-            },
-            selectTimeBtn: {
-                ...footer.nowBtn,
-                paddingLeft: 0,
-                position: 'relative',
-                left: '22%',
-            }
-        }
+        footer
     }
 }

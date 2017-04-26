@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import moment from 'moment'
 import Button from '../common/Button'
+import { omit } from '../common/utils'
 
 const Footer = ({
     mode,
@@ -13,29 +14,24 @@ const Footer = ({
     onCollapsePanel
 }) => {
 
-    const {
-        nowBtn,
-        selectTimeBtn,
-        okButton,
-        ...restStyle
-    } = style
+    const restStyle = omit(style, 'now', 'mode', 'ok' )
 
     const e1 = <Button {...{
-        style: nowBtn,
+        style: style.now,
         onClick: () => {
             onChange(now(value||defaultValue))
         },
     }}>{translations.now}</Button>
 
     const e2 = (<Button {...{
-        style: selectTimeBtn,
+        style: style.mode,
         onClick: onChangeMode,
     }}>
         {mode === 'time' ? translations.dateSelect : translations.timeSelect}
     </Button>)
 
     const e3 = <Button key="ok" {...{
-        style: okButton,
+        style: style.ok,
         onClick: onCollapsePanel,
     }}>{translations.ok}</Button>
 

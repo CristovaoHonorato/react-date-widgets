@@ -1,3 +1,4 @@
+import { deepAssign } from '../common/utils'
 import {
     footer, field, fontFamily, backgroundTransition, colorTransition
 } from '../common/skin'
@@ -17,7 +18,19 @@ function panel(){
         boxSizing: 'border-box',
         boxShadow: '0 1px 5px #e9e9e9',
         picker: picker(),
-        footer
+        footer: deepAssign(
+            footer,
+            {
+                textAlign: 'center',
+                now: {
+                    position: 'auto',
+                    left: null,
+                    right: null,
+                    top: null,
+                    bottom: null
+                }
+            }
+        )
     }
 }
 

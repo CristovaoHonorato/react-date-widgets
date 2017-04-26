@@ -7,16 +7,13 @@ import { omit } from '../common/utils'
 const Footer = ({
     defaultValue, value = defaultValue, translations, style, onChange
 }) => {
-    const {
-        nowBtn,
-        ...restStyle
-    } = omit(style, 'okBtn')
+    const restStyle = omit(style, 'now', 'mode', 'ok' )
 
     return (
-        <div className={'date-widget-footer'} style={restStyle}>
+        <div className={'date-footer'} style={restStyle}>
             <Button {...{
                 isDisabled: isToday(value),
-                style: nowBtn,
+                style: style.now,
                 onClick: isToday(value)
                     ? () => {}
                     : () => { onChange(today(value || defaultValue)) },

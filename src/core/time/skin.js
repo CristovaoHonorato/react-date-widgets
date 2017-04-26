@@ -11,14 +11,7 @@ export default {
         boxSizing: 'border-box',
         boxShadow: '0 1px 5px #e9e9e9',
         picker: picker(),
-        footer: {
-            ...footer,
-            textAlign: 'right',
-            okBtn: {
-                ...footer.okBtn,
-                marginRight: 10,
-            }
-        }
+        footer
     }
 }
 

@@ -2,47 +2,25 @@ export const fontFamily = '"Helvetica Neue For Number", BlinkMacSystemFont,"Sego
 export const backgroundTransition = 'background .3s ease'
 export const colorTransition = 'color .3s ease'
 
-const commonFooterBtn = {
-    display: 'inline-block',
-    textAlign: 'center',
-    color: '#108ee9',
-    fontFamily,
-    WebkitFontSmoothing: 'antialiased',
-    transition: colorTransition,
-    fontSize: '14px',
-    lineHeight: '18px',
-    cursor: 'pointer',
-    ':hover': {
-        color: '#49a9ee',
-    },
-    disabled: {
-        color: '#bbb',
-    },
-}
-
 export const footer = {
     borderTop: '1px solid #e9e9e9',
+    boxSizing: 'border-box',
     fontSize: 12,
-    padding: '10px 0',
     position: 'relative',
-    nowBtn: {
-        ...commonFooterBtn,
-        paddingLeft: 12,
+    textAlign: 'right',
+    padding: '9px 0',
+    now: {
+        ...footerAction(),
+        position: 'absolute',
+        left: 10
     },
-    okBtn: {
-        ...commonFooterBtn,
-        backgroundColor: '#108ee9',
-        borderRadius: 4,
-        lineHeight: '1.5',
-        padding: '1px 7px',
-        border: '1px solid transparent',
-        color: '#fff',
-        fontWeight: '500',
-        textAlign: 'center',
-        transition: backgroundTransition,
-        ':hover': {
-            backgroundColor: '#49a9ee',
-        }
+    mode: {
+        ...footerAction(),
+        marginRight: 10
+    },
+    ok: {
+        ...footerButton(),
+        marginRight: 10
     }
 }
 
@@ -54,7 +32,7 @@ export const field = {
     boxSizing: 'border-box',
     cursor: 'auto',
     margin: 0,
-    padding: 5,
+    padding: 8,
     ':expanded' : {
         borderWidth: '1px 1px 0 1px',
         borderRadius: '4px 4px 0 0'
@@ -77,11 +55,50 @@ export const field = {
         opacity: '0.5',
         position: 'absolute',
         textAlign: 'center',
-        top: 5,
-        right: 5,
+        top: 8,
+        right: 8,
         ':hover': {
             opacity: 1,
             color: '#666'
+        }
+    }
+}
+
+function footerButton(){
+    return {
+        backgroundColor: '#108ee9',
+        border: '1px solid transparent',
+        borderRadius: 4,
+        boxSizing: 'border-box',
+        color: '#fff',
+        display: 'inline-block',
+        height: '21px',
+        lineHeight: '21px',
+        padding: '0px 7px',
+        textAlign: 'center',
+        transition: backgroundTransition,
+        ':hover': {
+            backgroundColor: '#49a9ee',
+        }
+    }
+}
+
+function footerAction(){
+    return {
+        boxSizing: 'border-box',
+        color: '#108ee9',
+        cursor: 'pointer',
+        display: 'inline-block',
+        fontFamily,
+        height: '21px',
+        lineHeight: '21px',
+        transition: colorTransition,
+        WebkitFontSmoothing: 'antialiased',
+        ':hover': {
+            color: '#49a9ee',
+        },
+        ':disabled': {
+            color: '#bbb',
         }
     }
 }

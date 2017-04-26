@@ -8,7 +8,7 @@ const Button = ({
     isDisabled,
     isHovered,
     onClick,
-    style : {':hover' : hover = {}, disabled = {}, ...rest} = {},
+    style : {':hover' : hover = {}, ':disabled' : disabled = {}, ...rest} = {},
     title,
 }) => (
     <a {...{

@@ -4,16 +4,13 @@ import { omit } from '../common/utils'
 
 const Footer = ({ value, defaultValue, style, onCollapsePanel }) => {
 
-    const {
-        okBtn,
-        ...restStyle
-    } = omit(style, 'nowBtn')
+    const restStyle = omit(style, 'now', 'mode', 'ok' )
 
     return (
         <div className={'time-widget-footer'} style={restStyle}>
             <Button {...{
                 isDisabled: false,
-                style: okBtn,
+                style: style.ok,
                 onClick: onCollapsePanel,
             }}>Ok</Button>
         </div>
