@@ -9,7 +9,12 @@ import dateExample from  "./examples/date"
 import dateTimeExample from  "./examples/dateTime"
 import timeExample from  "./examples/time"
 import dateTimeWithTranslations from  "./examples/dateTimeWithTranslations"
-import { dateTimeInputStyleExample, timePanelStyleExample } from "./examples/style"
+import {
+    dateTimeInputStyleExample,
+    timePanelStyleExample,
+    datePanelStyleExample,
+    dateTimePanelStyleExample,
+} from "./examples/style"
 
 
 export class DatepickerStateful extends Component {
@@ -192,5 +197,17 @@ export const InputStyleExample = (props) => {
 export const TimePanelStyleExample = (props) => {
     return (<Playground
       codeText={timePanelStyleExample}
-      scope={{React: React, DateTimePicker: TimepickerStateful}}/>)
+      scope={{React: React, TimePicker: TimepickerStateful}}/>)
+}
+
+export const DatePanelStyleExample = (props) => {
+    return (<Playground
+      codeText={datePanelStyleExample}
+      scope={{React: React, DatePicker: DatepickerStateful}}/>)
+}
+
+export const DateTimePanelStyleExample = (props) => {
+    return (<Playground
+      codeText={dateTimePanelStyleExample}
+      scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>)
 }

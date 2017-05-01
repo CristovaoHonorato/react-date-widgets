@@ -9,7 +9,9 @@ import {
     TimePickerPlayground,
     DateTimePickerWithTranslations,
     InputStyleExample,
-    TimePanelStyleExample
+    TimePanelStyleExample,
+    DatePanelStyleExample,
+    DateTimePanelStyleExample,
 } from './documentation'
 
 if(process.env.NODE_ENV === "development") {
@@ -66,6 +68,20 @@ if(process.env.NODE_ENV !== "development") {
     window.renderTimePanelStyleExample = (id, props) => {
         ReactDOM.render(
             <TimePanelStyleExample {...{props}} />,
+            document.getElementById(id)
+        );
+    }
+
+    window.renderDatePanelStyleExample = (id, props) => {
+        ReactDOM.render(
+            <DatePanelStyleExample {...{props}} />,
+            document.getElementById(id)
+        );
+    }
+
+    window.renderDateTimePanelStyleExample = (id, props) => {
+        ReactDOM.render(
+            <DateTimePanelStyleExample {...{props}} />,
             document.getElementById(id)
         );
     }

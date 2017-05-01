@@ -140,27 +140,262 @@ const skin = {
 
 export const dateTimeInputStyleExample = `<DateTimePicker {...{
 	style: {
-		input: {
-			border: '1px solid #eee',
+		field: {
+			background: 'tomato',
+			border: '1px solid orange',
+			borderRadius: '4px',
+			fonSize: 14,
 			boxSizing: 'border-box',
-			width: '100%',
-			cursor: 'auto',
-			lineHeight: '1.5',
-			margin: 0,
-			outline: 0,
-			padding: 5,
-			clearBtn: {
-				cursor: 'pointer',
-				fontSize: 12,
-				lineHeight: '200%',
-				opacity: '0.5',
-				position: 'absolute',
-				textAlign: 'center',
-				top: 0,
-				right: 0,
-				width: '10%',
+			':expanded' : {
+				borderWidth: '1px 1px 0 1px',
+				borderRadius: '4px 4px 0 0'
+			},
+			input: {
+				fontSize: 15,
+			},
+			clear: {
+				color: 'red',
 				':hover': {
-					color: '#666',
+					color: 'black',
+				}
+			}
+		}
+	}
+}} />`
+
+export const timePanelStyleExample = `<TimePicker {...{
+	style: {
+		field: {
+		},
+		panel: {
+			picker: {
+				header: {
+					headerBtn: {
+						":hover": {
+
+						},
+					},
+				},
+				column: {
+					entry: {
+						":hover": {
+
+						},
+						":selected": {
+
+						},
+						":disabled": {
+
+						},
+					},
+					":hours": {
+
+					},
+					":minutes": {
+
+					},
+					":seconds": {
+
+					},
+				},
+				footer: {
+					"ok": {
+						":hover": {
+
+						},
+						":disabled": {
+
+						},
+					}
+				},
+			},
+		},
+	}
+}} />`
+
+export const datePanelStyleExample = `<DatePicker {...{
+	style: {
+		panel: {
+			picker: {
+				day: {
+					header: {
+						prevMonthBtn: {
+
+							":hover": {
+
+							}
+						},
+						nextMonthBtn: {
+
+							":hover": {
+
+							}
+						},
+						nextYearBtn: {
+
+							":hover": {
+
+							}
+						},
+						prevYearBtn: {
+
+							":hover": {
+
+							}
+						},
+						selectBtn: {
+
+							":hover": {
+
+							}
+						}
+					},
+					body: {
+
+						weekdayCell: {
+
+						},
+						dayCell: {
+
+							":hover": {
+
+							},
+							shadowSelectedDay: {
+
+							},
+							selectedDay: {
+
+							},
+							disabled: {
+
+							},
+							today: {
+
+							},
+							prevMonthCell: {
+
+							},
+							nextMonthCell: {
+
+							}
+						}
+					}
+				},
+			},
+			footer: {
+				now: {
+
+					":hover": {
+
+					},
+					":disabled": {
+
+					},
+				}
+			}
+		}
+	}
+}} />`
+
+export const dateTimePanelStyleExample = `<DateTimePicker {...{
+	style: {
+		panel: {
+			picker: {
+				date: {
+					day: {
+						header: {
+							prevMonthBtn: {
+
+								":hover": {
+
+								}
+							},
+							nextMonthBtn: {
+
+								":hover": {
+
+								}
+							},
+							nextYearBtn: {
+
+								":hover": {
+
+								}
+							},
+							prevYearBtn: {
+
+								":hover": {
+
+								}
+							},
+							selectBtn: {
+
+								":hover": {
+
+								}
+							}
+						},
+						body: {
+
+							weekdayCell: {
+
+							},
+							dayCell: {
+
+								":hover": {
+
+								},
+								shadowSelectedDay: {
+
+								},
+								selectedDay: {
+
+								},
+								disabled: {
+
+								},
+								today: {
+
+								},
+								prevMonthCell: {
+
+								},
+								nextMonthCell: {
+
+								}
+							}
+						}
+					},
+				},
+				time: {
+
+				}
+			},
+			footer: {
+				now: {
+
+					":hover": {
+
+					},
+					":disabled": {
+
+					},
+				},
+				mode: {
+					":hover": {
+
+					},
+					":disabled": {
+
+					},
+				},
+				ok: {
+					":hover": {
+
+					},
+					":disabled": {
+
+					},
 				}
 			}
 		}
@@ -168,6 +403,154 @@ export const dateTimeInputStyleExample = `<DateTimePicker {...{
 }} />`
 
 
+// const style = {
+// 	"panel": {
+// 		"picker": {
+// 			"day": {
+// 				"header": {
+// 					"prevMonthBtn": {
+//
+// 						":hover": {
+//
+// 						}
+// 					},
+// 					"nextMonthBtn": {
+//
+// 						":hover": {
+//
+// 						}
+// 					},
+// 					"nextYearBtn": {
+//
+// 						":hover": {
+//
+// 						}
+// 					},
+// 					"prevYearBtn": {
+//
+// 						":hover": {
+//
+// 						}
+// 					},
+// 					"selectBtn": {
+//
+// 						":hover": {
+//
+// 						}
+// 					}
+// 				},
+// 				"body": {
+//
+// 					"weekdayCell": {
+//
+// 					},
+// 					"dayCell": {
+//
+// 						":hover": {
+//
+// 						},
+// 						"shadowSelectedDay": {
+//
+// 						},
+// 						"selectedDay": {
+//
+// 						},
+// 						"disabled": {
+//
+// 						},
+// 						"today": {
+//
+// 						},
+// 						"prevMonthCell": {
+//
+// 						},
+// 						"nextMonthCell": {
+//
+// 						}
+// 					}
+// 				}
+// 			},
+// 		},
+// 		"footer": {
+// 			"now": {
+//
+// 				":hover": {
+//
+// 				},
+// 				":disabled": {
+//
+// 				},
+// 			}
+// 		}
+// 	}
+// }
+//
+// "picker": {
+//
+// 			"header": {
+//
+// 				"headerBtn": {
+// 					...
+// 					":hover": {
+// 						...
+// 					}
+// 				}
+// 			},
+// 			"column": {
+// 				...
+// 				"entry": {
+// 					...
+// 					":hover": {
+// 						...
+// 					},
+// 					":selected": {
+// 						...
+// 					},
+// 					":disabled": {
+// 						...
+// 					}
+// 				},
+// 				":hours": {
+// 					...
+// 				},
+// 				":minutes": {
+// 					...
+// 				},
+// 				":seconds": {
+// 					...
+// 				}
+// 			}
+// 		},
+// 		"footer": {
+// 			...
+// 			"now": {
+// 				...
+// 				":hover": {
+// 					...
+// 				},
+// 				":disabled": {
+// 					...
+// 				},
+// 			},
+// 			"mode": {
+// 				...
+// 				":hover": {
+// 					...
+// 				},
+// 				":disabled": {
+// 					...
+// 				},
+// 			},
+// 			"ok": {
+// 				...
+// 				":hover": {
+// 					...
+// 				},
+// 				":disabled": {
+// 					...
+// 				},
+// 			}
+// 		}
 /*
 const timePanelStyleExample = `<TimePicker {...{
 	style: {

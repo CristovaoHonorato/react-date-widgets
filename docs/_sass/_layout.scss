@@ -357,15 +357,15 @@ nav > ul {
 	}
 }
 
-#translations-api{
+#translations-api, #input-style-api{
 	.CodeMirror {
 		height: 450px;
 	}
 }
 
-#input-style-api {
+#time-widget-style-api, #date-time-widget-style-api, #date-widget-style-api {
 	.CodeMirror {
-		height: 450px;
+		height: 650px;
 	}
 }
 
