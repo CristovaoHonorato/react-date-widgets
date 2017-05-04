@@ -1,143 +1,3 @@
-
-const fontFamily = '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif'
-const backgroundTransition = 'background .3s ease'
-const colorTransition = 'color .3s ease'
-
-const commonFooterBtn = {
-	display: 'inline-block',
-	textAlign: 'center',
-	color: '#108ee9',
-	fontFamily,
-	WebkitFontSmoothing: 'antialiased',
-	transition: colorTransition,
-	fontSize: '14px',
-	lineHeight: '18px',
-	cursor: 'pointer',
-	':hover': {
-		color: '#49a9ee',
-	},
-	disabled: {
-		color: '#bbb',
-		':hover': {
-			color: '#bbb',
-		},
-	},
-}
-
-const footer = {
-	borderTop: '1px solid #e9e9e9',
-	fontSize: 12,
-	padding: '10px 0',
-	position: 'relative',
-	nowBtn: {
-		...commonFooterBtn,
-		paddingLeft: 12,
-	},
-	okBtn: {
-		...commonFooterBtn,
-		backgroundColor: '#108ee9',
-		borderRadius: 4,
-		lineHeight: '1.5',
-		padding: '1px 7px',
-		border: '1px solid transparent',
-		color: '#fff',
-		fontWeight: '500',
-		textAlign: 'center',
-		transition: backgroundTransition,
-		':hover': {
-			backgroundColor: '#49a9ee',
-		}
-	}
-}
-
-const input = {
-	border: '1px solid #eee',
-	boxSizing: 'border-box',
-	width: '100%',
-	cursor: 'auto',
-	lineHeight: '1.5',
-	margin: 0,
-	outline: 0,
-	padding: 5,
-	clearBtn: {
-		cursor: 'pointer',
-		fontSize: 12,
-		lineHeight: '200%',
-		opacity: '0.5',
-		position: 'absolute',
-		textAlign: 'center',
-		top: 0,
-		right: 0,
-		width: '10%',
-		':hover': {
-			color: '#666',
-		}
-	}
-}
-
-const headerBtn = {
-	fontSize: '12px',
-	fontWeight: 'bold',
-	color: '#666',
-}
-
-const header = {
-	borderBottomColor: '#e9e9e9',
-	headerBtn
-}
-
-const column = {
-	fontSize: '12px',
-	borderColor: '#e9e9e9',
-	height: '100%',
-	entry: {
-		transition: backgroundTransition,
-		height: '24px',
-		lineHeight: '24px',
-		':hover': {
-			background: '#ecf6fd',
-		},
-		':selected': {
-			// background: '#edfaff',
-			background: '#f7f7f7',
-			color: 'black',
-		},
-		':disabled': {}
-	}
-}
-
-const picker = {
-	column,
-	header
-}
-
-// eslint-disable-next-line no-unused-vars
-const skin = {
-	input,
-	panel: {
-		backgroundClip: 'padding-box',
-		backgroundColor: '#fff',
-		borderWidth: 1,
-		borderStyle: 'solid',
-		borderColor: '#ccc',
-		borderRadius: 3,
-		boxShadow: '0 1px 5px #ccc',
-		outline: 'none',
-		width: '100%',
-		picker,
-		footer: {
-			...footer,
-			textAlign: 'right',
-			okBtn: {
-				...footer.okBtn,
-				marginRight: 10,
-			}
-		}
-	}
-}
-
-
-
 export const dateTimeInputStyleExample = `<DateTimePicker {...{
 	style: {
 		field: {
@@ -163,128 +23,180 @@ export const dateTimeInputStyleExample = `<DateTimePicker {...{
 	}
 }} />`
 
+const timeHeader  = `
+header: {
+	headerBtn: {
+// header text when change mode of date time widget
+// to time. e.g.: '4 May 2017'
+		color: 'orange',
+		":hover": {
+
+		},
+	},
+},
+`
+
+const timePicker = `
+column: {
+// here goes common style for the columns
+// ":hours" - styles for the hours column
+// ":minutes" - styles for the minutes column
+// ":seconds" - styles for the seconds column
+	entry: {
+// entry in a column. Entry is a div element which surrounds a value.
+		":hover": {
+
+		},
+		":selected": {
+
+		},
+		":disabled": {
+
+		},
+	},
+	":hours": {
+
+	},
+	":minutes": {
+
+	},
+	":seconds": {
+
+	},
+},`
 export const timePanelStyleExample = `<TimePicker {...{
 	style: {
 		field: {
+			// style for the field
 		},
 		panel: {
+// here goes style to style conainer of the panel
+			borderRadius: "10px",
 			picker: {
-				header: {
-					headerBtn: {
-						":hover": {
-
-						},
-					},
-				},
-				column: {
-					entry: {
-						":hover": {
-
-						},
-						":selected": {
-
-						},
-						":disabled": {
-
-						},
-					},
-					":hours": {
+				${timePicker}
+			},
+			footer: {
+				"ok": {
+// 'ok' - button
+					backgroundColor: 'chocolate',
+					":hover": {
 
 					},
-					":minutes": {
+					":disabled": {
 
 					},
-					":seconds": {
-
-					},
-				},
-				footer: {
-					"ok": {
-						":hover": {
-
-						},
-						":disabled": {
-
-						},
-					}
-				},
+				}
 			},
 		},
 	}
 }} />`
 
+const datePanel = `
+day: {
+	header: {
+		prevMonthBtn: {
+// css properties here
+// will style button <,
+// button to go to previous month
+			color: 'turquoise',
+			":hover": {
+// the same button when hovered
+// all the followings :hover properties
+// style the same element when hovered
+			}
+		},
+		nextMonthBtn: {
+// css properties here
+// will style button >,
+// button to go to next month
+			color: 'tomato',
+			":hover": {
+
+			}
+		},
+		nextYearBtn: {
+// css properties here
+// will style button >,
+// button to go to next year
+			color: 'tan',
+			":hover": {
+
+			}
+		},
+		prevYearBtn: {
+// css properties here
+// will style button <<,
+// button to go to previous year
+			color: 'tean',
+			":hover": {
+
+			}
+		},
+		selectBtn: {
+// css properties here
+// will style current value of month and year
+// in the header
+			color: 'plum',
+			":hover": {
+
+			}
+		}
+	},
+	body: {
+		weekdayCell: {
+// css properties here
+// will style weekdays text
+// Mo Tu and etc
+			color: 'orchid',
+		},
+		dayCell: {
+// this property will style div with
+// day number inside
+// Day cell can have different states:
+// shadowSelectedDay - day which has a cursor
+// selectedDay - day of the component's value
+// today - today's day
+// prevMonthCell - day cell that belongs to previous month
+// nextMonthCell - day cell that belongs to next month
+// disabled - disabled day
+
+			":hover": {
+				today: {
+					// when today cell is hovered
+				}
+			},
+			shadowSelectedDay: {
+				background: 'violet',
+			},
+			selectedDay: {
+				background: 'forestGreen',
+			},
+			disabled: {
+
+			},
+			today: {
+				border: '1px solid gold',
+			},
+			prevMonthCell: {
+				// background: 'mocasson',
+			},
+			nextMonthCell: {
+				background: 'mediumOrchid',
+			}
+		}
+	}
+},`
+
 export const datePanelStyleExample = `<DatePicker {...{
 	style: {
 		panel: {
 			picker: {
-				day: {
-					header: {
-						prevMonthBtn: {
-
-							":hover": {
-
-							}
-						},
-						nextMonthBtn: {
-
-							":hover": {
-
-							}
-						},
-						nextYearBtn: {
-
-							":hover": {
-
-							}
-						},
-						prevYearBtn: {
-
-							":hover": {
-
-							}
-						},
-						selectBtn: {
-
-							":hover": {
-
-							}
-						}
-					},
-					body: {
-
-						weekdayCell: {
-
-						},
-						dayCell: {
-
-							":hover": {
-
-							},
-							shadowSelectedDay: {
-
-							},
-							selectedDay: {
-
-							},
-							disabled: {
-
-							},
-							today: {
-
-							},
-							prevMonthCell: {
-
-							},
-							nextMonthCell: {
-
-							}
-						}
-					}
-				},
+				${datePanel}
 			},
 			footer: {
 				now: {
-
+// "Today" button
+					color: "red",
 					":hover": {
 
 					},
@@ -302,78 +214,15 @@ export const dateTimePanelStyleExample = `<DateTimePicker {...{
 		panel: {
 			picker: {
 				date: {
-					day: {
-						header: {
-							prevMonthBtn: {
-
-								":hover": {
-
-								}
-							},
-							nextMonthBtn: {
-
-								":hover": {
-
-								}
-							},
-							nextYearBtn: {
-
-								":hover": {
-
-								}
-							},
-							prevYearBtn: {
-
-								":hover": {
-
-								}
-							},
-							selectBtn: {
-
-								":hover": {
-
-								}
-							}
-						},
-						body: {
-
-							weekdayCell: {
-
-							},
-							dayCell: {
-
-								":hover": {
-
-								},
-								shadowSelectedDay: {
-
-								},
-								selectedDay: {
-
-								},
-								disabled: {
-
-								},
-								today: {
-
-								},
-								prevMonthCell: {
-
-								},
-								nextMonthCell: {
-
-								}
-							}
-						}
-					},
+					${datePanel}
 				},
 				time: {
-
+					${timePicker}
 				}
 			},
 			footer: {
 				now: {
-
+// 'Now' button
 					":hover": {
 
 					},
@@ -382,6 +231,7 @@ export const dateTimePanelStyleExample = `<DateTimePicker {...{
 					},
 				},
 				mode: {
+// 'Select time / Select Date' - button
 					":hover": {
 
 					},
@@ -390,6 +240,7 @@ export const dateTimePanelStyleExample = `<DateTimePicker {...{
 					},
 				},
 				ok: {
+// 'Ok' button
 					":hover": {
 
 					},
@@ -401,203 +252,3 @@ export const dateTimePanelStyleExample = `<DateTimePicker {...{
 		}
 	}
 }} />`
-
-
-// const style = {
-// 	"panel": {
-// 		"picker": {
-// 			"day": {
-// 				"header": {
-// 					"prevMonthBtn": {
-//
-// 						":hover": {
-//
-// 						}
-// 					},
-// 					"nextMonthBtn": {
-//
-// 						":hover": {
-//
-// 						}
-// 					},
-// 					"nextYearBtn": {
-//
-// 						":hover": {
-//
-// 						}
-// 					},
-// 					"prevYearBtn": {
-//
-// 						":hover": {
-//
-// 						}
-// 					},
-// 					"selectBtn": {
-//
-// 						":hover": {
-//
-// 						}
-// 					}
-// 				},
-// 				"body": {
-//
-// 					"weekdayCell": {
-//
-// 					},
-// 					"dayCell": {
-//
-// 						":hover": {
-//
-// 						},
-// 						"shadowSelectedDay": {
-//
-// 						},
-// 						"selectedDay": {
-//
-// 						},
-// 						"disabled": {
-//
-// 						},
-// 						"today": {
-//
-// 						},
-// 						"prevMonthCell": {
-//
-// 						},
-// 						"nextMonthCell": {
-//
-// 						}
-// 					}
-// 				}
-// 			},
-// 		},
-// 		"footer": {
-// 			"now": {
-//
-// 				":hover": {
-//
-// 				},
-// 				":disabled": {
-//
-// 				},
-// 			}
-// 		}
-// 	}
-// }
-//
-// "picker": {
-//
-// 			"header": {
-//
-// 				"headerBtn": {
-// 					...
-// 					":hover": {
-// 						...
-// 					}
-// 				}
-// 			},
-// 			"column": {
-// 				...
-// 				"entry": {
-// 					...
-// 					":hover": {
-// 						...
-// 					},
-// 					":selected": {
-// 						...
-// 					},
-// 					":disabled": {
-// 						...
-// 					}
-// 				},
-// 				":hours": {
-// 					...
-// 				},
-// 				":minutes": {
-// 					...
-// 				},
-// 				":seconds": {
-// 					...
-// 				}
-// 			}
-// 		},
-// 		"footer": {
-// 			...
-// 			"now": {
-// 				...
-// 				":hover": {
-// 					...
-// 				},
-// 				":disabled": {
-// 					...
-// 				},
-// 			},
-// 			"mode": {
-// 				...
-// 				":hover": {
-// 					...
-// 				},
-// 				":disabled": {
-// 					...
-// 				},
-// 			},
-// 			"ok": {
-// 				...
-// 				":hover": {
-// 					...
-// 				},
-// 				":disabled": {
-// 					...
-// 				},
-// 			}
-// 		}
-/*
-const timePanelStyleExample = `<TimePicker {...{
-	style: {
-		panel: {
-			backgroundClip: 'padding-box',
-			backgroundColor: '#fff',
-			borderWidth: 1,
-			borderStyle: 'solid',
-			borderColor: '#ccc',
-			borderRadius: 3,
-			boxShadow: '0 1px 5px #ccc',
-			outline: 'none',
-			width: '100%',
-			picker,
-			footer: {
-				borderTop: '1px solid #e9e9e9',
-				fontSize: 12,
-				padding: '10px 0',
-				position: 'relative',
-				nowBtn: {
-					display: 'inline-block',
-					textAlign: 'center',
-					color: '#108ee9',
-					transition: 'color .3s ease',
-					fontSize: '14px',
-					lineHeight: '18px',
-					cursor: 'pointer',,
-					paddingLeft: 12,
-				},
-				okBtn: {
-					backgroundColor: '#108ee9',
-					borderRadius: 4,
-					lineHeight: '1.5',
-					padding: '1px 7px',
-					border: '1px solid transparent',
-					color: '#fff',
-					fontWeight: '500',
-					marginRight: 10,
-					textAlign: 'center',
-					transition: 'background .3s ease',
-					':hover': {
-						backgroundColor: '#49a9ee',
-					},
-				}
-				textAlign: 'right',
-			}
-		}
-	}
-}} />`
-*/
