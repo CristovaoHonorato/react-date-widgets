@@ -26,7 +26,7 @@ export const dateTimeInputStyleExample = `<DateTimePicker {...{
 const timeHeader  = `
 header: {
 	headerBtn: {
-// header text when change mode of date time widget
+// header text when in mode of a time widget
 // to time. e.g.: '4 May 2017'
 		color: 'orange',
 		":hover": {
@@ -218,6 +218,7 @@ export const dateTimePanelStyleExample = `<DateTimePicker {...{
 				},
 				time: {
 					${timePicker}
+					${timeHeader}
 				}
 			},
 			footer: {
