@@ -42,8 +42,18 @@ function picker(){
             header: header(),
             body: body(),
         },
-        month: {},
-        year: {},
+        month: {
+            fontFamily,
+            fontSize: 12,
+            header: {},
+            body: {},
+        },
+        year: {
+            fontFamily,
+            fontSize: 12,
+            header: {},
+            body: {},
+        },
     }
 }
 

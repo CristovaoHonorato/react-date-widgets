@@ -6,79 +6,78 @@ import { range, deepAssign, omit } from '../../../common/utils'
 const ROW = 4
 const COL = 3
 
-function chooseMonth(month) {
-  const next = this.state.value.clone()
-  next.month(month)
-  this.setAndSelectValue(next)
+
+const tableStyle = {
+    tableLayout: 'fixed',
+    width: '100%',
+    height: '255px',
+    borderCollapse: 'separate',
+}
+
+const cellStyle = {
+    display: 'block',
+    width: '46px',
+    margin: '0 auto',
+    color: '#666',
+    borderRadius: '4px 4px',
+    height: '36px',
+    padding: '0',
+    background: 'transparent',
+    lineHeight: '36px',
+    // textAlign: 'center',
 }
 
 function getTodayTime(value) {
-  const today = moment();
-  today.locale(value.locale()).utcOffset(value.utcOffset());
-  return today;
+    const today = moment();
+    today.locale(value.locale()).utcOffset(value.utcOffset());
+    return today;
 }
 
 class MonthTable extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            value: props.shadowValue,
-        }
-    }
     render() {
-        const { value } = this.state
-        const today = getTodayTime(value)
-        const currentMonth = value.month()
-        const { prefixCls, } = this.props
+        const { shadowValue} = this.props
+        // const today = getTodayTime(value)
+        // const currentMonth = value.month()
 
-        const monthsEls = months(value).map((month, index) => {
+        const monthsEls = months(shadowValue).map((month, index) => {
             const tds = month.map(monthData => {
-                const disabled = isDisabled(value, this.props)
+                const disabled = isDisabled(shadowValue, this.props)
                 const style = getStyles()
-                const cellEl = (<a className={ `${prefixCls}-month`}>{ monthData.content }</a>)
+                const cellEl = (<a className={ `month-cell`}>{ monthData.text }</a>)
                 const cellProps = {
                     role: "gridcell",
                     key: monthData.value,
-                    onClick: disabled ? null : chooseMonth.bind(this, monthData.value),
-                    title: monthData.title,
+                    onClick: disabled
+                        ? null
+                        : () => { this.changeMonth(monthData.value) },
+                    title: monthData.text,
+                    // style,
                     // className: classnames(classNameMap),
                 }
                 return (<td {...cellProps}>{cellEl}</td>)
             })
-            return (<tr key={index} role="row">{tds}</tr>)
+            return (<tr key={index} style={{textAlign: 'center'}} role="row" >{tds}</tr>)
         })
 
         return (
-            <table className={`${prefixCls}-table`} cellSpacing="0" role="grid">
-                <tbody className={`${prefixCls}-tbody`}>{monthsEls}</tbody>
+            <table className={`month-table`} cellSpacing="0" role="grid" style={tableStyle}>
+                <tbody className={`month-tbody`}>{monthsEls}</tbody>
             </table>
         )
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!nextProps.shadowValue.isSame(this.state.value)) {
-            this.setState({ value: nextProps.shadowValue})
-        }
-    }
-
-    setAndSelectValue(value) {
-        this.setState({ value }, () => {
-            this.props.onShadowValueChange(value)
-            this.props.onChangeMode('day')
-        })
+    changeMonth(month) {
+        const next = this.props.shadowValue.clone().month(month)
+        this.props.onShadowChange(next, 'day')
     }
 }
-function isDisabled(value, disabledDate) {
-    return false
-    // if (disabledDate) {
-    //     const testValue = value.clone()
-    //     testValue.month(monthData.value);
-    //     disabled = disabledDate(testValue);
-    // }
+
+function isDisabled(value, {minDate, maxDate}) {
+    return minDate && maxDate &&
+        (value.isBefore(minDate) || value.isAfter(maxDate))
 }
 function getStyles() {
-    return {}
+    return cellStyle
     // const classNameMap = {
     //     [`${prefixCls}-cell`]: 1,
     //     [`${prefixCls}-cell-disabled`]: disabled,
@@ -92,6 +91,10 @@ function months(value) {
     const months = []
     const localeData = value.localeData()
     const base = []
+
+    // range(ROW).reduce( (rowIndex, rowAcc) => {
+    //     range(COL).reduce( (colIndex, colAcc) => {}, [])
+    // }, [])
     //TODO: refactoring is needed below
     range(ROW).map( (rowIndex) => {
         months[rowIndex] = []
@@ -102,8 +105,7 @@ function months(value) {
             current.month(index)
             months[rowIndex][colIndex] = {
               value: index,
-              content: localeData.monthsShort(current),
-              title: localeData.monthsShort(current),
+              text: localeData.monthsShort(current),
             }
         })
     })

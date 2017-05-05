@@ -16,14 +16,17 @@ const layoutStyle = {
 }
 
 class Panel extends Component {
+
     render() {
 
+        const { style, ...rest } = this.props
         const props = {
+            ...rest,
             autoFocus: true,
             tabIndex: '0',
             className: 'picker-month',
             style: deepAssign(layoutStyle, omit(style, 'body', 'header')),
-        }        
+        }
 
         return (
             <div {...props}>

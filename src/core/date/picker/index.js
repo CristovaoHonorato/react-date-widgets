@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DayPicker from './day'
-//import MonthPicker from './month'
-//import YearPicker from './year'
+import MonthPicker from './month'
+import YearPicker from './year'
 
 export default class DatePicker extends Component {
     constructor(props) {
@@ -35,11 +35,11 @@ export default class DatePicker extends Component {
             case 'day':
                 return <DayPicker {...{...props, style: day}} />
 
-            //case 'month':
-            //    return <MonthPicker {...{...props, style: day}} />
+            case 'month':
+               return <MonthPicker {...{...props, style: day}} />
 
-            //case 'year':
-            //    return <YearPicker {...{...props, style: day}} />
+            case 'year':
+               return <YearPicker {...{...props, style: day}} />
 
             default:
                 return <DayPicker {...{...props, style: day}} />
@@ -56,8 +56,11 @@ export default class DatePicker extends Component {
         this.setState({mode})
     }
 
-    handleShadowChange(nextValue) {
-        this.setState({shadowValue: nextValue})
+    handleShadowChange(nextValue, mode) {
+        const newState = mode
+            ? {shadowValue: nextValue, mode}
+            : {shadowValue: nextValue}
+        this.setState(newState)
     }
 
     componentWillReceiveProps(nextProps){
