@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types';
+import React from 'react';
 import moment from 'moment'
 import { range, omit } from '../../../../common/utils'
 import DayCell from './DayCell'

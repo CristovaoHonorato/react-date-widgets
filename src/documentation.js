@@ -5,17 +5,16 @@ import DateTimePicker from './core/date-time'
 
 import Playground from 'component-playground'
 
-import dateExample from  "./examples/date"
-import dateTimeExample from  "./examples/dateTime"
-import timeExample from  "./examples/time"
-import dateTimeWithTranslations from  "./examples/dateTimeWithTranslations"
+import dateExample from './examples/date'
+import dateTimeExample from './examples/dateTime'
+import timeExample from './examples/time'
+import dateTimeWithTranslations from './examples/dateTimeWithTranslations'
 import {
     dateTimeInputStyleExample,
     timePanelStyleExample,
     datePanelStyleExample,
     dateTimePanelStyleExample,
-} from "./examples/style"
-
+} from './examples/style'
 
 export class DatepickerStateful extends Component {
     constructor(...args) {
@@ -36,12 +35,12 @@ export class DatepickerStateful extends Component {
             ...this.props,
             onChange: this.handleChangeDate,
         }
-        return block(<DatePicker {...props} />, "DatePicker")
+        return block(<DatePicker {...props} />, 'DatePicker')
     }
 
     handleChangeDate(val) {
-        const {onChange} = this.props
-        this.setState({valueDate:val}, () => {
+        const { onChange } = this.props
+        this.setState({ valueDate: val }, () => {
             onChange && onChange(val)
         })
         console.log(`VALUE Date: ${val}`)
@@ -66,12 +65,12 @@ export class DateTimepickerStateful extends Component {
             ...this.props,
             onChange: this.handleChangeDateTime,
         }
-        return block(<DateTimePicker {...props} />, "DateTimePicker")
+        return block(<DateTimePicker {...props} />, 'DateTimePicker')
     }
 
     handleChangeDateTime(val) {
-        const {onChange} = this.props
-        this.setState({valueDateTime:val}, () => {
+        const { onChange } = this.props
+        this.setState({ valueDateTime: val }, () => {
             onChange && onChange(val)
         })
         console.log(`VALUE DateTime: ${val}`)
@@ -101,17 +100,16 @@ export class TimepickerStateful extends Component {
         return block(<Timepicker {...props} />, 'TimePicker')
     }
 
-
     handleChangeTime(val) {
-        const {onChange} = this.props
-        this.setState({valueTime:val}, () => {
+        const { onChange } = this.props
+        this.setState({ valueTime: val }, () => {
             onChange && onChange(val)
         })
         console.log(`VALUE Time: ${val}`)
     }
 }
 
-function block(inner, text){
+function block(inner, text) {
     const style = {
         border: '1px solid #e9e9e9',
         borderRadius: '4px',
@@ -120,94 +118,104 @@ function block(inner, text){
     }
 
     const styleHeader = {
-        borderBottom: "1px solid #e9e9e9",
-        padding: "42px 20px 50px"
+        borderBottom: '1px solid #e9e9e9',
+        padding: '42px 20px 50px',
     }
 
     const styleBody = {
-        borderBottom: "1px solid #e9e9e9",
-        padding: "17px 16px 15px 20px"
+        borderBottom: '1px solid #e9e9e9',
+        padding: '17px 16px 15px 20px',
     }
 
-
     return (
-        <div className='code-block' style={style}>
+        <div className="code-block" style={style}>
             <div style={styleHeader}>
-                <div style={{width: 230}}>
-                    {inner}
-                </div>
+                <div style={{ width: 230 }}>{inner}</div>
             </div>
-            <div style={styleBody}>
-                {text}
-            </div>
+            <div style={styleBody}>{text}</div>
         </div>
     )
 }
 
-
-export const DateTimePickerPlayground = (props) => {
+export const DateTimePickerPlayground = props => {
     return (
-      <div className="component-documentation">
-        <h2>Date Time widget</h2>
-        <Playground
-          codeText={dateTimeExample}
-          scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>
-      </div>
+        <div className="component-documentation">
+            <h2>Date Time widget</h2>
+            <Playground
+                codeText={dateTimeExample}
+                scope={{ React: React, DateTimePicker: DateTimepickerStateful }}
+            />
+        </div>
     )
 }
 
-export const DatePickerPlayground = (props) => {
+export const DatePickerPlayground = props => {
     return (
-      <div className="component-documentation">
-        <h2>Date widget</h2>
-        <Playground
-          codeText={dateExample}
-          scope={{React: React, DatePicker: DatepickerStateful}}/>
-      </div>
+        <div className="component-documentation">
+            <h2>Date widget</h2>
+            <Playground
+                codeText={dateExample}
+                scope={{ React: React, DatePicker: DatepickerStateful }}
+            />
+        </div>
     )
 }
 
-export const TimePickerPlayground = (props) => {
+export const TimePickerPlayground = props => {
     return (
-      <div className="component-documentation">
-        <h2>Time widget</h2>
-        <Playground
-          codeText={timeExample}
-          scope={{React: React, TimePicker: TimepickerStateful}}/>
-      </div>
+        <div className="component-documentation">
+            <h2>Time widget</h2>
+            <Playground
+                codeText={timeExample}
+                scope={{ React: React, TimePicker: TimepickerStateful }}
+            />
+        </div>
     )
 }
 
-export const DateTimePickerWithTranslations = (props) => {
+export const DateTimePickerWithTranslations = props => {
     return (
-      <div className="component-documentation">
-        <Playground
-          codeText={dateTimeWithTranslations}
-          scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>
-      </div>
+        <div className="component-documentation">
+            <Playground
+                codeText={dateTimeWithTranslations}
+                scope={{ React: React, DateTimePicker: DateTimepickerStateful }}
+            />
+        </div>
     )
 }
 
-export const InputStyleExample = (props) => {
-    return (<Playground
-      codeText={dateTimeInputStyleExample}
-      scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>)
+export const InputStyleExample = props => {
+    return (
+        <Playground
+            codeText={dateTimeInputStyleExample}
+            scope={{ React: React, DateTimePicker: DateTimepickerStateful }}
+        />
+    )
 }
 
-export const TimePanelStyleExample = (props) => {
-    return (<Playground
-      codeText={timePanelStyleExample}
-      scope={{React: React, TimePicker: TimepickerStateful}}/>)
+export const TimePanelStyleExample = props => {
+    return (
+        <Playground
+            codeText={timePanelStyleExample}
+            scope={{ React: React, TimePicker: TimepickerStateful }}
+        />
+    )
 }
 
-export const DatePanelStyleExample = (props) => {
-    return (<Playground
-      codeText={datePanelStyleExample}
-      scope={{React: React, DatePicker: DatepickerStateful}}/>)
+export const DatePanelStyleExample = props => {
+    return (
+        <Playground
+            codeText={datePanelStyleExample}
+            scope={{ React: React, DatePicker: DatepickerStateful }}
+        />
+    )
 }
 
-export const DateTimePanelStyleExample = (props) => {
-    return (<Playground
-      codeText={dateTimePanelStyleExample}
-      scope={{React: React, DateTimePicker: DateTimepickerStateful}}/>)
+export const DateTimePanelStyleExample = props => {
+    return (
+        <Playground
+            codeText={dateTimePanelStyleExample}
+            scope={{ React: React, DateTimePicker: DateTimepickerStateful }}
+        />
+    )
 }

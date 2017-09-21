@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 
 import Header from './Header'
 import Body from './Body'
@@ -16,9 +16,7 @@ const layoutStyle = {
 }
 
 class Panel extends Component {
-
     render() {
-
         const { style, ...rest } = this.props
         const props = {
             ...rest,
@@ -30,14 +28,18 @@ class Panel extends Component {
 
         return (
             <div {...props}>
-                <Header {...{
-                    ...this.props,
-                    style: style.header
-                }}/>
-                <Body {...{
-                    ...this.props,
-                    style: style.body
-                }}/>
+                <Header
+                    {...{
+                        ...this.props,
+                        style: style.header,
+                    }}
+                />
+                <Body
+                    {...{
+                        ...this.props,
+                        style: style.body,
+                    }}
+                />
             </div>
         )
     }

@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import moment from 'moment'
 
-import { range, deepAssign, omit } from '../../../common/utils'
+import { range } from '../../../common/utils'
 
 const ROW = 4
 const COL = 3
-
 
 const tableStyle = {
     tableLayout: 'fixed',
@@ -28,14 +28,14 @@ const cellStyle = {
 }
 
 function getTodayTime(value) {
-    const today = moment();
-    today.locale(value.locale()).utcOffset(value.utcOffset());
-    return today;
+    const today = moment()
+    today.locale(value.locale()).utcOffset(value.utcOffset())
+    return today
 }
 
 class MonthTable extends Component {
     render() {
-        const { shadowValue} = this.props
+        const { shadowValue } = this.props
         // const today = getTodayTime(value)
         // const currentMonth = value.month()
 
@@ -43,24 +43,35 @@ class MonthTable extends Component {
             const tds = month.map(monthData => {
                 const disabled = isDisabled(shadowValue, this.props)
                 const style = getStyles()
-                const cellEl = (<a className={ `month-cell`}>{ monthData.text }</a>)
+                const cellEl = <a className={`month-cell`}>{monthData.text}</a>
                 const cellProps = {
-                    role: "gridcell",
+                    role: 'gridcell',
                     key: monthData.value,
                     onClick: disabled
                         ? null
-                        : () => { this.changeMonth(monthData.value) },
+                        : () => {
+                              this.changeMonth(monthData.value)
+                          },
                     title: monthData.text,
                     // style,
                     // className: classnames(classNameMap),
                 }
-                return (<td {...cellProps}>{cellEl}</td>)
+                return <td {...cellProps}>{cellEl}</td>
             })
-            return (<tr key={index} style={{textAlign: 'center'}} role="row" >{tds}</tr>)
+            return (
+                <tr key={index} style={{ textAlign: 'center' }} role="row">
+                    {tds}
+                </tr>
+            )
         })
 
         return (
-            <table className={`month-table`} cellSpacing="0" role="grid" style={tableStyle}>
+            <table
+                className={`month-table`}
+                cellSpacing="0"
+                role="grid"
+                style={tableStyle}
+            >
                 <tbody className={`month-tbody`}>{monthsEls}</tbody>
             </table>
         )
@@ -72,9 +83,12 @@ class MonthTable extends Component {
     }
 }
 
-function isDisabled(value, {minDate, maxDate}) {
-    return minDate && maxDate &&
+function isDisabled(value, { minDate, maxDate }) {
+    return (
+        minDate &&
+        maxDate &&
         (value.isBefore(minDate) || value.isAfter(maxDate))
+    )
 }
 function getStyles() {
     return cellStyle
@@ -96,16 +110,16 @@ function months(value) {
     //     range(COL).reduce( (colIndex, colAcc) => {}, [])
     // }, [])
     //TODO: refactoring is needed below
-    range(ROW).map( (rowIndex) => {
+    range(ROW).forEach(rowIndex => {
         months[rowIndex] = []
 
         // return range(COL).reduce( () => {}, months[rowIndex])
-        range(COL).map( (colIndex) => {
+        range(COL).forEach(colIndex => {
             const index = COL * rowIndex + colIndex
             current.month(index)
             months[rowIndex][colIndex] = {
-              value: index,
-              text: localeData.monthsShort(current),
+                value: index,
+                text: localeData.monthsShort(current),
             }
         })
     })
@@ -113,18 +127,17 @@ function months(value) {
 }
 
 MonthTable.defaultProps = {
-  onSelect: () => {},
+    onSelect: () => {},
 }
 
 MonthTable.propTypes = {
-  onSelect: PropTypes.func,
-  cellRender: PropTypes.func,
-  prefixCls: PropTypes.string,
-  value: PropTypes.object,
+    onSelect: PropTypes.func,
+    cellRender: PropTypes.func,
+    prefixCls: PropTypes.string,
+    value: PropTypes.object,
 }
 
 export default MonthTable
-
 
 //
 // class MonthTable extends Component {

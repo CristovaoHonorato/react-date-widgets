@@ -66,7 +66,9 @@ export default class Stick extends PureComponent {
 
         ReactDOM.unstable_renderSubtreeIntoContainer(
             this,
-            React.createElement('div', {className, style}, node),
+            <div className={className} style={style}>
+                {node}
+            </div>,
             this.container
         )
     }

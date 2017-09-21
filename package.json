@@ -1,30 +1,31 @@
 {
-  "name": "react-date-widgets",
-  "version": "1.0.0-alpha.2",
-  "main": "lib/index.js",
-  "repository": "git@github.com:CristovaoHonorato/react-date-widgets.git",
-  "author": "Cristóvão Honorato, Oleg Yarin",
-  "homepage": "https://cristovaohonorato.github.io/react-date-widgets/",
-  "license": "MIT",
-  "dependencies": {
-    "moment": "^2.18.1",
-    "react-click-outside": "2.3.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "component-playground": "^1.3.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-scripts": "^0.9.5",
-    "rimraf": "^2.6.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "prepublish": "rimraf lib && babel src/core -d lib --source-maps --presets es2015,stage-0,react",
-    "predocumentation": "IS_DOCUMENTATION=true react-scripts build",
-    "documentation": "cp build/static/js/*.js docs/scripts/bundle.js"
-  }
+    "name": "react-date-widgets",
+    "version": "1.0.0-alpha.2",
+    "main": "lib/index.js",
+    "repository": "git@github.com:CristovaoHonorato/react-date-widgets.git",
+    "author": "Cristóvão Honorato, Oleg Yarin",
+    "homepage": "https://cristovaohonorato.github.io/react-date-widgets/",
+    "license": "MIT",
+    "dependencies": {
+        "moment": "^2.18.1",
+        "react-click-outside": "2.3.0"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.24.1",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "component-playground": "^1.3.2",
+        "react": "^15.6.1",
+        "react-dom": "^15.6.1",
+        "react-scripts": "^0.9.5",
+        "rimraf": "^2.6.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "prepublish":
+            "rimraf lib && babel src/core -d lib --source-maps --presets es2015,stage-0,react",
+        "predocumentation": "IS_DOCUMENTATION=true react-scripts build",
+        "documentation": "cp build/static/js/*.js docs/scripts/bundle.js"
+    }
 }

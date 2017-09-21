@@ -1,5 +1,4 @@
-import React, { PropTypes, Component } from 'react'
-
+import React, { Component } from 'react'
 
 import Header from './Header'
 import Body from './Body'
@@ -32,7 +31,7 @@ class Panel extends Component {
         const startYear = parseInt(shadowValue.year() / 10, 10) * 10
         const props = {
             autoFocus: true,
-            tabIndex: "0",
+            tabIndex: '0',
             className: 'picker-day',
             style: deepAssign(layoutStyle, omit(style, 'body', 'header')),
             onKeyDown: this.handleKeyDown,
@@ -51,14 +50,18 @@ class Panel extends Component {
         }
         return (
             <div {...props}>
-                <Header {...{
-                    ...childProps,
-                    style: style.header
-                }}/>
-                <Body {...{
-                    ...childProps,
-                    style: style.body
-                }}/>
+                <Header
+                    {...{
+                        ...childProps,
+                        style: style.header,
+                    }}
+                />
+                <Body
+                    {...{
+                        ...childProps,
+                        style: style.body,
+                    }}
+                />
             </div>
         )
     }
